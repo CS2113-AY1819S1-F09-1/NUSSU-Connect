@@ -1,6 +1,9 @@
 package seedu.address.storage;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static seedu.address.testutil.TypicalAccounts.LOGINDETAIL1;
+import static seedu.address.testutil.TypicalAccounts.getTypicalLoginBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -86,6 +89,25 @@ public class XmlLoginBookStorageTest {
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
+    }
+
+    @Test
+    public void readAndSaveLoginBook_allInOrder_success() throws Exception {
+        Path filePath = testFolder.getRoot().toPath().resolve("TempAddressBook.xml");
+        LoginBook original = getTypicalLoginBook();
+        XmlLoginBookStorage xmlLoginBookStorage = new XmlLoginBookStorage(filePath);
+
+        //Save in new file and read back
+        xmlLoginBookStorage.saveLoginBook(original, filePath);
+        ReadOnlyLoginBook readBack = xmlLoginBookStorage.readLoginBook(filePath).get();
+        assertEquals(original, new LoginBook(readBack));
+
+        //Save and read without specifying file path
+        original.createAccount(LOGINDETAIL1);
+        xmlLoginBookStorage.saveLoginBook(original); //file path not specified
+        readBack = xmlLoginBookStorage.readLoginBook().get(); //file path not specified
+        assertEquals(original, new LoginBook(readBack));
+
     }
 
     @Test

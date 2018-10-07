@@ -43,14 +43,14 @@ public class XmlAccountTest {
     @Test
     public void toModelType_invalidUserPassword_throwsIllegalValueException() {
         XmlAccount account =
-                new XmlAccount(VALID_USERID, INVALID_USERPASSWORD);
+                new XmlAccount("A1234567M", INVALID_USERPASSWORD);
         String expectedMessage = UserPassword.MESSAGE_USERPASSWORD_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, account::toModelType);
     }
 
     @Test
     public void toModelType_nullUserPassword_throwsIllegalValueException() {
-        XmlAccount account = new XmlAccount(VALID_USERID, null);
+        XmlAccount account = new XmlAccount("A1234567M", null);
         String expectedMessage = String.format(MISSING_ACCOUNT_FIELD_MESSAGE_FORMAT,
                 UserPassword.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, account::toModelType);

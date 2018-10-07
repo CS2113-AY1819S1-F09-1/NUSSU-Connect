@@ -12,14 +12,14 @@ import seedu.address.model.login.LoginDetails;
 public class AccountUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code account}.
      */
     public static String getCreateAccountCommand(LoginDetails loginDetails) {
         return CreateAccountCommand.COMMAND_WORD + " " + getAccountDetails(loginDetails);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code account}'s details.
      */
     public static String getAccountDetails(LoginDetails loginDetails) {
         StringBuilder sb = new StringBuilder();

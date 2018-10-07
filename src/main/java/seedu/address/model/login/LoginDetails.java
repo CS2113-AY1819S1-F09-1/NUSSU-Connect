@@ -72,7 +72,6 @@ public class LoginDetails {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getUserId())
-                .append(" Userpassword: ")
                 .append(getUserPassword());
         return builder.toString();
     }
