@@ -45,8 +45,7 @@ public class LoginDetails {
     }
 
     /**
-     * Returns true if both accounts have the same user ID and passwords.
-     * This defines a stronger notion of equality between two accounts.
+     * Returns true if both accounts have the same user ID.
      */
     @Override
     public boolean equals(Object other) {
@@ -59,7 +58,7 @@ public class LoginDetails {
         }
 
         LoginDetails otherAccount = (LoginDetails) other;
-        return otherAccount.getUserId().equals(getUserId()) && otherAccount.getUserPassword().equals(getUserPassword());
+        return otherAccount.getUserId().equals(getUserId());
     }
 
 
@@ -73,7 +72,7 @@ public class LoginDetails {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getUserId())
-                .append(" User password: ")
+                .append(" Userpassword: ")
                 .append(getUserPassword());
         return builder.toString();
     }

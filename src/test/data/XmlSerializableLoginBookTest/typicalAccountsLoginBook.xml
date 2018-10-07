@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- LoginBook save file which contains the same Account values as in TypicalAccounts#getTypicalLoginBook() -->
+<loginbook>
+    <accounts>
+        <userId>A1234565M</userId>
+        <userPassword>zaq1xsw2cde3</userPassword>
+    </accounts>
+    <accounts>
+        <userId>A1234566M</userId>
+        <userPassword>1qaz2wsx3edc</userPassword>
+    </accounts>
+    <accounts>
+        <userId>A1234565M</userId>
+        <userPassword>1qaz2wsx3edc</userPassword>
+    </accounts>
+    <accounts>
+        <userId>A1234566M</userId>
+        <userPassword>zaq1xsw2cde3</userPassword>
+    </accounts>
+</loginbook>

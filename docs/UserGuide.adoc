@@ -63,6 +63,8 @@ Format: `login USERID PASSWORD`
 * PASSWORD refers to the password associated with the existing account
 * The USERID must be in the `X1234567X` format, where X can be any lower or upper case letter alphabet, and there must be exactly 7 digits between the two `X`
 * USERID must belong to an existing account
+* There must be at least 1 space between USERID and PASSWORD
+* There need not be any spaces between `login` and `USERID`
 ****
 
 Examples:
@@ -84,7 +86,7 @@ Format: `createaccount user/USERID pass/PASSWORD`
 * user/ and pass/ are required prefixes before USERID and PASSWORD
 * USERID refers to student matriculation number
 * PASSWORD refers to any desired passphrases the new user wishes to have
-* The USERID must be in the `X1234567X` format, where X can be any lower or upper case letter alphabet, and there must be exactly 7 digits between the two `X`
+* The USERID must be in the `X1234567X` format, where X can only be upper-case letter alphabet, and there must be exactly 7 digits between the two `X`
 * USERID must not belong to an existing account
 ****
 

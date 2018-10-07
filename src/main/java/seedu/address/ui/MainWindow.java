@@ -2,6 +2,8 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javax.swing.JOptionPane;
+
 import com.google.common.eventbus.Subscribe;
 
 import javafx.event.ActionEvent;
@@ -16,8 +18,12 @@ import seedu.address.commons.core.Config;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.ExitAppRequestEvent;
+import seedu.address.commons.events.ui.NewResultAvailableEvent;
 import seedu.address.commons.events.ui.ShowHelpRequestEvent;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.UserPrefs;
 
 /**
@@ -135,13 +141,20 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * TO IMPLEMENT: hide all ui except commandbox and resultdisplay unless successfully logged in. Can create account
-     * with/without logging in, but must type in correct master password given only to NUSSU exco members
-     * issues: does not check for duplicate accounts during account creation. The fillInnerParts() method only runs
-     * once, when app is started. I need it to run multiple times to check the MainWindow.getIsLoginSuccessful()
-     * condition to see if it is true or false.
+     * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        try {
+            do {
+                String loginInput = JOptionPane.showInputDialog("Please login first by entering login credentials:");
+                CommandResult commandResultLogin = logic.execute(loginInput);
+                raise(new NewResultAvailableEvent(commandResultLogin.feedbackToUser));
+            } while(!(MainWindow.getIsLoginSuccessful()));
+
+        } catch (CommandException | ParseException e) {
+            raise(new NewResultAvailableEvent(e.getMessage()));
+        }
+
         CommandBox commandBox = new CommandBox(logic);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 

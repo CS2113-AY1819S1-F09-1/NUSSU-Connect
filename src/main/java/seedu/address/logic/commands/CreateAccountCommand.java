@@ -25,7 +25,7 @@ public class CreateAccountCommand extends Command {
             + PREFIX_USERPASSWORD + "zaq1xsw2cde3";
 
     public static final String MESSAGE_SUCCESS = "New account created: %1$s";
-    private static final String MESSAGE_DUPLICATE_ACCOUNT = "This account already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_ACCOUNT = "This account already exists in the address book";
 
     private final LoginDetails toAdd;
 
@@ -42,6 +42,7 @@ public class CreateAccountCommand extends Command {
         requireNonNull(model);
 
         if (model.hasAccount(toAdd)) {
+
             throw new CommandException(MESSAGE_DUPLICATE_ACCOUNT);
         }
 

@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertLoginCommandFailure;
 import static seedu.address.testutil.TypicalAccounts.getTypicalLoginBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -12,6 +13,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.login.LoginDetails;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -38,6 +40,13 @@ public class AddCommandIntegrationTest {
 
         assertCommandSuccess(new AddCommand(validPerson), model, commandHistory,
                 String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+    }
+
+    @Test
+    public void execute_duplicateAccount_throwsCommandException() {
+        LoginDetails accountInList = model.getLoginBook().getLoginDetailsList().get(0);
+        assertLoginCommandFailure(new CreateAccountCommand(accountInList), model, commandHistory,
+                CreateAccountCommand.MESSAGE_DUPLICATE_ACCOUNT);
     }
 
     @Test

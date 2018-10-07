@@ -3,6 +3,7 @@ package seedu.address.storage;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static seedu.address.testutil.TypicalAccounts.getTypicalLoginBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.io.IOException;
@@ -61,6 +62,18 @@ public class StorageManagerTest {
     }
 
     @Test
+    public void loginBookReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link XmlLoginBookStorage} class.
+         */
+        LoginBook original = getTypicalLoginBook();
+        storageManager.saveLoginBook(original);
+        ReadOnlyLoginBook retrieved = storageManager.readLoginBook().get();
+        assertEquals(original, new LoginBook(retrieved));
+    }
+
+    @Test
     public void addressBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
@@ -71,6 +84,11 @@ public class StorageManagerTest {
         storageManager.saveAddressBook(original);
         ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
         assertEquals(original, new AddressBook(retrieved));
+    }
+
+    @Test
+    public void getLoginBookFilePath() {
+        assertNotNull(storageManager.getLoginBookFilePath());
     }
 
     @Test
@@ -88,7 +106,6 @@ public class StorageManagerTest {
         storage.handleAddressBookChangedEvent(new AddressBookChangedEvent(new AddressBook()));
         assertTrue(eventsCollectorRule.eventsCollector.getMostRecent() instanceof DataSavingExceptionEvent);
     }
-
 
     /**
      * A Stub class to throw an exception when the save method is called

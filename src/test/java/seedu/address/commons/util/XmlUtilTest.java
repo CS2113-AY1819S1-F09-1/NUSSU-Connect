@@ -22,7 +22,9 @@ import seedu.address.storage.XmlAdaptedPerson;
 import seedu.address.storage.XmlAdaptedTag;
 import seedu.address.storage.XmlSerializableAddressBook;
 import seedu.address.storage.XmlSerializableLoginBook;
+import seedu.address.testutil.AccountBuilder;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.LoginBookBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TestUtil;
 
@@ -75,14 +77,14 @@ public class XmlUtilTest {
     @Test
     public void getDataFromFile_missingFile_fileNotFoundException() throws Exception {
         thrown.expect(FileNotFoundException.class);
-        XmlUtil.getDataFromFile(MISSING_LOGIN_FILE, AddressBook.class);
+        XmlUtil.getDataFromFile(MISSING_LOGIN_FILE, LoginBook.class);
         XmlUtil.getDataFromFile(MISSING_FILE, AddressBook.class);
     }
 
     @Test
     public void getDataFromFile_emptyFile_dataFormatMismatchException() throws Exception {
         thrown.expect(JAXBException.class);
-        XmlUtil.getDataFromFile(EMPTY_LOGIN_FILE, AddressBook.class);
+        XmlUtil.getDataFromFile(EMPTY_LOGIN_FILE, LoginBook.class);
         XmlUtil.getDataFromFile(EMPTY_FILE, AddressBook.class);
     }
 
@@ -164,7 +166,7 @@ public class XmlUtilTest {
     @Test
     public void saveDataToFile_missingFile_fileNotFoundException() throws Exception {
         thrown.expect(FileNotFoundException.class);
-        XmlUtil.saveDataToFile(MISSING_LOGIN_FILE, new AddressBook());
+        XmlUtil.saveDataToFile(MISSING_LOGIN_FILE, new LoginBook());
         XmlUtil.saveDataToFile(MISSING_FILE, new AddressBook());
     }
 
@@ -181,6 +183,14 @@ public class XmlUtilTest {
         XmlUtil.saveDataToFile(TEMP_FILE, dataToWrite);
         XmlSerializableAddressBook dataFromFile = XmlUtil.getDataFromFile(TEMP_FILE, XmlSerializableAddressBook.class);
         assertEquals(dataToWrite, dataFromFile);
+
+        LoginBookBuilder accountBuilder = new LoginBookBuilder(new LoginBook());
+        loginDataToWrite = new XmlSerializableLoginBook(
+                accountBuilder.withLoginDetails(new AccountBuilder().build()).build());
+
+        XmlUtil.saveDataToFile(TEMP_LOGIN_FILE, loginDataToWrite);
+        loginDataFromFile = XmlUtil.getDataFromFile(TEMP_LOGIN_FILE, XmlSerializableLoginBook.class);
+        assertEquals(loginDataToWrite, loginDataFromFile);
 
         AddressBookBuilder builder = new AddressBookBuilder(new AddressBook());
         dataToWrite = new XmlSerializableAddressBook(

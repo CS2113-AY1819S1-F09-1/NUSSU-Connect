@@ -35,7 +35,6 @@ public class LoginUserIdPasswordCommand extends LoginCommand {
             MainWindow.setIsLoginSuccessful(true);
         } else {
             MainWindow.setIsLoginSuccessful(false);
-            System.exit(0);
         }
         return new CommandResult(
                 String.format(Messages.MESSAGE_LOGIN_LISTED_OVERVIEW, model.getFilteredLoginDetailsList().size()));

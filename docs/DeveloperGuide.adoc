@@ -1054,20 +1054,19 @@ Use case ends
 
 *MSS*
 
-1.  User types a command to access a certain functionality in NUSSU-Connect
-2.  NUSSU-Connect prompts user to login first by entering login credentials
-3.  User types in login credentials along with the login command
-4.  NUSSU-Connect queries against login book and authorizes the user full access to NUSSU-Connect
+1.  NUSSU-Connect prompts user to login first by entering login credentials
+2.  User types in login credentials along with the login command
+3.  NUSSU-Connect queries against login book and authorizes the user full access to NUSSU-Connect
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 3a. User types in wrong password or user ID
+* 2a. User types in wrong password or user ID
 +
 [none]
-** 3a1. NUSSU-Connect displays error message and continues to prompt user for login credentials before doing anything else
+** 2a1. NUSSU-Connect continues to prompt user for login credentials before giving access to user
 +
 Use case ends.
 
