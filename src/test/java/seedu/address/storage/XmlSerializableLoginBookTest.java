@@ -16,8 +16,7 @@ import seedu.address.testutil.TypicalAccounts;
 
 public class XmlSerializableLoginBookTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
-            "XmlSerializableLoginBookTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "XmlSerializableLoginBookTest");
     private static final Path TYPICAL_ACCOUNTS_FILE = TEST_DATA_FOLDER.resolve("typicalAccountsLoginBook.xml");
     private static final Path INVALID_ACCOUNT_FILE = TEST_DATA_FOLDER.resolve("invalidAccountsLoginBook.xml");
     private static final Path DUPLICATE_ACCOUNT_FILE = TEST_DATA_FOLDER.resolve("duplicateAccountLoginBook.xml");
