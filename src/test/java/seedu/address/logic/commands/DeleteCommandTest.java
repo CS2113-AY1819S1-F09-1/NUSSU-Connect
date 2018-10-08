@@ -22,6 +22,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.login.LoginDetails;
+import seedu.address.model.login.UserId;
+import seedu.address.model.login.UserPassword;
 import seedu.address.model.person.Person;
 
 /**
@@ -36,7 +38,10 @@ public class DeleteCommandTest {
     @Test
     public void execute_validUnfilteredLoginList_success() {
         LoginDetails accountToDelete = model.getFilteredLoginDetailsList().get(0);
-        DeleteAccountCommand deleteAccountCommand = new DeleteAccountCommand(LOGINDETAIL5);
+        UserId userId = new UserId("A1234567M");
+        UserPassword userPassword = new UserPassword("zaq1xsw2cde3");
+        LoginDetails loginDetails = new LoginDetails(userId, userPassword);
+        DeleteAccountCommand deleteAccountCommand = new DeleteAccountCommand(loginDetails);
 
         String expectedMessage = String.format(DeleteAccountCommand.MESSAGE_DELETE_ACCOUNT_SUCCESS, accountToDelete);
 

@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_USERPASSWORD;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.CreateAccountCommand;
 import seedu.address.logic.commands.DeleteAccountCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.login.LoginDetails;
