@@ -1,5 +1,6 @@
 package seedu.address.model.login;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PASSWORD_ACCOUNT2;
@@ -9,6 +10,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import seedu.address.model.login.exceptions.AccountNotFoundException;
 import seedu.address.model.login.exceptions.DuplicateAccountException;
 import seedu.address.testutil.AccountBuilder;
 
@@ -54,6 +56,26 @@ public class UniqueAccountListTest {
         uniqueAccountList.add(LOGINDETAIL1);
         thrown.expect(DuplicateAccountException.class);
         uniqueAccountList.add(LOGINDETAIL1);
+    }
+
+    @Test
+    public void remove_nullAccount_throwsNullPointerException() {
+        thrown.expect(NullPointerException.class);
+        uniqueAccountList.remove(null);
+    }
+
+    @Test
+    public void remove_accountDoesNotExist_throwsAccountNotFoundException() {
+        thrown.expect(AccountNotFoundException.class);
+        uniqueAccountList.remove(LOGINDETAIL1);
+    }
+
+    @Test
+    public void remove_existingAccount_removesAccount() {
+        uniqueAccountList.add(LOGINDETAIL1);
+        uniqueAccountList.remove(LOGINDETAIL1);
+        UniqueAccountList expectedUniquePersonList = new UniqueAccountList();
+        assertEquals(expectedUniquePersonList, uniqueAccountList);
     }
 
     @Test

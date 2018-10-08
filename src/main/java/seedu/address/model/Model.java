@@ -24,7 +24,7 @@ public interface Model {
      * Deletes an existing account in the address book.
      * The account must exist in the address book.
      */
-    //void deleteAccount(LoginDetails delete);
+    void deleteAccount(LoginDetails delete);
 
     /**
      * Changes the password of an existing account in the address book.

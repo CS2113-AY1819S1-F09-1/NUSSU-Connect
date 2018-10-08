@@ -13,6 +13,7 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ClearSearchHistoryCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CreateAccountCommand;
+import seedu.address.logic.commands.DeleteAccountCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -70,6 +71,9 @@ public class AddressBookParser {
             default:
                 throw new IllegalArgumentException("Wrong master password!");
             }
+
+        case DeleteAccountCommand.COMMAND_WORD:
+            return new DeleteAccountCommandParser().parse(arguments);
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);

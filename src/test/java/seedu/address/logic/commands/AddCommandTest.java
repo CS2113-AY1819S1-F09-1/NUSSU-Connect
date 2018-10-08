@@ -132,6 +132,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteAccount(LoginDetails delete) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasAccount(LoginDetails credentials) {
             throw new AssertionError("This method should not be called.");
         }

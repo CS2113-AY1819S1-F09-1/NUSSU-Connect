@@ -65,6 +65,14 @@ public class LoginBook implements ReadOnlyLoginBook {
         accounts.add(l);
     }
 
+    /**
+     * Removes {@code logindetails} from this {@code LoginBook}.
+     * {@code logindetails} must exist in the address book.
+     */
+    public void removeAccount(LoginDetails logindetails) {
+        accounts.remove(logindetails);
+    }
+
     //// util methods
 
     @Override

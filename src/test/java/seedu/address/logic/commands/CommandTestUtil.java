@@ -112,8 +112,8 @@ public class CommandTestUtil {
      * - the login book and the filtered account list in the {@code actualModel} remain unchanged <br>
      * - {@code actualCommandHistory} remains unchanged.
      */
-    public static void assertLoginCommandFailure(Command command, Model actualModel, CommandHistory actualCommandHistory,
-                                            String expectedMessage) {
+    public static void assertLoginCommandFailure(Command command, Model actualModel,
+                                                 CommandHistory actualCommandHistory, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         LoginBook expectedLoginBook = new LoginBook(actualModel.getLoginBook());

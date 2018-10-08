@@ -6,6 +6,8 @@ import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.testutil.TypicalAccounts.LOGINDETAIL4;
+import static seedu.address.testutil.TypicalAccounts.LOGINDETAIL5;
 import static seedu.address.testutil.TypicalAccounts.getTypicalLoginBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -19,16 +21,30 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.login.LoginDetails;
 import seedu.address.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeleteCommand} and {@code DeleteAccountCommand}.
  */
 public class DeleteCommandTest {
 
     private Model model = new ModelManager(getTypicalLoginBook(), getTypicalAddressBook(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
+
+    @Test
+    public void execute_validUnfilteredLoginList_success() {
+        LoginDetails accountToDelete = model.getFilteredLoginDetailsList().get(0);
+        DeleteAccountCommand deleteAccountCommand = new DeleteAccountCommand(LOGINDETAIL5);
+
+        String expectedMessage = String.format(DeleteAccountCommand.MESSAGE_DELETE_ACCOUNT_SUCCESS, accountToDelete);
+
+        ModelManager expectedModel = new ModelManager(model.getLoginBook(), model.getAddressBook(), new UserPrefs());
+        expectedModel.deleteAccount(accountToDelete);
+
+        assertCommandSuccess(deleteAccountCommand, model, commandHistory, expectedMessage, expectedModel);
+    }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -147,6 +163,8 @@ public class DeleteCommandTest {
 
     @Test
     public void equals() {
+        DeleteAccountCommand deleteFirstAccountCommand = new DeleteAccountCommand(LOGINDETAIL5);
+        DeleteAccountCommand deleteSecondAccountCommand = new DeleteAccountCommand(LOGINDETAIL4);
         DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
         DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
 
@@ -154,6 +172,8 @@ public class DeleteCommandTest {
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
+        DeleteAccountCommand deleteAccountCommandCopy = new DeleteAccountCommand(LOGINDETAIL5);
+        assertTrue(deleteFirstAccountCommand.equals(deleteAccountCommandCopy));
         DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
@@ -164,6 +184,7 @@ public class DeleteCommandTest {
         assertFalse(deleteFirstCommand.equals(null));
 
         // different person -> returns false
+        assertFalse(deleteFirstAccountCommand.equals(deleteSecondAccountCommand));
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
