@@ -9,8 +9,8 @@ import java.util.Objects;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class LoginDetails {
-    private UserId userId;
-    private UserPassword userPassword;
+    private final UserId userId;
+    private final UserPassword userPassword;
 
     /**
      * Every field must be present and not null.
@@ -27,10 +27,6 @@ public class LoginDetails {
 
     public UserPassword getUserPassword() {
         return userPassword;
-    }
-
-    public void setUserPassword(UserPassword password) {
-        this.userPassword = password;
     }
 
     /**

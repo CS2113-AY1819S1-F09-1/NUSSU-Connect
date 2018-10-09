@@ -2,7 +2,9 @@ package seedu.address.storage;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static seedu.address.testutil.TypicalAccounts.ACCOUNT1;
 import static seedu.address.testutil.TypicalAccounts.LOGINDETAIL1;
+import static seedu.address.testutil.TypicalAccounts.LOGINDETAIL2;
 import static seedu.address.testutil.TypicalAccounts.getTypicalLoginBook;
 
 import java.io.IOException;
@@ -93,13 +95,20 @@ public class XmlLoginBookStorageTest {
 
     @Test
     public void readAndSaveLoginBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.getRoot().toPath().resolve("TempAddressBook.xml");
+        Path filePath = testFolder.getRoot().toPath().resolve("TempLoginBook.xml");
         LoginBook original = getTypicalLoginBook();
         XmlLoginBookStorage xmlLoginBookStorage = new XmlLoginBookStorage(filePath);
 
         //Save in new file and read back
         xmlLoginBookStorage.saveLoginBook(original, filePath);
         ReadOnlyLoginBook readBack = xmlLoginBookStorage.readLoginBook(filePath).get();
+        assertEquals(original, new LoginBook(readBack));
+
+        //Modify data, overwrite exiting file, and read back
+        original.createAccount(ACCOUNT1);
+        original.removeAccount(LOGINDETAIL2);
+        xmlLoginBookStorage.saveLoginBook(original, filePath);
+        readBack = xmlLoginBookStorage.readLoginBook(filePath).get();
         assertEquals(original, new LoginBook(readBack));
 
         //Save and read without specifying file path

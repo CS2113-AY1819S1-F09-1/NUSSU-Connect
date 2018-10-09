@@ -58,9 +58,10 @@ public class AddressBookParser {
             return new LoginUserIdPasswordCommandParser().parse(arguments);
 
         case CreateAccountCommand.COMMAND_WORD:
+            return new CreateAccountCommandParser().parse(arguments);
             //@@author Chocological-reused
             //Reused from https://stackoverflow.com/posts/6555051/revisions with minor modifications
-            LoginDialogBox.setLoginDialogBox();
+            /*LoginDialogBox.setLoginDialogBox();
 
             String loginSelection = JOptionPane.showInputDialog(LoginDialogBox.getLoginFrame(),
                     "Please type in master password", null);
@@ -70,7 +71,7 @@ public class AddressBookParser {
                 return new CreateAccountCommandParser().parse(arguments);
             default:
                 throw new IllegalArgumentException("Wrong master password!");
-            }
+            }*/
 
         case DeleteAccountCommand.COMMAND_WORD:
             return new DeleteAccountCommandParser().parse(arguments);
