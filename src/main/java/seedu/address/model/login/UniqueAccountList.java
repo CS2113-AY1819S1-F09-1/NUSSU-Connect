@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.login.exceptions.AccountNotFoundException;
 import seedu.address.model.login.exceptions.DuplicateAccountException;
 
 /**
@@ -45,17 +44,6 @@ public class UniqueAccountList implements Iterable<LoginDetails> {
             throw new DuplicateAccountException();
         }
         internalLoginList.add(toAdd);
-    }
-
-    /**
-     * Removes the equivalent account from the list.
-     * The account must exist in the list.
-     */
-    public void remove(LoginDetails toRemove) {
-        requireNonNull(toRemove);
-        if (!internalLoginList.remove(toRemove)) {
-            throw new AccountNotFoundException();
-        }
     }
 
     /**

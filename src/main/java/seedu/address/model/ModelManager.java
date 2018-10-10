@@ -85,12 +85,6 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public void deleteAccount(LoginDetails details) {
-        versionedLoginBook.removeAccount(details);
-        indicateLoginBookChanged();
-    }
-
-    @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return versionedAddressBook.hasPerson(person);

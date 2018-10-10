@@ -3,7 +3,6 @@ package seedu.address.storage;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.testutil.TypicalAccounts.getTypicalLoginBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.io.IOException;
@@ -59,18 +58,6 @@ public class StorageManagerTest {
         storageManager.saveUserPrefs(original);
         UserPrefs retrieved = storageManager.readUserPrefs().get();
         assertEquals(original, retrieved);
-    }
-
-    @Test
-    public void loginBookReadSave() throws Exception {
-        /*
-         * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link XmlLoginBookStorage} class.
-         */
-        LoginBook original = getTypicalLoginBook();
-        storageManager.saveLoginBook(original);
-        ReadOnlyLoginBook retrieved = storageManager.readLoginBook().get();
-        assertEquals(original, new LoginBook(retrieved));
     }
 
     @Test

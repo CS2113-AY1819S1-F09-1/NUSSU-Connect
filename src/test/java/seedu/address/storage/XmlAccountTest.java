@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-import static org.junit.Assert.assertEquals;
 import static seedu.address.storage.XmlAccount.MISSING_ACCOUNT_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.TypicalAccounts.LOGINDETAIL2;
 
@@ -18,12 +17,6 @@ public class XmlAccountTest {
 
     private static final String VALID_USERID = LOGINDETAIL2.getUserId().toString();
     private static final String VALID_USERPASSWORD = LOGINDETAIL2.getUserPassword().toString();
-
-    @Test
-    public void toModelType_validAccountDetails_returnsAccount() throws Exception {
-        XmlAccount account = new XmlAccount(LOGINDETAIL2);
-        assertEquals(LOGINDETAIL2, account.toModelType());
-    }
 
     @Test
     public void toModelType_invalidUserId_throwsIllegalValueException() {

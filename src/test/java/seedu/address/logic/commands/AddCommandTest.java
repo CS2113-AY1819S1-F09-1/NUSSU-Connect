@@ -23,7 +23,6 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyLoginBook;
 import seedu.address.model.login.LoginDetails;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.AccountBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -38,25 +37,13 @@ public class AddCommandTest {
     @Test
     public void constructor_nullAccount_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        new CreateAccountCommand(null);
+        new CreateAccountCommand(null, null);
     }
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         new AddCommand(null);
-    }
-
-    @Test
-    public void execute_accountAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingAccountAdded modelStub = new ModelStubAcceptingAccountAdded();
-        LoginDetails validAccount = new AccountBuilder().build();
-
-        CommandResult commandResult = new CreateAccountCommand(validAccount).execute(modelStub, commandHistory);
-
-        assertEquals(String.format(CreateAccountCommand.MESSAGE_SUCCESS, validAccount), commandResult.feedbackToUser);
-        assertEquals(Arrays.asList(validAccount), modelStub.accountsAdded);
-        assertEquals(EMPTY_COMMAND_HISTORY, commandHistory);
     }
 
     @Test
@@ -69,17 +56,6 @@ public class AddCommandTest {
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.feedbackToUser);
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
         assertEquals(EMPTY_COMMAND_HISTORY, commandHistory);
-    }
-
-    @Test
-    public void execute_duplicateAccount_throwsCommandException() throws Exception {
-        LoginDetails validAccount = new AccountBuilder().build();
-        CreateAccountCommand createAccountCommand = new CreateAccountCommand(validAccount);
-        ModelStub modelStub = new ModelStubWithAccount(validAccount);
-
-        thrown.expect(CommandException.class);
-        thrown.expectMessage(CreateAccountCommand.MESSAGE_DUPLICATE_ACCOUNT);
-        createAccountCommand.execute(modelStub, commandHistory);
     }
 
     @Test
@@ -128,11 +104,6 @@ public class AddCommandTest {
 
         @Override
         public void createAccount(LoginDetails loginDetails) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteAccount(LoginDetails delete) {
             throw new AssertionError("This method should not be called.");
         }
 

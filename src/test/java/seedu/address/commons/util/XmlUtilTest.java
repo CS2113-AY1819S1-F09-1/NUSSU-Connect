@@ -92,7 +92,7 @@ public class XmlUtilTest {
     public void getDataFromFile_validFile_validResult() throws Exception {
         LoginBook dataFromLoginFile = XmlUtil.getDataFromFile(VALID_LOGIN_FILE,
                 XmlSerializableLoginBook.class).toModelType();
-        assertEquals(4, dataFromLoginFile.getLoginDetailsList().size());
+        assertEquals(2, dataFromLoginFile.getLoginDetailsList().size());
         AddressBook dataFromFile = XmlUtil.getDataFromFile(VALID_FILE, XmlSerializableAddressBook.class).toModelType();
         assertEquals(9, dataFromFile.getPersonList().size());
     }

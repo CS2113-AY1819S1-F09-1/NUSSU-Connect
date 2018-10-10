@@ -28,28 +28,12 @@ import seedu.address.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
- * {@code DeleteCommand} and {@code DeleteAccountCommand}.
+ * {@code DeleteCommand}.
  */
 public class DeleteCommandTest {
 
     private Model model = new ModelManager(getTypicalLoginBook(), getTypicalAddressBook(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
-
-    @Test
-    public void execute_validUnfilteredLoginList_success() {
-        LoginDetails accountToDelete = model.getFilteredLoginDetailsList().get(0);
-        UserId userId = new UserId("A1234567M");
-        UserPassword userPassword = new UserPassword("zaq1xsw2cde3");
-        LoginDetails loginDetails = new LoginDetails(userId, userPassword);
-        DeleteAccountCommand deleteAccountCommand = new DeleteAccountCommand(loginDetails);
-
-        String expectedMessage = String.format(DeleteAccountCommand.MESSAGE_DELETE_ACCOUNT_SUCCESS, accountToDelete);
-
-        ModelManager expectedModel = new ModelManager(model.getLoginBook(), model.getAddressBook(), new UserPrefs());
-        expectedModel.deleteAccount(accountToDelete);
-
-        assertCommandSuccess(deleteAccountCommand, model, commandHistory, expectedMessage, expectedModel);
-    }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -168,8 +152,6 @@ public class DeleteCommandTest {
 
     @Test
     public void equals() {
-        DeleteAccountCommand deleteFirstAccountCommand = new DeleteAccountCommand(LOGINDETAIL5);
-        DeleteAccountCommand deleteSecondAccountCommand = new DeleteAccountCommand(LOGINDETAIL4);
         DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
         DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
 
@@ -177,8 +159,6 @@ public class DeleteCommandTest {
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteAccountCommand deleteAccountCommandCopy = new DeleteAccountCommand(LOGINDETAIL5);
-        assertTrue(deleteFirstAccountCommand.equals(deleteAccountCommandCopy));
         DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
@@ -189,7 +169,6 @@ public class DeleteCommandTest {
         assertFalse(deleteFirstCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(deleteFirstAccountCommand.equals(deleteSecondAccountCommand));
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 

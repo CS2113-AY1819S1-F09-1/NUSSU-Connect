@@ -94,32 +94,6 @@ public class XmlLoginBookStorageTest {
     }
 
     @Test
-    public void readAndSaveLoginBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.getRoot().toPath().resolve("TempLoginBook.xml");
-        LoginBook original = getTypicalLoginBook();
-        XmlLoginBookStorage xmlLoginBookStorage = new XmlLoginBookStorage(filePath);
-
-        //Save in new file and read back
-        xmlLoginBookStorage.saveLoginBook(original, filePath);
-        ReadOnlyLoginBook readBack = xmlLoginBookStorage.readLoginBook(filePath).get();
-        assertEquals(original, new LoginBook(readBack));
-
-        //Modify data, overwrite exiting file, and read back
-        original.createAccount(ACCOUNT1);
-        original.removeAccount(LOGINDETAIL2);
-        xmlLoginBookStorage.saveLoginBook(original, filePath);
-        readBack = xmlLoginBookStorage.readLoginBook(filePath).get();
-        assertEquals(original, new LoginBook(readBack));
-
-        //Save and read without specifying file path
-        original.createAccount(LOGINDETAIL1);
-        xmlLoginBookStorage.saveLoginBook(original); //file path not specified
-        readBack = xmlLoginBookStorage.readLoginBook().get(); //file path not specified
-        assertEquals(original, new LoginBook(readBack));
-
-    }
-
-    @Test
     public void saveAddressBook_nullFilePath_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
         saveLoginBook(new LoginBook(), null);
