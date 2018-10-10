@@ -1,6 +1,5 @@
 package seedu.address.model.login;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PASSWORD_ACCOUNT2;

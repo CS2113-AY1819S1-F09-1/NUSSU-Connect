@@ -1,11 +1,6 @@
 package seedu.address.storage;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static seedu.address.testutil.TypicalAccounts.ACCOUNT1;
-import static seedu.address.testutil.TypicalAccounts.LOGINDETAIL1;
-import static seedu.address.testutil.TypicalAccounts.LOGINDETAIL2;
-import static seedu.address.testutil.TypicalAccounts.getTypicalLoginBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
