@@ -30,7 +30,6 @@ public class LoginUserIdPasswordCommand extends LoginCommand {
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
         model.updateFilteredLoginDetailsList(idPredicate);
-        System.out.println(model.getFilteredLoginDetailsList().size());
         model.updateFilteredLoginDetailsList(passwordPredicate);
         if (model.getFilteredLoginDetailsList().size() != 0) {
             MainWindow.setIsLoginSuccessful(true);
