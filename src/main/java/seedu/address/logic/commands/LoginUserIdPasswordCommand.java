@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
@@ -29,8 +31,12 @@ public class LoginUserIdPasswordCommand extends LoginCommand {
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
-        model.updateFilteredLoginDetailsList(idPredicate);
-        model.updateFilteredLoginDetailsList(passwordPredicate);
+        Predicate updatedIdPredicate = getMostUpdatedPredicate(idPredicate);
+        model.updateFilteredLoginDetailsList(updatedIdPredicate);
+        System.out.println(model.getFilteredLoginDetailsList().size());
+        Predicate updatedPasswordPredicate = getMostUpdatedPredicate(passwordPredicate);
+        model.updateFilteredLoginDetailsList(updatedPasswordPredicate);
+        System.out.println(model.getFilteredLoginDetailsList().size());
         if (model.getFilteredLoginDetailsList().size() != 0) {
             MainWindow.setIsLoginSuccessful(true);
         } else {
