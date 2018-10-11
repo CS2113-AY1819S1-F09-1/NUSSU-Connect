@@ -144,16 +144,10 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        try {
-            do {
-                String loginInput = JOptionPane.showInputDialog("Please login first by entering login credentials:");
-                CommandResult commandResultLogin = logic.execute(loginInput);
-                raise(new NewResultAvailableEvent(commandResultLogin.feedbackToUser));
-            } while(!(MainWindow.getIsLoginSuccessful()));
-
-        } catch (CommandException | ParseException e) {
-            raise(new NewResultAvailableEvent(e.getMessage()));
-        }
+        do {
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.initializeLogin(logic);
+        } while(!(MainWindow.getIsLoginSuccessful()));
 
         CommandBox commandBox = new CommandBox(logic);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
