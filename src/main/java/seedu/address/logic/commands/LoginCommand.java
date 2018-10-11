@@ -2,9 +2,8 @@ package seedu.address.logic.commands;
 
 import java.util.function.Predicate;
 
-import seedu.address.logic.CommandHistory;
-import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.model.SearchHistoryManager;
+
 
 /**
  * Queries the login book to see if there is a user ID and password that matches input
@@ -15,25 +14,20 @@ public abstract class LoginCommand extends Command {
 
     public static final String COMMAND_WORD = "login";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ":Login into addressbook with input user ID and password."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ":Login into NUSSU-Connect with input "
+            + "user ID and password."
             + "Parameters: USERID PASSWORD\n"
             + "Example: " + COMMAND_WORD + " A3583758X passphrase";
 
-    /**
-     * Ensures that Search History only remains valid for back-to-back find commands
-     */
-    protected void ensureSearchHistoryValidity(CommandHistory history) {
-        String lastExecutedCommand = history.getLastExecutedCommand();
-        String lastExecutedCommandWord = "";
-        if (lastExecutedCommand != null) {
-            lastExecutedCommandWord = AddressBookParser.basicParseCommand(lastExecutedCommand);
-        }
-        if (!lastExecutedCommandWord.equals(COMMAND_WORD)) {
-            SearchHistoryManager.getInstance().clearSearchHistory();
-        }
+    private SearchHistoryManager searchHistoryManager = SearchHistoryManager.getInstance();
+
+    protected Predicate getMostUpdatedIdPredicate(Predicate predicate) {
+        searchHistoryManager.clearSearchHistory();
+        return SearchHistoryManager.getInstance().updateNewSearch(predicate);
     }
 
-    protected Predicate getMostUpdatedPredicate(Predicate predicate) {
+    protected Predicate getMostUpdatedPasswordPredicate(Predicate predicate) {
+
         return SearchHistoryManager.getInstance().updateNewSearch(predicate);
     }
 }
