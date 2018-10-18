@@ -27,7 +27,7 @@
 <li><a href="#undoing-previous-command-code-undo-code">3.12. Undoing previous command : <code>undo</code></a></li>
 <li><a href="#redoing-the-previously-undone-command-code-redo-code">3.13. Redoing the previously undone command : <code>redo</code></a></li>
 <li><a href="#clearing-all-entries-code-clear-code">3.14. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#submitting-data-for-budget-allocation-code-data-code">3.15. Submitting data for budget allocation: <code>data</code></a></li>
+<li><a href="#submitting-data-for-budget-allocation-code-budget-code">3.15. Submitting data for budget allocation: <code>budget</code></a></li>
 <li><a href="#viewing-the-allocated-budget-code-viewbudget-code">3.16. Viewing the allocated budget : <code>viewbudget</code></a></li>
 <li><a href="#submitting-grant-request-code-request-code">3.17. Submitting grant request : <code>request</code></a></li>
 <li><a href="#viewing-grant-request-code-viewrequest-code">3.18. Viewing grant request : <code>viewrequest</code></a></li>
@@ -628,42 +628,46 @@ Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="submitting-data-for-budget-allocation-code-data-code"><a class="link" href="#submitting-data-for-budget-allocation-code-data-code">3.15. Submitting data for budget allocation: <code>data</code></a></h3>
+<h3 id="submitting-data-for-budget-allocation-code-budget-code"><a class="link" href="#submitting-data-for-budget-allocation-code-budget-code">3.15. Submitting data for budget allocation: <code>budget</code></a></h3>
 <div class="paragraph">
 <p>Submits the data about number of events, expected turnout etc.<br>
-Format: <code>data e/NUMBER OF EVENTS t/TURNOUT</code>
-Example:<br>
-<code>data e/5 t/200</code><br></p>
+Format: <code>budget c/CLUB NAME t/TURNOUT e/NUMBER OF EVENTS</code></p>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+<code>budget c/Computing Club t/200 e/5</code></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="viewing-the-allocated-budget-code-viewbudget-code"><a class="link" href="#viewing-the-allocated-budget-code-viewbudget-code">3.16. Viewing the allocated budget : <code>viewbudget</code></a></h3>
 <div class="paragraph">
 <p>Shows the allocated budget to the user<br>
-Format: <code>viewbudget</code><br></p>
+Format: <code>viewbudget</code></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="submitting-grant-request-code-request-code"><a class="link" href="#submitting-grant-request-code-request-code">3.17. Submitting grant request : <code>request</code></a></h3>
 <div class="paragraph">
 <p>Submits data about amount of grant needed, the reason and tags the importance level
-Format: <code>request m/AMOUNT r/REASON t/IMPORTANCE LEVEL
-Example:<br>
-`request m/1000 r/for booking auditorium t/medium</code><br></p>
+Format: <code>request m/AMOUNT r/REASON t/IMPORTANCE LEVEL</code></p>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+<code>request m/1000 r/for booking auditorium t/medium</code><br></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="viewing-grant-request-code-viewrequest-code"><a class="link" href="#viewing-grant-request-code-viewrequest-code">3.18. Viewing grant request : <code>viewrequest</code></a></h3>
 <div class="paragraph">
 <p>Shows a list of all the grant request sorted by order of importance, and if there is a tie, by descending order of amount requested.<br>
-Format: <code>viewrequest</code><br></p>
+Format: <code>viewrequest</code></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="accepting-grant-request-code-accept-code"><a class="link" href="#accepting-grant-request-code-accept-code">3.19. Accepting grant request: <code>accept</code></a></h3>
 <div class="paragraph">
 <p>Approves a specific grant request from the list of grants.
-Format: `accept [-a all] [INDEX]<br></p>
+Format: <code>accept [-a all] [INDEX]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -786,8 +790,8 @@ e.g.<code>select 2</code></p>
 <p><strong>Redo</strong> : <code>redo</code></p>
 </li>
 <li>
-<p><strong>Submitting data for budget</strong> : <code>data e/NUMBER OF EVENTS t/TURNOUT</code><br>
-e.g. <code>data e/5 t/200</code></p>
+<p><strong>Submitting data for budget</strong> : <code>budget c/CLUB NAME t/TURNOUT e/NUMBER OF EVENTS</code><br>
+e.g. <code>budget c/Computing Club t/200 e/5</code></p>
 </li>
 <li>
 <p><strong>Submitting grant request</strong> : request m/AMOUNT r/REASON t/IMPORTANCE LEVEL`<br>
@@ -806,4 +810,4 @@ e.g. <code>viewrequest</code><br>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-18 08:56:53 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-18 08:58:05 UTC</div></div></div></body></html>
