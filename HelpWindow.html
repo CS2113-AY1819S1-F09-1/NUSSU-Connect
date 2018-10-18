@@ -318,7 +318,7 @@ Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all 
 <h3 id="locating-persons-code-find-code"><a class="link" href="#locating-persons-code-find-code">3.7. Locating persons: <code>find</code></a></h3>
 <div class="paragraph">
 <p>Finds persons in the displayed list whose names/tags contain any of the given keywords.<br>
-Format: <code>find [\tag tags]  KEYWORD [MORE_KEYWORDS]</code></p>
+Format: <code>find [\tag] [\exclude] KEYWORD [MORE_KEYWORDS]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -335,6 +335,9 @@ Format: <code>find [\tag tags]  KEYWORD [MORE_KEYWORDS]</code></p>
 </li>
 <li>
 <p>For back-to-back find commands, the most recent find command will search according to the previous find command</p>
+</li>
+<li>
+<p>The <code>\exclude</code> option will exclude any names/tags with the specified keywords</p>
 </li>
 </ul>
 </div>
@@ -357,12 +360,20 @@ Returns <code>john</code> and <code>John Doe</code></p>
 Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
 </li>
 <li>
+<p><code>find \exclude Tom</code><br>
+Returns any person without the name <code>Tom</code>.</p>
+</li>
+<li>
 <p><code>find \tag President</code><br>
 Returns any person with the tag <code>President</code></p>
 </li>
 <li>
 <p><code>find \tag President Vice_President</code><br>
 Returns any person with the tag <code>President</code> OR <code>Vice_President</code>.</p>
+</li>
+<li>
+<p><code>find \tag \exclude President</code><br>
+Returns any person without the tag <code>President</code>.</p>
 </li>
 </ul>
 </div>
@@ -766,7 +777,7 @@ e.g. <code>delete 3</code></p>
 e.g. <code>edit 2 n/James Lee e/jameslee@example.com</code></p>
 </li>
 <li>
-<p><strong>Find</strong> : <code>find [\tag tags] KEYWORD [MORE_KEYWORDS]</code><br>
+<p><strong>Find</strong> : <code>find [\tag] [\exclude] KEYWORD [MORE_KEYWORDS]</code><br>
 e.g. <code>find James Jake</code><br>
 e.g <code>find \tag President</code></p>
 </li>
@@ -810,4 +821,4 @@ e.g. <code>viewrequest</code><br>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-18 08:58:05 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-18 09:05:08 UTC</div></div></div></body></html>
