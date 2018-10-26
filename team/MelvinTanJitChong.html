@@ -10,17 +10,122 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>AddressBook - Level 4 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.</p>
+<p>The purpose of this portfolio is to document a summary of my contributions to the project. This project is a software
+engineering project that aims to solve some of the common issues that NUSSU is facing.
+NUSSU-Connect is an application for executive committee (exco) members of the NUS Student Union (NUSSU) to help them perform their daily tasks including managing recruitment, contacts, budgets and projects efficiently.
+Other team members working on this project are Jonathan Ng Hian Leong, Sanjukta, and Soh Boon Jun.</p>
+</div>
+<div class="sect2">
+<h3 id="list-of-features"><a class="link" href="#list-of-features">List of Features</a></h3>
+<table class="tableblock frame-all grid-all" style="width: 59%;">
+<colgroup>
+<col style="width: 22%;">
+<col style="width: 23%;">
+<col style="width: 25%;">
+<col style="width: 30%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Feature</th>
+<th class="tableblock halign-left valign-top">Feature description</th>
+<th class="tableblock halign-left valign-top">Format</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Logging into system</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Logs into application using relevant credentials</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>login USERID PASSWORD ROLE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>login X1234567X zaq1xsw2cde3 member</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Creating a new user account</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Creates a new user account in the address book</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>createaccount USERID PASSWORD ROLE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>createaccount X1234567X aq1xsw2cde3 member</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Search Pruning</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Trim the list of contacts with every successive find command without the hassle of typing a long single line command</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find \tag ROLE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find \tag President</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Undoing Search Commands</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Restores the displayed list to the state before you perform your most recent find command</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>undosearch</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Submitting data for budget allocation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Submits the data about number of events, expected turnout etc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>budget c/CLUB NAME t/TURNOUT e/NUMBER OF EVENTS</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>budget c/Computing Club t/200 e/5</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Calculating the budgets</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Calculates the budgets for all the clubs in the address book using the total available budget</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>calculatebudget b/TOTAL AVAILABLE BUDGET IN SGD</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>calculatebudget b/50000</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Viewing the allocated budget</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows all the allocated budgets to the user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>viewbudget</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Submitting grant request</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Submits data about amount of grant needed, the reason and tags the importance level</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>request m/AMOUNT r/REASON t/IMPORTANCE LEVEL</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>request m/1000 r/for booking auditorium t/medium</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Viewing grant request</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shows a list of all the grant request sorted by order of importance, and if there is a tie, by descending order of amount requested</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>viewrequest</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Accepting grant request</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Approves a specific grant request from the list of grants</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>accept [-a all] [INDEX]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>viewrequest</code> + <code>accept 2</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adding person&#8217;s skill</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Edits a person&#8217;s skill in the address book</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>asl INDEX s/SKILL l/SKILL_LEVEL</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">`asl 2 s/Photography l/30</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Locating persons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Finds persons in the displayed list whose names/tags contain any of the given keywords</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find [\tag] [\exclude] KEYWORD [MORE_KEYWORDS]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find \tag President</code></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
 <div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="preface"><a class="link" href="#preface">Preface</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section shows the various contributions made to the project, covering aspects such as enhancement features, codes contributed and other forms of contributions.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: added <strong>the ability to undo/redo previous commands</strong></p>
+<p><strong>Major enhancement</strong>: added <strong>the ability to securely log into the application with the relevant login credentials with a specific level of access to the application features associated with the login credentials</strong></p>
 <div class="ulist">
 <ul>
 <li>

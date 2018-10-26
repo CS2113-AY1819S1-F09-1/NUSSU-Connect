@@ -134,7 +134,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <h3 id="logging-into-system-code-login-code"><a class="link" href="#logging-into-system-code-login-code">3.1. Logging into system: <code>login</code></a></h3>
 <div class="paragraph">
 <p>Logs into application using relevant credentials.<br>
-Format: <code>login USERID PASSWORD</code></p>
+Format: <code>login USERID PASSWORD ROLE</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -147,16 +147,28 @@ Format: <code>login USERID PASSWORD</code></p>
 <p>PASSWORD refers to the password associated with the existing account</p>
 </li>
 <li>
+<p>ROLE refers to the role in NUSSU associated with the existing account</p>
+</li>
+<li>
 <p>The USERID must be in the <code>X1234567X</code> format, where X can be any lower or upper case letter alphabet, and there must be exactly 7 digits between the two <code>X</code></p>
 </li>
 <li>
 <p>USERID must belong to an existing account</p>
 </li>
 <li>
-<p>There must be at least 1 space between USERID and PASSWORD</p>
+<p>There must be at least 1 space between USERID and PASSWORD, and between PASSWORD and ROLE</p>
 </li>
 <li>
-<p>There need not be any spaces between <code>login</code> and <code>USERID</code></p>
+<p>There must be at least 1 space between <code>login</code> keyword and USERID</p>
+</li>
+<li>
+<p>The 3 parameters, USERID, PASSWORD and ROLE must be present in user input during the login process</p>
+</li>
+<li>
+<p>There must not be any additional unnecessary parameters in user input during the login process</p>
+</li>
+<li>
+<p>There must not be any spaces in USERID, PASSWORD and ROLE</p>
 </li>
 </ul>
 </div>
@@ -168,10 +180,20 @@ Format: <code>login USERID PASSWORD</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>login X1234567X zaq1xsw2cde3</code><br>
-Logs into Address book with user ID as X1234567X and password as zaq1xsw2cde3.</p>
+<p><code>login X1234567X zaq1xsw2cde3 member</code><br>
+Logs into Address book with user ID as X1234567X, password as zaq1xsw2cde3 and role as member.</p>
 </li>
 </ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CorrectIdPasswordRole.PNG" alt="CorrectIdPasswordRole" width="300">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/LoginSuccessMessage.PNG" alt="LoginSuccessMessage" width="300">
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -192,7 +214,7 @@ Logs into Address book with user ID as X1234567X and password as zaq1xsw2cde3.</
 <h3 id="creating-a-new-user-account-code-createaccount-code"><a class="link" href="#creating-a-new-user-account-code-createaccount-code">3.2. Creating a new user account: <code>createaccount</code></a></h3>
 <div class="paragraph">
 <p>Creates a new user account in the address book.<br>
-Format: <code>createaccount USERID PASSWORD</code></p>
+Format: <code>createaccount USERID PASSWORD ROLE</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -205,10 +227,31 @@ Format: <code>createaccount USERID PASSWORD</code></p>
 <p>PASSWORD refers to any desired passphrases the new user wishes to have</p>
 </li>
 <li>
+<p>ROLE refers to the role in NUSSU associated with the existing account</p>
+</li>
+<li>
 <p>The USERID must be in the <code>X1234567X</code> format, where X can only be upper-case letter alphabet, and there must be exactly 7 digits between the two <code>X</code></p>
 </li>
 <li>
 <p>USERID must not belong to an existing account</p>
+</li>
+<li>
+<p>ROLE can only contain lower-case letter alphabets, and be only either <code>member</code>, <code>president</code> or <code>treasurer</code></p>
+</li>
+<li>
+<p>There must be at least 1 space between USERID and PASSWORD, and between PASSWORD and ROLE</p>
+</li>
+<li>
+<p>There must be at least 1 space between <code>login</code> keyword and USERID</p>
+</li>
+<li>
+<p>The 3 parameters, USERID, PASSWORD and ROLE must be present in user input during the account creation process</p>
+</li>
+<li>
+<p>There must not be any additional unnecessary parameters in user input during the account creation process</p>
+</li>
+<li>
+<p>There must not be any spaces in USERID, PASSWORD and ROLE</p>
 </li>
 </ul>
 </div>
@@ -220,10 +263,15 @@ Format: <code>createaccount USERID PASSWORD</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>createaccount X1234567X aq1xsw2cde3</code><br>
-Creates a new account with user ID as X1234567X and password as zaq1xsw2cde3 in the address book.</p>
+<p><code>createaccount X1234567X aq1xsw2cde3 member</code><br>
+Creates a new account with user ID as X1234567X, password as zaq1xsw2cde3 and role as member in the address book.</p>
 </li>
 </ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CreateAccountSuccess.PNG" alt="CreateAccountSuccess" width="300">
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -790,12 +838,12 @@ There is no need to save manually.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Login</strong> : <code>login USERID PASSWORD</code>
-e.g. <code>login A1234567M zaq1xsw2cde3</code></p>
+<p><strong>Login</strong> : <code>login USERID PASSWORD ROLE</code>
+e.g. <code>login A1234567M zaq1xsw2cde3 member</code></p>
 </li>
 <li>
-<p><strong>Create Account</strong> : <code>createaccount USERID PASSWORD</code><br>
-e.g. <code>createaccount A1234567M zaq1xsw2cde3</code></p>
+<p><strong>Create Account</strong> : <code>createaccount USERID PASSWORD ROLE</code><br>
+e.g. <code>createaccount A1234567M zaq1xsw2cde3 member</code></p>
 </li>
 <li>
 <p><strong>Add</strong> <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code><br></p>
@@ -863,4 +911,4 @@ e.g. <code>viewrequest</code><br>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-25 16:10:18 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-26 02:15:31 UTC</div></div></div></body></html>
