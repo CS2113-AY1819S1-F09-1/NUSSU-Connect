@@ -160,14 +160,17 @@ unwanted results from their search.</p>
 <h3 id="locating-persons-code-find-code"><a class="link" href="#locating-persons-code-find-code">Locating persons: <code>find</code></a></h3>
 <div class="paragraph">
 <p>Finds persons in the displayed list whose names/tags contain any of the given keywords.<br>
-Format: <code>find [\tag] [\exclude] KEYWORD [MORE_KEYWORDS]</code></p>
+If the <code>\exclude</code> option is enabled, the matched person will be excluded from the list instead.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>find [\tag] [\exclude] KEYWORD [MORE_KEYWORDS]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
+<p>The search is case-insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
 </li>
 <li>
 <p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
@@ -176,10 +179,17 @@ Format: <code>find [\tag] [\exclude] KEYWORD [MORE_KEYWORDS]</code></p>
 <p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
 </li>
 <li>
-<p>For back-to-back find commands, the most recent find command will search according to the previous find command</p>
+<p>If <code>\tag</code> option is not specified, find command will search according to names.</p>
 </li>
 <li>
 <p>The <code>\exclude</code> option will exclude any names/tags with the specified keywords</p>
+</li>
+<li>
+<p>The order of <code>\tag</code> and <code>\exclude</code> options cannot be swapped if you want to exclude tags from the displayed list.</p>
+</li>
+<li>
+<p>Back-to-back find commands utilizes the Search Pruning feature and you can get more details about this under the
+Search Pruning Feature section.</p>
 </li>
 </ul>
 </div>
@@ -210,8 +220,8 @@ Returns any person without the name <code>Tom</code>.</p>
 Returns any person with the tag <code>President</code></p>
 </li>
 <li>
-<p><code>find \tag President Vice_President</code><br>
-Returns any person with the tag <code>President</code> OR <code>Vice_President</code>.</p>
+<p><code>find \tag President VicePresident</code><br>
+Returns any person with the tag <code>President</code> OR <code>VicePresident</code>.</p>
 </li>
 <li>
 <p><code>find \tag \exclude President</code><br>
@@ -219,68 +229,143 @@ Returns any person without the tag <code>President</code>.</p>
 </li>
 </ul>
 </div>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p><strong>Search Pruning feature with find commands:</strong></p>
-</div>
-<div class="paragraph">
-<p>With the introduction of v1.1, NUSSU Connect now includes a Search Pruning feature that helps you
-trim the list of contacts with every successive find command. This lets you search through the list
-of contacts in a much more intuitive manner without the hassle of typing a long single line command that is
-usually error-prone.</p>
-</div>
-<div class="paragraph">
-<p>The concept of the Search Pruning feature will be further illustrated below.</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="paragraph">
-<p><strong>Assume that the original list of contacts contains the following 3 persons.</strong></p>
-</div>
-<div class="imageblock" style="text-align: left">
-<div class="content">
-<img src="../images/InitialList.png" alt="InitialList">
-</div>
-</div>
-<div class="paragraph">
-<p><strong>After executing the command <code>find \tag VIP</code></strong><br>
-<strong>the displayed list will now contain 2 persons, both with the tag 'VIP'</strong></p>
-</div>
-<div class="imageblock" style="text-align: left">
-<div class="content">
-<img src="../images/SecondList.png" alt="SecondList">
-</div>
-</div>
-<div class="paragraph">
-<p><strong>Executing another command <code>find \tag President</code></strong><br>
-<strong>will filter according to the previous displayed list instead of the original list</strong><br>
-<strong>The displayed list now contains only 1 person with the tag 'President'</strong><br></p>
-</div>
-<div class="imageblock" style="text-align: left">
-<div class="content">
-<img src="../images/ThirdList.png" alt="ThirdList">
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="sect2">
-<h3 id="undoing-search-commands-code-undosearch-code"><a class="link" href="#undoing-search-commands-code-undosearch-code">Undoing Search Commands: <code>undosearch</code></a></h3>
+<h3 id="undoing-find-commands-code-undofind-code"><a class="link" href="#undoing-find-commands-code-undofind-code">Undoing Find Commands: <code>undofind</code></a></h3>
 <div class="paragraph">
-<p>Restores the displayed list to the state before you perform your most recent find command<br>
-Format: <code>undosearch</code></p>
+<p>Reverts the displayed list to the state before you perform your most recent find command<br>
+Format: <code>undofind</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>To be used together with Search Pruning feature</p>
+<p>To be used in Search Pruning feature</p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="search-pruning-feature-with-list-find-and-undofind-commands"><a class="link" href="#search-pruning-feature-with-list-find-and-undofind-commands">Search Pruning Feature with list, find and undofind commands</a></h3>
+<div class="paragraph">
+<p>Since v1.1, the Search Pruning feature was introduced to NUSSU Connect that helps you
+trim the list of contacts with every successive find command. This lets you search through the list
+of contacts in a much more intuitive manner without the hassle of typing a long single line command that is
+usually error-prone.</p>
+</div>
+<div class="paragraph">
+<p>The concept of the Search Pruning feature will be illustrated below.<br></p>
+</div>
+<div class="paragraph">
+<p><strong>1. Search Pruning with Find Commands</strong></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>Assume that the original list of contacts contains the following six persons and you wanted to search for all persons
+with the science tag. You could do this by executing the command <code>find \tag science</code>.<br></p>
+</div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="../images/SearchPruning1st.png" alt="SearchPruning1st">
+</div>
+</div>
+<div class="paragraph">
+<p>After executing the command the displayed list will now contain 2 persons,
+both with the science tag.</p>
+</div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="../images/SearchPruning2nd.png" alt="SearchPruning2nd">
+</div>
+</div>
+<div class="paragraph">
+<p>The following message will be displayed in the Command Result Box to tell you the keywords that you have previously executed.
+The "+" prefix before a keyword is used to denote that you chose to include all persons with the relevant keyword in
+the displayed list.<br></p>
+</div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="../images/SearchPruning3rd.png" alt="SearchPruning3rd">
+</div>
+</div>
+<div class="paragraph">
+<p>Next, you wanted to exclude everyone that has the tag <code>VPresident</code> and you could do that by executing the command<br>
+<code>find \tag \exclude VPresident</code>.<br></p>
+</div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="../images/SearchPruning4th.png" alt="SearchPruning4th">
+</div>
+</div>
+<div class="paragraph">
+<p>The command will filter according to the previous displayed list instead of the original contacts list and the
+displayed list now contains only 1 person with the President Tag as everyone with the VPresident tag have been excluded.<br></p>
+</div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="../images/SearchPruning5th.png" alt="SearchPruning5th">
+</div>
+</div>
+<div class="paragraph">
+<p>The Command Result Box will now display an extra vpresident keyword with the "-" prefix, denoting that all persons
+with the vpresident tag has been excluded from the list<br></p>
+</div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="../images/SearchPruning6th.png" alt="SearchPruning6th">
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>2 . Making a mistake and undoing it with undofind command</strong></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>Now assume that you have made a mistake and you want to revert to the list before you execute your most
+recent find command. You can do so with the undofind command<br></p>
+</div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="../images/SearchPruning7th.png" alt="SearchPruning7th">
+</div>
+</div>
+<div class="paragraph">
+<p>After executing the undofind command, the displayed list is reverted to the state before the<br>
+<code>find \tag \exclude VPresident</code> command was executed<br></p>
+</div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="../images/SearchPruning8th.png" alt="SearchPruning8th">
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>3 . Reverting to initial state with list command</strong></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>You can revert to the initial state before any find commands are executed with the list command</p>
+</div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="../images/SearchPruning9th.png" alt="SearchPruning9th">
+</div>
+</div>
+<div class="paragraph">
+<p>After executing the list command, all search history is cleared and the displayed list now contains all six persons.</p>
+</div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="../images/SearchPruning10th.png" alt="SearchPruning10th">
+</div>
 </div>
 </div>
 </div>
@@ -538,4 +623,4 @@ into a <code>FilteredList&lt;T&gt;</code> object to do the Search Pruning.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-31 16:59:39 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-31 17:17:48 UTC</div></div></div></body></html>

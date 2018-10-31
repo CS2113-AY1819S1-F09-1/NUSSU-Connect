@@ -18,25 +18,26 @@
 <li><a href="#viewing-help-code-help-code">3.3. Viewing help : <code>help</code></a></li>
 <li><a href="#adding-a-person-code-add-code">3.4. Adding a person: <code>add</code></a></li>
 <li><a href="#adding-person-s-skill-code-asl-code">3.5. Adding person&#8217;s skill: <code>asl</code></a></li>
-<li><a href="#listing-all-persons-code-list-code">3.6. Listing all persons : <code>list</code></a></li>
-<li><a href="#editing-a-person-code-edit-code">3.7. Editing a person : <code>edit</code></a></li>
+<li><a href="#editing-a-person-code-edit-code">3.6. Editing a person : <code>edit</code></a></li>
+<li><a href="#listing-all-persons-code-list-code">3.7. Listing all persons : <code>list</code></a></li>
 <li><a href="#locating-persons-code-find-code">3.8. Locating persons: <code>find</code></a></li>
-<li><a href="#undoing-search-commands-code-undosearch-code">3.9. Undoing Search Commands: <code>undosearch</code></a></li>
-<li><a href="#deleting-code-delete-code">3.10. Deleting : <code>delete</code></a></li>
-<li><a href="#selecting-a-person-code-select-code">3.11. Selecting a person : <code>select</code></a></li>
-<li><a href="#listing-entered-commands-code-history-code">3.12. Listing entered commands : <code>history</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code">3.13. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">3.14. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">3.15. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#submitting-data-for-budget-allocation-code-budget-code">3.16. Submitting data for budget allocation: <code>budget</code></a></li>
-<li><a href="#calculating-the-budgets-code-calculatebudget-code">3.17. Calculating the budgets : <code>calculatebudget</code></a></li>
-<li><a href="#viewing-the-allocated-budget-code-viewbudget-code">3.18. Viewing the allocated budget : <code>viewbudget</code></a></li>
-<li><a href="#submitting-grant-request-code-request-code">3.19. Submitting grant request : <code>request</code></a></li>
-<li><a href="#viewing-grant-request-code-viewrequest-code">3.20. Viewing grant request : <code>viewrequest</code></a></li>
-<li><a href="#accepting-grant-request-code-accept-code">3.21. Accepting grant request: <code>accept</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.22. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.23. Saving the data</a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.24. Encrypting data files <code>[coming in v2.0]</code></a></li>
+<li><a href="#undoing-find-commands-code-undofind-code">3.9. Undoing Find Commands: <code>undofind</code></a></li>
+<li><a href="#search-pruning-feature-with-list-find-and-undofind-commands">3.10. Search Pruning Feature with list, find and undofind commands</a></li>
+<li><a href="#deleting-code-delete-code">3.11. Deleting : <code>delete</code></a></li>
+<li><a href="#selecting-a-person-code-select-code">3.12. Selecting a person : <code>select</code></a></li>
+<li><a href="#listing-entered-commands-code-history-code">3.13. Listing entered commands : <code>history</code></a></li>
+<li><a href="#undoing-previous-command-code-undo-code">3.14. Undoing previous command : <code>undo</code></a></li>
+<li><a href="#redoing-the-previously-undone-command-code-redo-code">3.15. Redoing the previously undone command : <code>redo</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">3.16. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#submitting-data-for-budget-allocation-code-budget-code">3.17. Submitting data for budget allocation: <code>budget</code></a></li>
+<li><a href="#calculating-the-budgets-code-calculatebudget-code">3.18. Calculating the budgets : <code>calculatebudget</code></a></li>
+<li><a href="#viewing-the-allocated-budget-code-viewbudget-code">3.19. Viewing the allocated budget : <code>viewbudget</code></a></li>
+<li><a href="#submitting-grant-request-code-request-code">3.20. Submitting grant request : <code>request</code></a></li>
+<li><a href="#viewing-grant-request-code-viewrequest-code">3.21. Viewing grant request : <code>viewrequest</code></a></li>
+<li><a href="#accepting-grant-request-code-accept-code">3.22. Accepting grant request: <code>accept</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.23. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">3.24. Saving the data</a></li>
+<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.25. Encrypting data files <code>[coming in v2.0]</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -402,14 +403,7 @@ A person can have any number of tags (including 0)
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">3.6. Listing all persons : <code>list</code></a></h3>
-<div class="paragraph">
-<p>Shows a list of all persons in the address book.<br>
-Format: <code>list</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">3.7. Editing a person : <code>edit</code></a></h3>
+<h3 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">3.6. Editing a person : <code>edit</code></a></h3>
 <div class="paragraph">
 <p>Edits an existing person in the address book.<br>
 Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
@@ -454,17 +448,27 @@ Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all 
 </div>
 </div>
 <div class="sect2">
+<h3 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">3.7. Listing all persons : <code>list</code></a></h3>
+<div class="paragraph">
+<p>Shows a list of all persons in the address book.<br>
+Format: <code>list</code></p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="locating-persons-code-find-code"><a class="link" href="#locating-persons-code-find-code">3.8. Locating persons: <code>find</code></a></h3>
 <div class="paragraph">
 <p>Finds persons in the displayed list whose names/tags contain any of the given keywords.<br>
-Format: <code>find [\tag] [\exclude] KEYWORD [MORE_KEYWORDS]</code></p>
+If the <code>\exclude</code> option is enabled, the matched person will be excluded from the list instead.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>find [\tag] [\exclude] KEYWORD [MORE_KEYWORDS]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
+<p>The search is case-insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
 </li>
 <li>
 <p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
@@ -473,10 +477,17 @@ Format: <code>find [\tag] [\exclude] KEYWORD [MORE_KEYWORDS]</code></p>
 <p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
 </li>
 <li>
-<p>For back-to-back find commands, the most recent find command will search according to the previous find command</p>
+<p>If <code>\tag</code> option is not specified, find command will search according to names.</p>
 </li>
 <li>
 <p>The <code>\exclude</code> option will exclude any names/tags with the specified keywords</p>
+</li>
+<li>
+<p>The order of <code>\tag</code> and <code>\exclude</code> options cannot be swapped if you want to exclude tags from the displayed list.</p>
+</li>
+<li>
+<p>Back-to-back find commands utilizes the Search Pruning feature and you can get more details about this under the
+Search Pruning Feature section.</p>
 </li>
 </ul>
 </div>
@@ -507,8 +518,8 @@ Returns any person without the name <code>Tom</code>.</p>
 Returns any person with the tag <code>President</code></p>
 </li>
 <li>
-<p><code>find \tag President Vice_President</code><br>
-Returns any person with the tag <code>President</code> OR <code>Vice_President</code>.</p>
+<p><code>find \tag President VicePresident</code><br>
+Returns any person with the tag <code>President</code> OR <code>VicePresident</code>.</p>
 </li>
 <li>
 <p><code>find \tag \exclude President</code><br>
@@ -516,66 +527,19 @@ Returns any person without the tag <code>President</code>.</p>
 </li>
 </ul>
 </div>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p><strong>Search Pruning feature with find commands:</strong></p>
-</div>
-<div class="paragraph">
-<p>With the introduction of v1.1, NUSSU Connect now includes a Search Pruning feature that helps you
-trim the list of contacts with every successive find command. This lets you search through the list
-of contacts in a much more intuitive manner without the hassle of typing a long single line command that is
-usually error-prone.</p>
-</div>
-<div class="paragraph">
-<p>The concept of the Search Pruning feature will be further illustrated below.</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="paragraph">
-<p><strong>Assume that the original list of contacts contains the following 3 persons.</strong></p>
-</div>
-<div class="imageblock" style="text-align: left">
-<div class="content">
-<img src="images/InitialList.png" alt="InitialList">
-</div>
-</div>
-<div class="paragraph">
-<p><strong>After executing the command <code>find \tag VIP</code></strong><br>
-<strong>the displayed list will now contain 2 persons, both with the tag 'VIP'</strong></p>
-</div>
-<div class="imageblock" style="text-align: left">
-<div class="content">
-<img src="images/SecondList.png" alt="SecondList">
-</div>
-</div>
-<div class="paragraph">
-<p><strong>Executing another command <code>find \tag President</code></strong><br>
-<strong>will filter according to the previous displayed list instead of the original list</strong><br>
-<strong>The displayed list now contains only 1 person with the tag 'President'</strong><br></p>
-</div>
-<div class="imageblock" style="text-align: left">
-<div class="content">
-<img src="images/ThirdList.png" alt="ThirdList">
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="sect2">
-<h3 id="undoing-search-commands-code-undosearch-code"><a class="link" href="#undoing-search-commands-code-undosearch-code">3.9. Undoing Search Commands: <code>undosearch</code></a></h3>
+<h3 id="undoing-find-commands-code-undofind-code"><a class="link" href="#undoing-find-commands-code-undofind-code">3.9. Undoing Find Commands: <code>undofind</code></a></h3>
 <div class="paragraph">
-<p>Restores the displayed list to the state before you perform your most recent find command<br>
-Format: <code>undosearch</code></p>
+<p>Reverts the displayed list to the state before you perform your most recent find command<br>
+Format: <code>undofind</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>To be used together with Search Pruning feature</p>
+<p>To be used in Search Pruning feature</p>
 </li>
 </ul>
 </div>
@@ -583,7 +547,129 @@ Format: <code>undosearch</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-code-delete-code"><a class="link" href="#deleting-code-delete-code">3.10. Deleting : <code>delete</code></a></h3>
+<h3 id="search-pruning-feature-with-list-find-and-undofind-commands"><a class="link" href="#search-pruning-feature-with-list-find-and-undofind-commands">3.10. Search Pruning Feature with list, find and undofind commands</a></h3>
+<div class="paragraph">
+<p>Since v1.1, the Search Pruning feature was introduced to NUSSU Connect that helps you
+trim the list of contacts with every successive find command. This lets you search through the list
+of contacts in a much more intuitive manner without the hassle of typing a long single line command that is
+usually error-prone.</p>
+</div>
+<div class="paragraph">
+<p>The concept of the Search Pruning feature will be illustrated below.<br></p>
+</div>
+<div class="paragraph">
+<p><strong>1. Search Pruning with Find Commands</strong></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>Assume that the original list of contacts contains the following six persons and you wanted to search for all persons
+with the science tag. You could do this by executing the command <code>find \tag science</code>.<br></p>
+</div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="images/SearchPruning1st.png" alt="SearchPruning1st">
+</div>
+</div>
+<div class="paragraph">
+<p>After executing the command the displayed list will now contain 2 persons,
+both with the science tag.</p>
+</div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="images/SearchPruning2nd.png" alt="SearchPruning2nd">
+</div>
+</div>
+<div class="paragraph">
+<p>The following message will be displayed in the Command Result Box to tell you the keywords that you have previously executed.
+The "+" prefix before a keyword is used to denote that you chose to include all persons with the relevant keyword in
+the displayed list.<br></p>
+</div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="images/SearchPruning3rd.png" alt="SearchPruning3rd">
+</div>
+</div>
+<div class="paragraph">
+<p>Next, you wanted to exclude everyone that has the tag <code>VPresident</code> and you could do that by executing the command<br>
+<code>find \tag \exclude VPresident</code>.<br></p>
+</div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="images/SearchPruning4th.png" alt="SearchPruning4th">
+</div>
+</div>
+<div class="paragraph">
+<p>The command will filter according to the previous displayed list instead of the original contacts list and the
+displayed list now contains only 1 person with the President Tag as everyone with the VPresident tag have been excluded.<br></p>
+</div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="images/SearchPruning5th.png" alt="SearchPruning5th">
+</div>
+</div>
+<div class="paragraph">
+<p>The Command Result Box will now display an extra vpresident keyword with the "-" prefix, denoting that all persons
+with the vpresident tag has been excluded from the list<br></p>
+</div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="images/SearchPruning6th.png" alt="SearchPruning6th">
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>2 . Making a mistake and undoing it with undofind command</strong></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>Now assume that you have made a mistake and you want to revert to the list before you execute your most
+recent find command. You can do so with the undofind command<br></p>
+</div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="images/SearchPruning7th.png" alt="SearchPruning7th">
+</div>
+</div>
+<div class="paragraph">
+<p>After executing the undofind command, the displayed list is reverted to the state before the<br>
+<code>find \tag \exclude VPresident</code> command was executed<br></p>
+</div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="images/SearchPruning8th.png" alt="SearchPruning8th">
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>3 . Reverting to initial state with list command</strong></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>You can revert to the initial state before any find commands are executed with the list command</p>
+</div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="images/SearchPruning9th.png" alt="SearchPruning9th">
+</div>
+</div>
+<div class="paragraph">
+<p>After executing the list command, all search history is cleared and the displayed list now contains all six persons.</p>
+</div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="images/SearchPruning10th.png" alt="SearchPruning10th">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-code-delete-code"><a class="link" href="#deleting-code-delete-code">3.11. Deleting : <code>delete</code></a></h3>
 <div class="paragraph">
 <p>Deletes a specific person from the address book.<br>
 Format: <code>delete [-a all] [INDEX]</code></p>
@@ -632,7 +718,7 @@ Deletes everyone in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">3.11. Selecting a person : <code>select</code></a></h3>
+<h3 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">3.12. Selecting a person : <code>select</code></a></h3>
 <div class="paragraph">
 <p>Selects the person identified by the index number used in the displayed person list.<br>
 Format: <code>select INDEX</code></p>
@@ -673,7 +759,7 @@ Selects the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">3.12. Listing entered commands : <code>history</code></a></h3>
+<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">3.13. Listing entered commands : <code>history</code></a></h3>
 <div class="paragraph">
 <p>Lists all the commands that you have entered in reverse chronological order.<br>
 Format: <code>history</code></p>
@@ -694,7 +780,7 @@ Format: <code>history</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.13. Undoing previous command : <code>undo</code></a></h3>
+<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.14. Undoing previous command : <code>undo</code></a></h3>
 <div class="paragraph">
 <p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
 Format: <code>undo</code></p>
@@ -739,7 +825,7 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.14. Redoing the previously undone command : <code>redo</code></a></h3>
+<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.15. Redoing the previously undone command : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code></p>
@@ -771,14 +857,14 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.15. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.16. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries from the address book.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="submitting-data-for-budget-allocation-code-budget-code"><a class="link" href="#submitting-data-for-budget-allocation-code-budget-code">3.16. Submitting data for budget allocation: <code>budget</code></a></h3>
+<h3 id="submitting-data-for-budget-allocation-code-budget-code"><a class="link" href="#submitting-data-for-budget-allocation-code-budget-code">3.17. Submitting data for budget allocation: <code>budget</code></a></h3>
 <div class="paragraph">
 <p>Submits the data about number of events, expected turnout etc.<br>
 Format: <code>budget c/CLUB NAME t/TURNOUT e/NUMBER OF EVENTS</code></p>
@@ -789,7 +875,7 @@ Format: <code>budget c/CLUB NAME t/TURNOUT e/NUMBER OF EVENTS</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="calculating-the-budgets-code-calculatebudget-code"><a class="link" href="#calculating-the-budgets-code-calculatebudget-code">3.17. Calculating the budgets : <code>calculatebudget</code></a></h3>
+<h3 id="calculating-the-budgets-code-calculatebudget-code"><a class="link" href="#calculating-the-budgets-code-calculatebudget-code">3.18. Calculating the budgets : <code>calculatebudget</code></a></h3>
 <div class="paragraph">
 <p>Calculates the budgets for all the clubs in the address book using the total available budget
 Format: <code>calculatebudget b/TOTAL AVAILABLE BUDGET IN SGD</code></p>
@@ -800,14 +886,14 @@ Format: <code>calculatebudget b/TOTAL AVAILABLE BUDGET IN SGD</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="viewing-the-allocated-budget-code-viewbudget-code"><a class="link" href="#viewing-the-allocated-budget-code-viewbudget-code">3.18. Viewing the allocated budget : <code>viewbudget</code></a></h3>
+<h3 id="viewing-the-allocated-budget-code-viewbudget-code"><a class="link" href="#viewing-the-allocated-budget-code-viewbudget-code">3.19. Viewing the allocated budget : <code>viewbudget</code></a></h3>
 <div class="paragraph">
 <p>Shows all the allocated budgets to the user<br>
 Format: <code>viewbudget</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="submitting-grant-request-code-request-code"><a class="link" href="#submitting-grant-request-code-request-code">3.19. Submitting grant request : <code>request</code></a></h3>
+<h3 id="submitting-grant-request-code-request-code"><a class="link" href="#submitting-grant-request-code-request-code">3.20. Submitting grant request : <code>request</code></a></h3>
 <div class="paragraph">
 <p>Submits data about amount of grant needed, the reason and tags the importance level
 Format: <code>request m/AMOUNT r/REASON t/IMPORTANCE LEVEL</code></p>
@@ -818,14 +904,14 @@ Format: <code>request m/AMOUNT r/REASON t/IMPORTANCE LEVEL</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="viewing-grant-request-code-viewrequest-code"><a class="link" href="#viewing-grant-request-code-viewrequest-code">3.20. Viewing grant request : <code>viewrequest</code></a></h3>
+<h3 id="viewing-grant-request-code-viewrequest-code"><a class="link" href="#viewing-grant-request-code-viewrequest-code">3.21. Viewing grant request : <code>viewrequest</code></a></h3>
 <div class="paragraph">
 <p>Shows a list of all the grant request sorted by order of importance, and if there is a tie, by descending order of amount requested.<br>
 Format: <code>viewrequest</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="accepting-grant-request-code-accept-code"><a class="link" href="#accepting-grant-request-code-accept-code">3.21. Accepting grant request: <code>accept</code></a></h3>
+<h3 id="accepting-grant-request-code-accept-code"><a class="link" href="#accepting-grant-request-code-accept-code">3.22. Accepting grant request: <code>accept</code></a></h3>
 <div class="paragraph">
 <p>Approves a specific grant request from the list of grants.
 Format: <code>accept [-a all] [INDEX]</code></p>
@@ -869,21 +955,21 @@ Approves all the requests in the list.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.22. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.23. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.23. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.24. Saving the data</a></h3>
 <div class="paragraph">
 <p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.24. Encrypting data files <code>[coming in v2.0]</code></a></h3>
+<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.25. Encrypting data files <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p><em>{explain how the user can enable/disable data encryption}</em></p>
 </div>
@@ -932,6 +1018,9 @@ e.g. <code>find James Jake</code><br>
 e.g <code>find \tag President</code></p>
 </li>
 <li>
+<p><strong>Undo Find</strong> : <code>undofind</code></p>
+</li>
+<li>
 <p><strong>List</strong> : <code>list</code></p>
 </li>
 <li>
@@ -978,4 +1067,4 @@ e.g. <code>viewrequest</code><br>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-31 16:59:39 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-31 17:17:48 UTC</div></div></div></body></html>
