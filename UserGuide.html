@@ -150,10 +150,13 @@ Format: <code>login USERID PASSWORD ROLE</code></p>
 <p>ROLE refers to the role in NUSSU associated with the existing account</p>
 </li>
 <li>
-<p>The USERID must be in the <code>X1234567X</code> format, where X can be any lower or upper case letter alphabet, and there must be exactly 7 digits between the two <code>X</code></p>
+<p>The USERID must be in the <code>X1234567X</code> format, where X can only be upper case letter alphabets, and there must be exactly 7 digits between the two <code>X</code></p>
 </li>
 <li>
 <p>USERID must belong to an existing account</p>
+</li>
+<li>
+<p>ROLE can only contain lower-case letter alphabets, and be only either <code>member</code>, <code>president</code> or <code>treasurer</code></p>
 </li>
 <li>
 <p>There must be at least 1 space between USERID and PASSWORD, and between PASSWORD and ROLE</p>
@@ -180,19 +183,14 @@ Format: <code>login USERID PASSWORD ROLE</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>login X1234567X zaq1xsw2cde3 member</code><br>
-Logs into Address book with user ID as X1234567X, password as zaq1xsw2cde3 and role as member.</p>
+<p><code>login A1234567M zaq1xsw2cde3 president</code><br>
+Logs into Address book with user ID as A1234567M, password as zaq1xsw2cde3 and role as president.</p>
 </li>
 </ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/CorrectIdPasswordRole.PNG" alt="CorrectIdPasswordRole" width="300">
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/LoginSuccessMessage.PNG" alt="LoginSuccessMessage" width="300">
+<img src="images/DefaultAccountDetails.PNG" alt="DefaultAccountDetails" width="300">
 </div>
 </div>
 <div class="admonitionblock note">
@@ -203,7 +201,67 @@ Logs into Address book with user ID as X1234567X, password as zaq1xsw2cde3 and r
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Password is case-sensitive!</p>
+<p>The default account login details for logging in when the application is launched for the very first time, can be illustrated in the picture
+below. Enter the login details shown in the picture exactly, as all the login parameters are case-sensitive. Thus, any difference
+in casing between the actual and expected input characters will lead to failure in logging into the application.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/DefaultAccountDetails.PNG" alt="DefaultAccountDetails" width="300">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>After the user logs in successfully, they should expect to see the main window of the application as shown below.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/LoginSuccess.png" alt="LoginSuccess" width="300">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If the user is unable to log in successfully, they should expect to see the login input field in a pop-up box again, asking the user
+to input their login credentials again.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/BlankLoginInput.png" alt="BlankLoginInput" width="300">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>User Id, Password and Role inputs are all case-sensitive!</p>
 </div>
 </td>
 </tr>
@@ -230,7 +288,7 @@ Format: <code>createaccount USERID PASSWORD ROLE</code></p>
 <p>ROLE refers to the role in NUSSU associated with the existing account</p>
 </li>
 <li>
-<p>The USERID must be in the <code>X1234567X</code> format, where X can only be upper-case letter alphabet, and there must be exactly 7 digits between the two <code>X</code></p>
+<p>The USERID must be in the <code>X1234567X</code> format, where X can only be upper-case letter alphabets, and there must be exactly 7 digits between the two <code>X</code></p>
 </li>
 <li>
 <p>USERID must not belong to an existing account</p>
@@ -242,7 +300,7 @@ Format: <code>createaccount USERID PASSWORD ROLE</code></p>
 <p>There must be at least 1 space between USERID and PASSWORD, and between PASSWORD and ROLE</p>
 </li>
 <li>
-<p>There must be at least 1 space between <code>login</code> keyword and USERID</p>
+<p>There must be at least 1 space between <code>createaccount</code> keyword and USERID</p>
 </li>
 <li>
 <p>The 3 parameters, USERID, PASSWORD and ROLE must be present in user input during the account creation process</p>
@@ -263,14 +321,23 @@ Format: <code>createaccount USERID PASSWORD ROLE</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>createaccount X1234567X aq1xsw2cde3 member</code><br>
-Creates a new account with user ID as X1234567X, password as zaq1xsw2cde3 and role as member in the address book.</p>
+<p><code>createaccount A1234569M zaq1xsw2cde3 member</code><br>
+Creates a new account with user ID as A1234569M, password as zaq1xsw2cde3 and role as member in the address book.
+The image below shows the outcome of a successful creation of a new account.</p>
 </li>
 </ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/CreateAccountSuccess.PNG" alt="CreateAccountSuccess" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p>The image below shows the outcome of an unsuccessful creation of a new account due to an account already existing.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CreateAccountFailure.PNG" alt="CreateAccountFailure" width="300">
 </div>
 </div>
 </div>
@@ -911,4 +978,4 @@ e.g. <code>viewrequest</code><br>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-31 11:21:25 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-31 16:59:39 UTC</div></div></div></body></html>
