@@ -32,10 +32,8 @@
 <li><a href="#login-system-feature">3.1. Login system feature</a></li>
 <li><a href="#budgeting-feature">3.2. Budgeting Feature</a></li>
 <li><a href="#search-pruning-feature">3.3. Search Pruning Feature</a></li>
-<li><a href="#add-skill-level-command">3.4. Add Skill Level Command</a></li>
-<li><a href="#undo-redo-feature">3.5. Undo/Redo feature</a></li>
-<li><a href="#logging">3.6. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
+<li><a href="#logging">3.4. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.5. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1195,7 +1193,8 @@ into a <code>FilteredList&lt;T&gt;</code> object to do the Search Pruning.</p>
 <p>More memory is required as Person objects has to be duplicated multiple times into a new List.</p>
 </li>
 <li>
-<p>Class is inextensible to store other objects other than those from a Person classes.</p>
+<p>Class is inextensible to store other objects other than those from a Person classes.
+=== Add Skill Level Command</p>
 </li>
 </ol>
 </div>
@@ -1206,18 +1205,15 @@ into a <code>FilteredList&lt;T&gt;</code> object to do the Search Pruning.</p>
 </ul>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="add-skill-level-command"><a class="link" href="#add-skill-level-command">3.4. Add Skill Level Command</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.3.3. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The add skill mechanism builds on the <code>addressBookParser</code>. This as well
 as it&#8217;s subclass <code>addSkillCommandParser</code> ensures that the correct number of arguments
 is given to the command.</p>
 </div>
 <div class="paragraph">
-<p>The following shows how the application handles the request to change a skill in one particular scenario.</p>
+<p>The following shows how the application Logic handles the request to change a skill in one particular scenario.</p>
 </div>
 <div class="paragraph">
 <p>Step 1. The user launches the application. The application boots up and lists all members.</p>
@@ -1237,11 +1233,22 @@ parse it.</p>
 <p>Step 5. The result is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>UI</code>.</p>
 </div>
 <div class="paragraph">
+<p>The following is a sequence diagram illustrating the above.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/asl_sequence.png" alt="asl sequence" width="1000">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Usage:</strong></p>
+</div>
+<div class="paragraph">
 <p>Before executing the command:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/aslbefore.png" alt="aslbefore" width="800">
+<img src="images/aslbefore.png" alt="aslbefore" width="300">
 </div>
 </div>
 <div class="paragraph">
@@ -1249,12 +1256,12 @@ parse it.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/aslafter.png" alt="aslafter" width="800">
+<img src="images/aslafter.png" alt="aslafter" width="300">
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="alternate-implementations"><a class="link" href="#alternate-implementations">3.4.2. Alternate implementations</a></h4>
+<h4 id="alternate-implementations"><a class="link" href="#alternate-implementations">3.3.4. Alternate implementations</a></h4>
 <div class="paragraph">
 <p>We considered two different ways to implement the Skill Class.</p>
 </div>
@@ -1290,7 +1297,7 @@ parse it.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="possible-extensions"><a class="link" href="#possible-extensions">3.4.3. Possible extensions</a></h4>
+<h4 id="possible-extensions"><a class="link" href="#possible-extensions">3.3.5. Possible extensions</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1301,16 +1308,12 @@ information during addition of personal information.</p>
 <p>Another is to enhance the edit command, possibly depreciating the use of the add skill level command.</p>
 </li>
 <li>
-<p>Another is to enhance the storage such that multiple skills can be added per person.</p>
+<p>Another is to enhance the storage such that multiple skills can be added per person.
+=== Undo/Redo feature
+==== Current Implementation</p>
 </li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.5. Undo/Redo feature</a></h3>
-<div class="sect3">
-<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
 It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
@@ -1440,7 +1443,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.5.2. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.6. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -1510,14 +1513,14 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.4. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.5, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1548,7 +1551,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.5. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -3448,4 +3451,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-01 16:12:31 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-01 16:21:24 UTC</div></div></div></body></html>
