@@ -892,7 +892,7 @@ Format: <code>clear</code></p>
 </div>
 <div class="paragraph">
 <p>This command allows club members to submit budget calculation data - the name of their club, number of events the club is planning to hold and the expected turnout of the events <br>
-Format: <code>budget c/CLUB NAME t/TURNOUT e/NUMBER OF EVENTS</code></p>
+Format: <code>budget c/CLUB NAME t/EXPECTED TURNOUT e/NUMBER OF EVENTS</code></p>
 </div>
 <div class="paragraph">
 <p>Example:<br>
@@ -912,6 +912,20 @@ Format: <code>budget c/CLUB NAME t/TURNOUT e/NUMBER OF EVENTS</code></p>
 </tr>
 </table>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>EXPECTED TURNOUT and NUMBER OF EVENTS must be postive whole numbers.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="calculating-the-budgets-code-calculatebudget-code"><a class="link" href="#calculating-the-budgets-code-calculatebudget-code">3.16. Calculating the budgets : <code>calculatebudget</code></a></h3>
@@ -919,12 +933,26 @@ Format: <code>budget c/CLUB NAME t/TURNOUT e/NUMBER OF EVENTS</code></p>
 <p>This is the second step in the budget allocation process!</p>
 </div>
 <div class="paragraph">
-<p>After all the clubs budget calculation data has been submitted by the club members, NUSSU treasurers must use this command to calculate and allocate budgets to all the clubs based on the total available budget<br>
+<p>After all the clubs' budget calculation data has been submitted by the club members, NUSSU treasurers must use this command to calculate and allocate budgets to all the clubs based on the total available budget<br>
 Format: <code>calculatebudget b/TOTAL AVAILABLE BUDGET IN SGD</code></p>
 </div>
 <div class="paragraph">
 <p>Example:<br>
 <code>calculatebudget b/50000</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Ensure that TOTAL AVAILABLE BUDGET is a positive whole number.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -953,6 +981,20 @@ Format: <code>viewbudget c/CLUB NAME</code></p>
 <div class="paragraph">
 <p>Example:<br>
 <code>viewbudget c/Computing Club</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If the TOTAL AVAILABLE BUDGET specified by the treasurer using the <code>calculatebudget</code> command is a very small number, the budget allocated to the clubs may even be 0.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -1055,4 +1097,4 @@ e.g. <code>viewbudget c/Computing Club</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-02 02:59:11 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-02 06:13:04 UTC</div></div></div></body></html>
