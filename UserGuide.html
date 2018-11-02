@@ -355,6 +355,20 @@ The image below shows the outcome of a successful creation of a new account.</p>
 <img src="images/CreateAccountFailure.PNG" alt="CreateAccountFailure" width="300">
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Only the president is able to create new accounts. As such, you must log in with president login credentials to be able to create new accounts.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.3. Viewing help : <code>help</code></a></h3>
@@ -888,29 +902,66 @@ Format: <code>clear</code></p>
 <div class="sect2">
 <h3 id="submitting-data-for-budget-allocation-code-budget-code"><a class="link" href="#submitting-data-for-budget-allocation-code-budget-code">3.15. Submitting data for budget allocation: <code>budget</code></a></h3>
 <div class="paragraph">
-<p>Submits the data about number of events, expected turnout etc.<br>
+<p>This is the first step in the budget allocation process!</p>
+</div>
+<div class="paragraph">
+<p>This command allows club members to submit budget calculation data - the name of their club, number of events the club is planning to hold and the expected turnout of the events <br>
 Format: <code>budget c/CLUB NAME t/TURNOUT e/NUMBER OF EVENTS</code></p>
 </div>
 <div class="paragraph">
 <p>Example:<br>
 <code>budget c/Computing Club t/200 e/5</code></p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>CLUB NAME is case sensitive. Hence <code>c/Computing Club</code> and <code>c/computing club</code> will be treated as unique entries.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="calculating-the-budgets-code-calculatebudget-code"><a class="link" href="#calculating-the-budgets-code-calculatebudget-code">3.16. Calculating the budgets : <code>calculatebudget</code></a></h3>
 <div class="paragraph">
-<p>Calculates the budgets for all the clubs in NUSSU-Connect using the total available budget
+<p>This is the second step in the budget allocation process!</p>
+</div>
+<div class="paragraph">
+<p>After all the clubs budget calculation data has been submitted by the club members, NUSSU treasurers must use this command to calculate and allocate budgets to all the clubs based on the total available budget<br>
 Format: <code>calculatebudget b/TOTAL AVAILABLE BUDGET IN SGD</code></p>
 </div>
 <div class="paragraph">
 <p>Example:<br>
 <code>calculatebudget b/50000</code></p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Remember to only use the <code>calculatebudget</code> command once ALL the clubs' data has been collected since NUSSU-Connect only supports a one-time calculation of budgets in v1.3</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="viewing-the-allocated-budget-for-a-club-code-viewbudget-code"><a class="link" href="#viewing-the-allocated-budget-for-a-club-code-viewbudget-code">3.17. Viewing the allocated budget for a club : <code>viewbudget</code></a></h3>
 <div class="paragraph">
-<p>Shows the budget allocated to that particular club to the user.
+<p>This is the third and final step in the budget calculation process!</p>
+</div>
+<div class="paragraph">
+<p>This command shows the budget allocated to that particular club to the user. Both club members and NUSSU treasurers have access to this command.
 Format: <code>viewbudget c/CLUB NAME</code></p>
 </div>
 <div class="paragraph">
@@ -1018,4 +1069,4 @@ e.g. <code>viewbudget c/Computing Club</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-01 16:30:29 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-02 02:29:35 UTC</div></div></div></body></html>
