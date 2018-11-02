@@ -32,12 +32,10 @@
 <li><a href="#undoing-previous-command-code-undo-code">3.12. Undoing previous command : <code>undo</code></a></li>
 <li><a href="#redoing-the-previously-undone-command-code-redo-code">3.13. Redoing the previously undone command : <code>redo</code></a></li>
 <li><a href="#clearing-all-entries-code-clear-code">3.14. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#submitting-data-for-budget-allocation-code-budget-code">3.15. Submitting data for budget allocation: <code>budget</code></a></li>
-<li><a href="#calculating-the-budgets-code-calculatebudget-code">3.16. Calculating the budgets : <code>calculatebudget</code></a></li>
-<li><a href="#viewing-the-allocated-budget-for-a-club-code-viewbudget-code">3.17. Viewing the allocated budget for a club : <code>viewbudget</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.18. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.19. Saving the data</a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.20. Encrypting data files <code>[coming in v2.0]</code></a></li>
+<li><a href="#budgeting-feature-code-budget-code-code-calculatebudget-code-and-code-viewbudget-code">3.15. Budgeting feature: <code>budget</code>, <code>calculatebudget</code> and <code>viewbudget</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.16. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">3.17. Saving the data</a></li>
+<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.18. Encrypting data files <code>[coming in v2.0]</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -886,9 +884,23 @@ Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="submitting-data-for-budget-allocation-code-budget-code"><a class="link" href="#submitting-data-for-budget-allocation-code-budget-code">3.15. Submitting data for budget allocation: <code>budget</code></a></h3>
+<h3 id="budgeting-feature-code-budget-code-code-calculatebudget-code-and-code-viewbudget-code"><a class="link" href="#budgeting-feature-code-budget-code-code-calculatebudget-code-and-code-viewbudget-code">3.15. Budgeting feature: <code>budget</code>, <code>calculatebudget</code> and <code>viewbudget</code></a></h3>
 <div class="paragraph">
-<p>This is the first step in the budget allocation process!</p>
+<p>The budgeting process has 3 steps and involves club members and NUSSU treasurers as the users in the different steps</p>
+</div>
+<div class="paragraph">
+<p>Step 1: Submitting the data for budget allocation which is to be done by <strong>club members</strong>.<br></p>
+</div>
+<div class="paragraph">
+<p>Step 2: Calculating the budgets to be allocated which is to be done by <strong>NUSSU treasurers</strong>.<br></p>
+</div>
+<div class="paragraph">
+<p>Step 3: Viewing the allocated budget of a club which can be done by either <strong>club members</strong> or <strong>NUSSU treasurers</strong>.</p>
+</div>
+<div class="sect3">
+<h4 id="submitting-data-for-budget-allocation-code-budget-code"><a class="link" href="#submitting-data-for-budget-allocation-code-budget-code">3.15.1. Submitting data for budget allocation: <code>budget</code></a></h4>
+<div class="paragraph">
+<p>This is the first step in the budgeting process!</p>
 </div>
 <div class="paragraph">
 <p>This command allows club members to submit budget calculation data - the name of their club, number of events the club is planning to hold and the expected turnout of the events <br>
@@ -927,10 +939,10 @@ Format: <code>budget c/CLUB NAME t/EXPECTED TURNOUT e/NUMBER OF EVENTS</code></p
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="calculating-the-budgets-code-calculatebudget-code"><a class="link" href="#calculating-the-budgets-code-calculatebudget-code">3.16. Calculating the budgets : <code>calculatebudget</code></a></h3>
+<div class="sect3">
+<h4 id="calculating-the-budgets-code-calculatebudget-code"><a class="link" href="#calculating-the-budgets-code-calculatebudget-code">3.15.2. Calculating the budgets : <code>calculatebudget</code></a></h4>
 <div class="paragraph">
-<p>This is the second step in the budget allocation process!</p>
+<p>This is the second step in the budgeting process!</p>
 </div>
 <div class="paragraph">
 <p>After all the clubs' budget calculation data has been submitted by the club members, NUSSU treasurers must use this command to calculate and allocate budgets to all the clubs based on the total available budget<br>
@@ -969,10 +981,10 @@ Format: <code>calculatebudget b/TOTAL AVAILABLE BUDGET IN SGD</code></p>
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="viewing-the-allocated-budget-for-a-club-code-viewbudget-code"><a class="link" href="#viewing-the-allocated-budget-for-a-club-code-viewbudget-code">3.17. Viewing the allocated budget for a club : <code>viewbudget</code></a></h3>
+<div class="sect3">
+<h4 id="viewing-the-allocated-budget-for-a-club-code-viewbudget-code"><a class="link" href="#viewing-the-allocated-budget-for-a-club-code-viewbudget-code">3.15.3. Viewing the allocated budget for a club : <code>viewbudget</code></a></h4>
 <div class="paragraph">
-<p>This is the third and final step in the budget calculation process!</p>
+<p>This is the third and final step in the budgeting process!</p>
 </div>
 <div class="paragraph">
 <p>This command shows the budget allocated to that particular club to the user. Both club members and NUSSU treasurers have access to this command.
@@ -997,22 +1009,23 @@ Format: <code>viewbudget c/CLUB NAME</code></p>
 </table>
 </div>
 </div>
+</div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.18. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.16. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.19. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.17. Saving the data</a></h3>
 <div class="paragraph">
 <p>NUSSU-Connect data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.20. Encrypting data files <code>[coming in v2.0]</code></a></h3>
+<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.18. Encrypting data files <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p><em>{explain how the user can enable/disable data encryption}</em></p>
 </div>
@@ -1097,4 +1110,4 @@ e.g. <code>viewbudget c/Computing Club</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-02 06:13:04 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-02 07:01:31 UTC</div></div></div></body></html>
