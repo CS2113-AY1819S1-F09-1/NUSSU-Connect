@@ -212,7 +212,7 @@ Format: <code>calculatebudget b/TOTAL AVAILABLE BUDGET IN SGD</code></p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Ensure that TOTAL AVAILABLE BUDGET is a positive whole number.</p>
+<p>Ensure that TOTAL AVAILABLE BUDGET is a positive whole number, i.e. it can also be zero.</p>
 </div>
 </td>
 </tr>
@@ -226,7 +226,7 @@ Format: <code>calculatebudget b/TOTAL AVAILABLE BUDGET IN SGD</code></p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Remember to only use the <code>calculatebudget</code> command once ALL the clubs' data has been collected since NUSSU-Connect only supports a one-time calculation of budgets in v1.3</p>
+<p>Remember to only use the <code>calculatebudget</code> command once ALL the clubs' data has been collected since NUSSU-Connect only supports a one-time calculation of budgets in v1.4</p>
 </div>
 </td>
 </tr>
@@ -245,20 +245,6 @@ Format: <code>viewbudget c/CLUB NAME</code></p>
 <div class="paragraph">
 <p>Example:<br>
 <code>viewbudget c/Computing Club</code></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>If the TOTAL AVAILABLE BUDGET specified by the treasurer using the <code>calculatebudget</code> command is a very small number, the budget allocated to the clubs may even be 0.</p>
-</div>
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
@@ -289,53 +275,41 @@ Format: <code>viewbudget c/CLUB NAME</code></p>
 <div class="paragraph">
 <p>This feature has been implemented through 3 separate commands, each dealing with a separate stage in the calculation and
 subsequent allocation of budgets by the NUSSU Executive Committee to all the clubs that submit the data required to
-calculate the budget. The three commands are: <code>budget</code> - which handles the submission of data by the club treasurer required to calculate the
+calculate the budget. The three commands are: <code>budget</code> - which handles the submission of data by the club treasurer required to
 calculate the budget for that club, <code>calculatebudget</code> - which is to be used only by the NUSSU Executive Committee members
 in order to calculate the budgets for each club and <code>viewbudget</code> - which lists the final budgets of all the clubs.</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="submission-of-data"><a class="link" href="#submission-of-data">Submission of Data</a></h4>
+<div class="sect4">
+<h5 id="submission-of-data"><a class="link" href="#submission-of-data">Submission of Data</a></h5>
 <div class="paragraph">
 <p>Given below is an example usage scenario and the behaviour at each step of the <code>budget</code> command.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user launches the application for the first time. 'filteredClubBudgets' will be initialised with an empty list
-of all the club budgets in the address book.</p>
+<p>Step 1. The user launches the application for the first time. 'filteredClubsList' will be initialised with an empty list
+of all the clubs' budget calculation data in the address book. Similarly 'filteredClubBudgets' will be initialised with an empty list of all the club budgets in the address book.</p>
 </div>
 <div class="paragraph">
-<p>Step 2. The user (a club&#8217;s treasurer) executes <code>budget c/Computing Club t/200 e/5</code> command in order to
-submit the data for the calculation of her club&#8217;s budget. The 'LogicManager' then calls the 'parseCommand' in the
+<p>Step 2. The user (a club member) executes <code>budget c/Computing Club t/200 e/5</code> command in order to submit the data for the calculation of her club&#8217;s budget. The 'LogicManager' then calls the 'parseCommand' in the
 'AddressBookParser'.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/BudgetCommand.png" alt="BudgetCommand" width="800">
-</div>
+<div class="paragraph">
+<p>Step 3. The 'AddressBookParser' then returns a new 'BudgetCommandParser', if the user is of the <strong>member</strong> role. (Else a parse exception is thrown.)</p>
 </div>
 <div class="paragraph">
-<p>Step 3. The 'AddressBookParser' then returns a new 'BudgetCommandParser', which then parses the command to be executed and
-creates a 'ClubBudgetElements' object called 'club' with the club&#8217;s name, the expected turnout and the number of events.
-Finally the 'BudgetCommand' is called with 'club' as the parameter.</p>
+<p>Step 4. The 'BudgetCommandParser' parses the command to be executed and creates a 'ClubBudgetElements' object called 'club' with the club&#8217;s name, the expected turnout and the number of events, as specified by the user. Finally the 'BudgetCommand' is called with 'club' as the argument.</p>
 </div>
 <div class="paragraph">
-<p>Step 4. The 'BudgetCommand' checks whether the 'club' is a duplicate and it is not, the 'BudgetCommand' calls the 'addClub'
-command in 'Model' with 'club' as the parameter.</p>
+<p>Step 5. The 'BudgetCommand' checks whether the 'club' is a duplicate and if it is not, the 'BudgetCommand' calls the 'addClub' method in 'Model' with 'club' as the argument.</p>
 </div>
 <div class="paragraph">
-<p>Step 5. 'Model' calls 'addClub' in 'ReadOnlyAddressBook' and indicates that the address book&#8217;s status has changed.</p>
+<p>Step 6. 'Model' calls 'addClub' in 'ReadOnlyClubBudgetElementsBook' and indicates that the club budget elements book&#8217;s status has changed.</p>
 </div>
 <div class="paragraph">
-<p>Step 6. 'ReadOnlyAddressBook' calls the 'addClubBudget' command on an object 'clubs' of the 'UniqueClubsList' class, thus
-adding the required club&#8217;s data to the address book.</p>
+<p>Step 7. 'ReadOnlyClubBudgetElementsBook' calls the 'addClub' command on an object 'clubs' of the 'UniqueClubsList' class, thus
+adding the required club&#8217;s data to the club budget elements book.</p>
 </div>
 <div class="paragraph">
-<p>Step 7. Finally a success message is displayed with the details that have been entered by the user.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/ExecuteBudgetCommand.png" alt="ExecuteBudgetCommand" width="800">
-</div>
+<p>Step 8. Finally a success message is displayed with the details that have been entered by the user.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -344,17 +318,11 @@ adding the required club&#8217;s data to the address book.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-In Step 4, had the user entered a club name that already existed in the list of clubs in the address book, then a duplicate
-message would be shown, prompting the user to edit their entered command and try again. Execution of subsequent steps would be stopped until the
-user entered a unique club name
+As mentioned in Step 5, had the user entered a club name that already existed in the list of clubs in the address book, then a duplicate club budget elements message would be shown, prompting the user to edit their entered command and try again. Execution of subsequent steps would be stopped until the
+user entered a unique club name.
 </td>
 </tr>
 </table>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/DuplicateBudget.png" alt="DuplicateBudget" width="800">
-</div>
 </div>
 <div class="paragraph">
 <p>The image below is the sequence diagram for the functioning of the <code>budget</code> command:</p>
@@ -365,6 +333,157 @@ user entered a unique club name
 </div>
 </div>
 </div>
+<div class="sect4">
+<h5 id="calculation-and-allocation-of-budgets"><a class="link" href="#calculation-and-allocation-of-budgets">Calculation and allocation of budgets</a></h5>
+<div class="paragraph">
+<p>Given below is an example usage scenario and the behaviour at each step of the <code>calculatebudget</code> command.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. 'filteredClubsList' will no longer be an empty list, and will now contain the budget calculation data of the clubs that have been added using the <code>budget</code> command.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user (a NUSSU treasurer) executes the <code>calculatebudget b/50000</code> command with '50000' as the total available budget, in order to calulate and allocate all the clubs' budgets. The 'LogicManager' then calls the 'parseCommand' in the
+'AddressBookParser'.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. The 'AddressBookParser' then returns a new 'BudgetCalculationCommandParser', if the user is of the role <strong>treasurer</strong>. (Else a parse exception is thrown.)</p>
+</div>
+<div class="paragraph">
+<p>Step 4.'BudgetCalculationCommandParser' parses the command and creates a 'TotalBudget' object called 'totalBudget' with the total available budget specified by the user. Finally the 'BudgetCalculationCommand' is called with 'totalBudget' as the argument.</p>
+</div>
+<div class="paragraph">
+<p>Step 5. The 'BudgetCalculationCommand' checks whether the 'totalBudget' is a negative number. It also checks whether the budgets have already been calculated before using the getHaveBudgetsBeenCalculated method of the 'BudgetCalculationManager'. It also checks whether the clubBudgetElementsBook is empty. If none of this are true, then the 'filteredClubsList' is iterated through to calculate the budget, an object 'toAdd' of the 'FinalClubBudget' class, of each club in the list. When the budget for a club has been calculated, the 'BudgetCalculationCommand' calls the 'addClubBudget' method in Model with 'toAdd' as the parameter.</p>
+</div>
+<div class="paragraph">
+<p>Step 6. 'Model' calls 'addClubBudget' in 'ReadOnlyFinalBudgetBook' and indicates that the finalBudgetsBook&#8217;s status has changed.</p>
+</div>
+<div class="paragraph">
+<p>Step 7. 'ReadOnlyFinalBudgetBook' calls the 'addClubBudget' command on an object 'clubBudgets' of the 'UniqueClubBudgetsList' class, thus adding the required club&#8217;s allocated budget to the finalClubBudgetsBook. The process repeats until the budget for every club in the 'filteredClubsList' has been calculated and allocated.</p>
+</div>
+<div class="paragraph">
+<p>Step 8. Once the budget for every club has been allocated a success message is displayed, telling the user that the budgets have been calculated.</p>
+</div>
+<div class="paragraph">
+<p>The image below is a sequence diagram for the 'BudgetCalculationCommand'</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/BudgetCalculationCommandSequenceDiagram.png" alt="BudgetCalculationCommandSequenceDiagram" width="800">
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 09:14:35 UTC</div></div></div></body></html>
+</div>
+<div class="sect4">
+<h5 id="viewing-the-allocated-budgets"><a class="link" href="#viewing-the-allocated-budgets">Viewing the allocated budgets</a></h5>
+<div class="paragraph">
+<p>Given below is an example usage scenario and the behaviour at each step of the <code>viewbudget</code> command.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. 'filteredClubBudgetsList' will no longer be an empty list, and will now contain the final budgets that have been allocated to each of the clubs in the 'filteredClubsList'.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user (a NUSSU treasurer, a club member or even a club&#8217;s President) executes the <code>viewbudget c/Computing Club</code> command to view the budget allocated to the club that she has specified (in this case the Computing Club). The 'LogicManager' then calls the 'AddressBookParser'.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. The 'AddressBookParser' then returns a new ViewClubBudgetsCommandParser' if the user role is set to either <strong>member</strong>, <strong>treasurer</strong> or <strong>president</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. The 'ViewClubBudgetsCommandParser' then creates a 'ClubName' object called clubName. Finally the 'ViewClubBudgetsCommand' is called with 'clubName' as the argument.</p>
+</div>
+<div class="paragraph">
+<p>Step 5. 'ViewClubBudgetsCommand' checks whether the budgets have been calculated already. If they have not, an error message is shown to the user. If they have, then the 'filteredClubBudgetsList' is looped through to find a 'FinalClubBudget' object with the same 'ClubName' as the 'clubName' that is specified by the user (in this case 'Computing Club'). If it is found, then the associated 'allocatedBudget' of that 'FinalClubBudget' object is displayed to the user. Else a message saying that the specified club&#8217;s budget does not exist is shown to the user.</p>
+</div>
+<div class="paragraph">
+<p>The image below is a sequence diagram for the 'ViewClubBudgetsCommand'</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ViewClubBudgetsCommandSequenceDiagram.png" alt="ViewClubBudgetsCommandSequenceDiagram" width="800">
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-club-budget-elements-data-and-final-club-budgets-data-is-stored"><a class="link" href="#aspect-how-club-budget-elements-data-and-final-club-budgets-data-is-stored">Aspect: How club budget elements data and final club budgets data is stored</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Saving club budget elements data and final club budgets in budgetelements.xml and budgets.xml respectively in XML format.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: It is easy to read.</p>
+</li>
+<li>
+<p>Cons: XML data files takes up more storage space, also more verbose.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Saving club budget elements data and final club budgets using JSON.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Faster and takes less storage space</p>
+</li>
+<li>
+<p>Cons: Less intuitive or readable since items are presented in a manner that is more similar to the code.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-how-the-final-club-budgets-are-stored"><a class="link" href="#aspect-how-the-final-club-budgets-are-stored">Aspect: How the final club budgets are stored</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Currently the final club budgets are stored in a list (which is accessed when using the <code>viewbudget</code> command).</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to implement, with respect to the project&#8217;s time constraints</p>
+</li>
+<li>
+<p>Cons: Not a good choice with respect to time complexity. If the list of final club budgets is very large, then looping through it in worst case time complexity of O(N) to find the desired club&#8217;s budget, is very slow. Thus not allowing the NFR of speed to be achieved.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Using a map to store the final club budgets</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Far faster to search for the desired club&#8217;s final budget given that Club Names must be unique.</p>
+</li>
+<li>
+<p>Cons: Would take longer to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="possible-extensions"><a class="link" href="#possible-extensions">Possible Extensions</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Implementing an <code>editbudget</code> command to allow the club members to edit the budget calculation data until the treasurers have calculated and allocated the budgets.</p>
+</li>
+<li>
+<p>Allowing the NUSSU treasurers to calculate and allocate the budgets multiple times. This will allow them to change the total budget as and when needed and also allow club members to keep submitting their budget calculation data.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 13:04:59 UTC</div></div></div></body></html>
