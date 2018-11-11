@@ -7,20 +7,17 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="introduction"><a class="link" href="#introduction">Introduction</a></h2>
+<h2 id="introduction-and-overview"><a class="link" href="#introduction-and-overview">Introduction and Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This Portfolio is a documentation of the contributions that I have made for this project, titled NUSSU Connect.</p>
+<p>NUSSU Connect is a CLI application created by a team of four and this Portfolio is a documentation
+of the contributions that I have made during the design of this application.</p>
 </div>
 <div class="paragraph">
-<p>NUSSU Connect is a CLI application mainly targeted towards executive committee (exco) members of the NUS Student Union (NUSSU).
-Being representatives of the NUS student body, the exco members has a part in many projects and initiatives.
-This application therefore aims to help them perform some of these miscellaneous tasks that often comes from these projects much more easily.</p>
-</div>
-<div class="paragraph">
-<p>To do so, the application comes with several features. This includes budgets/expenses management, human resource allocation and managing of important contacts.
-The original source code of this project is the <a href="https://github.com/se-edu/">AddressBook-Level4</a> project created by SE-EDU initiative, and hence,
-it also comes with some features from the AB4 project.</p>
+<p>It is an application that mainly caters to executive committee members of the NUS Student Union (NUSSU).
+Being a part of many projects and initiatives, this application aims to let the exco members manage their
+budgets, expenses, human resource allocation and contacts all in a single application so that they could complete
+their tasks with high efficiency.</p>
 </div>
 </div>
 </div>
@@ -28,43 +25,42 @@ it also comes with some features from the AB4 project.</p>
 <h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this project, my main contribution is the Search Pruning feature. The main purpose of this feature is to
+<p>In this project, my main contribution is in the Search Pruning feature and the main purpose of this feature is to
 ease the process of managing a large list of contacts.
 Further details about my contributions will be explained in this section.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: added <strong>the ability to prune the list of contacts with find and undosearch commands</strong></p>
+<p><strong>Major enhancement</strong>: Added the ability to prune the list of contacts with <code>find</code> and <code>undofind</code> commands.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: allows users to search and reduce the size of the list of contacts in discrete steps.</p>
+<p>What it does: Allows users to search and reduce the size of the displayed list of contacts in discrete steps.</p>
 </li>
 <li>
-<p>Justification: When managing several large scale projects/events, users will find themselves in a situation
-where they have to manage numerous of contacts. This includes student volunteers, sponsors, key organizers etc. Hence, a search pruning feature
-allows the users to filter the list of contacts intuitively and help them retrieve the relevant results more easily. In the event that users
-made a mistake in their search, users can utilize the <code>undosearch</code> command to rectify their mistake.</p>
+<p>Justification: Being a large organization that is in charge of many events and projects, NUSSU exco will most likely be required to keep track of
+a large list of important contacts, and it will be time-consuming to locate specific contact information from the list.
+Hence, a search pruning feature allows the users to narrow the search space in discrete steps and help them
+retrieve the relevant contact information much more efficiently.</p>
 </li>
 <li>
 <p>Highlights: This enhancement is mainly created from scratch with some help from documentations on how the <code>Predicate</code> class works.
-This enhancement was also created with re-usability in mind and any form of filtering done with <code>Predicate</code> will be able to
+This enhancement was also created with re-usability in mind and any form of filtering done with <code>Predicate</code> class will be able to
 utilize this feature.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: added the feature that allows users to see a history of keywords they used in their search when utilizing the Search Pruning feature.</p>
+<p><strong>Minor enhancement</strong>: Added the feature that allows users to see a history of keywords they used in their search when utilizing the Search Pruning feature.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: Every time when the user performs a search, the command result box will display the list of keywords describing how the current displayed list is being filtered.</p>
+<p>What it does: Every time a user performs a search, the command result box will display the list of keywords describing how the current displayed list is being filtered.</p>
 </li>
 <li>
-<p>Justification: When utilizing the search pruning feature, the users might forget the keywords that they have specified in the past. Therefore, this feature simply shows
-the keywords that were previously executed by the user.</p>
+<p>Justification: The users might forget keywords used previously during Search Pruning.</p>
 </li>
 </ul>
 </div>
@@ -74,7 +70,7 @@ the keywords that were previously executed by the user.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: Searching by tags allows users to filter the contacts according to the tags (extra description). Exclude functionality allows users to remove
+<p>What it does: Searching by tags allows users to filter the contacts according to the tagged description of each contact. Exclude functionality allows users to remove
 unwanted results from their search.</p>
 </li>
 </ul>
@@ -92,7 +88,7 @@ unwanted results from their search.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Managed releases <code>v1.1</code>, <code>v1.2</code> and <code>v1.2.1</code> (3 releases) on GitHub</p>
+<p>Managed releases <code>v1.1</code>, <code>v1.2</code>, <code>v1.2.1</code> and <code>v1.3</code> (4 releases) on GitHub.</p>
 </li>
 <li>
 <p>Managed Milestones and Deadlines of the project.</p>
@@ -105,13 +101,10 @@ unwanted results from their search.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Changing site-wide documentation settings in several files.</p>
+<p>Minor tweaks to ReadMe, UserGuide and DeveloperGuide to meet the module requirements.</p>
 </li>
 <li>
-<p>Minor tweaks to ReadMe, UserGuide and DeveloperGuide to meet the module requirements. (Pull Requests <a href="https://github.com">#12</a>, <a href="https://github.com">#14</a>, <a href="https://github.com">#23</a>)</p>
-</li>
-<li>
-<p>Provided teammates with non-trivial PR reviews (Pull Requests <a href="https://github.com">#25</a>, <a href="https://github.com">#76</a>)</p>
+<p>Provided teammates with non-trivial PR reviews (Pull Requests <a href="https://github.com/CS2113-AY1819S1-F09-1/main/pull/25">#25</a>, <a href="https://github.com/CS2113-AY1819S1-F09-1/main/pull/80">#80</a>, <a href="https://github.com/CS2113-AY1819S1-F09-1/main/pull/81">#81</a>)</p>
 </li>
 </ul>
 </div>
@@ -131,7 +124,7 @@ unwanted results from their search.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Search Pruning Feature reused in Login/Logout feature of the application.</p>
+<p>Search Pruning Feature reused in Login/Logout feature of this application. <a href="https://github.com/CS2113-AY1819S1-F09-1/main/blob/master/src/main/java/seedu/address/logic/commands/LoginCommand.java">LoginCommand.java</a></p>
 </li>
 </ul>
 </div>
@@ -157,98 +150,6 @@ unwanted results from their search.</p>
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="locating-persons-code-find-code"><a class="link" href="#locating-persons-code-find-code">Locating persons: <code>find</code></a></h3>
-<div class="paragraph">
-<p>Finds persons in the displayed list whose names/tags contain any of the given keywords.<br>
-If the <code>\exclude</code> option is enabled, the matched person will be excluded from the list instead.<br></p>
-</div>
-<div class="paragraph">
-<p>Format: <code>find [\tag] [\exclude] KEYWORD [MORE_KEYWORDS]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The search is case-insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
-</li>
-<li>
-<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
-</li>
-<li>
-<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
-</li>
-<li>
-<p>If <code>\tag</code> option is specified, find command will search according to names.</p>
-</li>
-<li>
-<p>If <code>\exclude</code> option is specified, find command will exclude any names/tags with the specified keywords</p>
-</li>
-<li>
-<p>The order of <code>\tag</code> and <code>\exclude</code> options can be swapped</p>
-</li>
-<li>
-<p>Back-to-back find commands utilizes the Search Pruning feature which will be further explained under the Search Pruning
-Feature section.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>find John</code><br></p>
-</li>
-<li>
-<p><code>find John</code><br>
-Returns <code>john</code> and <code>John Doe</code></p>
-</li>
-<li>
-<p><code>find Betsy Tim John</code><br>
-Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
-</li>
-<li>
-<p><code>find \exclude Tom</code><br>
-Returns any person without the name <code>Tom</code>.</p>
-</li>
-<li>
-<p><code>find \tag President</code><br>
-Returns any person with the tag <code>President</code></p>
-</li>
-<li>
-<p><code>find \tag President VicePresident</code><br>
-Returns any person with the tag <code>President</code> OR <code>VicePresident</code>.</p>
-</li>
-<li>
-<p><code>find \tag \exclude President</code><br>
-Returns any person without the tag <code>President</code>.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="undoing-find-commands-code-undofind-code"><a class="link" href="#undoing-find-commands-code-undofind-code">Undoing Find Commands: <code>undofind</code></a></h3>
-<div class="paragraph">
-<p>Reverts the displayed list to the state before you perform your most recent find command<br>
-Format: <code>undofind</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>To be used in Search Pruning feature</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
 <h3 id="search-pruning-feature-with-list-find-and-undofind-commands"><a class="link" href="#search-pruning-feature-with-list-find-and-undofind-commands">Search Pruning Feature with list, find and undofind commands</a></h3>
 <div class="paragraph">
 <p>Since v1.1, the Search Pruning feature was introduced to NUSSU Connect that helps you
@@ -257,10 +158,8 @@ of contacts in a much more intuitive manner without the hassle of typing a long 
 usually error-prone.</p>
 </div>
 <div class="paragraph">
-<p>The concept of the Search Pruning feature will be illustrated below.<br></p>
-</div>
-<div class="paragraph">
-<p><strong>1. Search Pruning with Find Commands</strong></p>
+<p>The concept of the Search Pruning feature will be illustrated below.<br>
+<strong>1. Search Pruning with Find Commands</strong></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -270,7 +169,7 @@ with the science tag. You could do this by executing the command <code>find \tag
 </div>
 <div class="imageblock" style="text-align: left">
 <div class="content">
-<img src="../images/SearchPruning1st.png" alt="SearchPruning1st">
+<img src="../images/SearchPruning1st.png" alt="SearchPruning1st" width="200">
 </div>
 </div>
 <div class="paragraph">
@@ -279,7 +178,7 @@ both with the science tag.</p>
 </div>
 <div class="imageblock" style="text-align: left">
 <div class="content">
-<img src="../images/SearchPruning2nd.png" alt="SearchPruning2nd">
+<img src="../images/SearchPruning2nd.png" alt="SearchPruning2nd" width="200">
 </div>
 </div>
 <div class="paragraph">
@@ -289,7 +188,7 @@ the displayed list.<br></p>
 </div>
 <div class="imageblock" style="text-align: left">
 <div class="content">
-<img src="../images/SearchPruning3rd.png" alt="SearchPruning3rd">
+<img src="../images/SearchPruning3rd.png" alt="SearchPruning3rd" width="350">
 </div>
 </div>
 <div class="paragraph">
@@ -298,7 +197,7 @@ the displayed list.<br></p>
 </div>
 <div class="imageblock" style="text-align: left">
 <div class="content">
-<img src="../images/SearchPruning4th.png" alt="SearchPruning4th">
+<img src="../images/SearchPruning4th.png" alt="SearchPruning4th" width="200">
 </div>
 </div>
 <div class="paragraph">
@@ -307,7 +206,7 @@ displayed list now contains only 1 person with the President Tag as everyone wit
 </div>
 <div class="imageblock" style="text-align: left">
 <div class="content">
-<img src="../images/SearchPruning5th.png" alt="SearchPruning5th">
+<img src="../images/SearchPruning5th.png" alt="SearchPruning5th" width="200">
 </div>
 </div>
 <div class="paragraph">
@@ -316,7 +215,7 @@ with the vpresident tag has been excluded from the list<br></p>
 </div>
 <div class="imageblock" style="text-align: left">
 <div class="content">
-<img src="../images/SearchPruning6th.png" alt="SearchPruning6th">
+<img src="../images/SearchPruning6th.png" alt="SearchPruning6th" width="350">
 </div>
 </div>
 </div>
@@ -332,7 +231,7 @@ recent find command. You can do so with the undofind command<br></p>
 </div>
 <div class="imageblock" style="text-align: left">
 <div class="content">
-<img src="../images/SearchPruning7th.png" alt="SearchPruning7th">
+<img src="../images/SearchPruning7th.png" alt="SearchPruning7th" width="200">
 </div>
 </div>
 <div class="paragraph">
@@ -341,30 +240,7 @@ recent find command. You can do so with the undofind command<br></p>
 </div>
 <div class="imageblock" style="text-align: left">
 <div class="content">
-<img src="../images/SearchPruning8th.png" alt="SearchPruning8th">
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p><strong>3 . Reverting to initial state with list command</strong></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="paragraph">
-<p>You can revert to the initial state before any find commands are executed with the list command</p>
-</div>
-<div class="imageblock" style="text-align: left">
-<div class="content">
-<img src="../images/SearchPruning9th.png" alt="SearchPruning9th">
-</div>
-</div>
-<div class="paragraph">
-<p>After executing the list command, all search history is cleared and the displayed list now contains all six persons.</p>
-</div>
-<div class="imageblock" style="text-align: left">
-<div class="content">
-<img src="../images/SearchPruning10th.png" alt="SearchPruning10th">
+<img src="../images/SearchPruning8th.png" alt="SearchPruning8th" width="200">
 </div>
 </div>
 </div>
@@ -388,25 +264,20 @@ recent find command. You can do so with the undofind command<br></p>
 <div class="sect2">
 <h3 id="search-pruning-feature"><a class="link" href="#search-pruning-feature">Search Pruning Feature</a></h3>
 <div class="paragraph">
-<p>The Search Pruning mechanism is facilitated by the <code>SearchHistoryManager</code>.
-Within <code>SearchHistoryManager</code> is <code>searchHistoryStack</code>, storing <code>Predicate</code> objects.
-The <code>Predicate</code> objects are used to filter <code>filteredListPerson</code> in ModelManager.</p>
+<p>The Search Pruning mechanism is facilitated by the <code>SearchHistoryManager</code> class, and within it is a <code>searchHistoryStack</code> that stores <code>Predicate</code> objects.</p>
 </div>
 <div class="paragraph">
-<p>A main <code>SearchHistoryManager</code> object named <code>searchHistoryManager</code> is stored within <code>ModelManager</code> and you could access <code>searchHistoryManager</code> by calling the
-getter method <code>getSearchHistoryManager()</code>.</p>
+<p>In NUSSU Connect, the main <code>SearchHistoryManger</code> object is in <code>ModelManager</code> and it stores <code>Predicate&lt;Person&gt;</code> objects used for filtering <code>filteredPersons</code> list.</p>
 </div>
-<div class="admonitionblock important">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>searchHistoryManger</code> is only meant for the filtering of
-<code>Person</code> objects and Predicates irrelevant to the filtering of <code>Person</code> objects could not be stored in it.
-If you want to utilize <code>SearchHistoryManager</code> for your own use case, you can initialize a new SearchHistoryManager object
-by calling its default constructor.
+The <code>SearchHistoryManger</code> object in <code>ModelManager</code> only stores <code>Predicate&lt;Person&gt;</code> objects and is meant only for the filtering of <code>FilteredList&lt;Person&gt;</code>.
+If you want to utilize <code>SearchHistoryManager</code> for your own use case, you should initialize a new <code>SearchHistoryManager</code> object with its generic constructor.
 </td>
 </tr>
 </table>
@@ -414,7 +285,7 @@ by calling its default constructor.
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
-<p>The main implementation behind SearchHistoryManager is a Stack Data Structure and the following 3 methods of <code>SearchHistoryManager</code> are exposed for your usage<br></p>
+<p>The main implementation behind <code>SearchHistoryManager</code> is a Stack Data Structure and the following 4 methods of <code>SearchHistoryManager</code> are exposed for your usage<br></p>
 </div>
 <div class="ulist">
 <ul>
@@ -431,17 +302,20 @@ reverts system search logic to the previous state and returns a <code>Predicate<
 <p><code>clearSearchHistory()</code><br>
 clears all system search logic from in-app memory.<br></p>
 </li>
+<li>
+<p><code>isEmpty()</code><br>
+returns true if <code>searchHistoryStack</code> is empty.<br></p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Given below are illustrations to help you understand how each method works internally</p>
+<p>Given below are illustrations to help you understand how the first three method works internally</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>In the diagrams, UP is the short-form for User Predicate and SP is the short-form for System Predicate.
-. User Predicate stores the logic specified by the user. This will not be used directly to filter the
-  list.
-. System Predicate stores the search logic for the system which will be used to filter the list.</pre>
+<pre>In the diagrams, 'UP' is the short-form for User Predicate and 'SP' is the short-form for System Predicate.
+. User Predicate stores the logic specified by the user. This will not be used to filter FilteredList objects.
+. System Predicate stores the search logic for the system which will be used to filter FilteredList objects.</pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -452,7 +326,7 @@ clears all system search logic from in-app memory.<br></p>
 </td>
 <td class="content">
 User Predicate and System Predicate are not actual Classes, they are simply there to help simplify the explanation.
-In the actual implementation, there is no way to differentiate one Predicate from the other
+In the actual implementation, there is no way to differentiate one <code>Predicate</code> from the other.
 </td>
 </tr>
 </table>
@@ -468,14 +342,14 @@ In the actual implementation, there is no way to differentiate one Predicate fro
 <ul>
 <li>
 <p>Situation 1: <code>searchHistoryStack</code> is empty<br>
-Upon receiving a new User Predicate, SearchHistoryManager will simply push the new Predicate into <code>searchHistoryStack</code>
-as a System Predicate which will be used to filter the list.</p>
+Upon receiving a new User Predicate, SearchHistoryManager will simply push the new User Predicate into <code>searchHistoryStack</code>
+as a System Predicate.</p>
 </li>
 </ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/executeNewSearchEmptyStack.png" alt="executeNewSearchEmptyStack" width="800">
+<img src="../images/executeNewSearchEmptyStack.png" alt="executeNewSearchEmptyStack" width="550">
 </div>
 </div>
 <div class="ulist">
@@ -490,21 +364,28 @@ of the stack.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/executeNewSearchNonEmptyStack.png" alt="executeNewSearchNonEmptyStack" width="800">
+<img src="../images/executeNewSearchNonEmptyStack.png" alt="executeNewSearchNonEmptyStack" width="700">
 </div>
+</div>
+<div class="paragraph">
+<p>This method will return the new System Predicate at the top of the stack.</p>
 </div>
 <hr>
 <div class="paragraph">
 <p><code>revertLastSearch()</code><br></p>
 </div>
 <div class="paragraph">
-<p>This method will pop the System Predicate at the top of the stack.<br>
-In the event that the stack is already empty, this method will throw <code>EmptyStackException</code>.</p>
+<p>This method will pop the System Predicate at the top of the stack.
+In the event that the stack is already empty, this method will throw <code>EmptyHistoryException</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/undoSearchHistoryStack.png" alt="undoSearchHistoryStack" width="800">
+<img src="../images/undoSearchHistoryStack.png" alt="undoSearchHistoryStack" width="400">
 </div>
+</div>
+<div class="paragraph">
+<p>If the stack is not empty after the pop, this method will return the System Predicate at the top of the stack. Else,
+it will return a <code>Predicate</code> object with a search logic that always defaults to true.</p>
 </div>
 <hr>
 <div class="paragraph">
@@ -515,35 +396,37 @@ In the event that the stack is already empty, this method will throw <code>Empty
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/clearSearchHistoryStack.png" alt="clearSearchHistoryStack" width="800">
+<img src="../images/clearSearchHistoryStack.png" alt="clearSearchHistoryStack" width="350">
 </div>
 </div>
 <hr>
 <div class="paragraph">
-<p>The following sequence diagrams shows you how <code>find</code> and <code>undosearch</code> commands utilize <code>SearchHistoryManager</code> to perform Search Pruning.</p>
+<p>The following sequence diagrams shows you how the <code>IncludeNameFindCommand</code> and <code>UndoFind</code> commands
+utilize <code>SearchHistoryManager</code> to perform Search Pruning. Other variations of <code>FindCommand</code> works similarly to
+<code>IncludeNameFindCommand</code> and the sequence diagram for <code>IncludeNameFindCommand</code> is also relevant to them.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>find</code> command<br></p>
+<p><code>IncludeNameFind</code> command<br></p>
 </li>
 </ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/SearchPruningSequenceDiagram.png" alt="SearchPruningSequenceDiagram" width="800">
+<img src="../images/SearchPruningSequenceDiagram.png" alt="SearchPruningSequenceDiagram" width="700">
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>undosearch</code> command<br></p>
+<p><code>UndoFind</code> command<br></p>
 </li>
 </ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/undoSearchSequenceDiagram.png" alt="undoSearchSequenceDiagram" width="800">
+<img src="../images/UndoFindSequenceDiagram.png" alt="UndoFindSequenceDiagram" width="700">
 </div>
 </div>
 </div>
@@ -579,8 +462,8 @@ In the event that the stack is already empty, this method will throw <code>Empty
 <p>Need to understand how <code>Predicate</code> works before utilizing this Class.</p>
 </li>
 <li>
-<p><code>Predicate</code> objects by itself does not perform the Search Pruning. In NUSSU Connect, we have to pass the <code>Predicate</code>
-into a <code>FilteredList&lt;T&gt;</code> object to do the Search Pruning.</p>
+<p><code>Predicate</code> objects by itself does not perform the Search Pruning. We have to call the <code>setPredicate()</code> method
+of the <code>FilteredList</code> class with the <code>Predicate</code> object as one of the parameters to do the Search Pruning.</p>
 </li>
 </ol>
 </div>
@@ -610,7 +493,75 @@ into a <code>FilteredList&lt;T&gt;</code> object to do the Search Pruning.</p>
 <p>More memory is required as Person objects has to be duplicated multiple times into a new List.</p>
 </li>
 <li>
-<p>Class is inextensible to store other objects other than those from a Person classes.</p>
+<p>Class is not reusable for Search Pruning of other objects other than those from Person classes.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Aspect: How the Predicate at the top of the Stack is retrieved from SearchHistoryManager<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1(current choice):</strong> <code>Predicate</code> object is returned from the methods <code>executeSearch()</code> and <code>revertLastSearch()</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>No need for an extra method call to retrieve search logic in the form of <code>Predicate</code> object from SearchHistoryManager.<br></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>No clear distinction between Update and Retrieval of search logic.<br></p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2: </strong> <code>Predicate</code> object is not returned from the methods <code>executeSearch()</code> and <code>revertLastSearch()</code>, but is instead retrieved with another method.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Clearer distinction between Update and Retrieval of search logic.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Need to perform 2 method calls separately to retrieve <code>Predicate</code> object after an update to search logic.</p>
+</li>
+<li>
+<p>Need to implement another method specifically for retrieval of <code>Predicate</code> object.</p>
+</li>
+<li>
+<p>Future developers utilizing <code>SearchHistoryManger</code> need to remember that they need to retrieve <code>Predicate</code> object from <code>SearchHistoryManager</code> separately
+after an update to search logic.</p>
 </li>
 </ol>
 </div>
@@ -623,4 +574,4 @@ into a <code>FilteredList&lt;T&gt;</code> object to do the Search Pruning.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 16:42:18 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 16:52:58 UTC</div></div></div></body></html>

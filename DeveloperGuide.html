@@ -37,8 +37,10 @@
 <li><a href="#login-system-feature">3.1. Login system feature</a></li>
 <li><a href="#budgeting-feature">3.2. Budgeting Feature</a></li>
 <li><a href="#search-pruning-feature">3.3. Search Pruning Feature</a></li>
-<li><a href="#logging">3.4. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.5. Configuration</a></li>
+<li><a href="#add-skill-level-command">3.4. Add Skill Level Command</a></li>
+<li><a href="#undo-redo-feature">3.5. Undo/Redo feature</a></li>
+<li><a href="#logging">3.6. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1123,25 +1125,20 @@ user entered a unique club name.
 <div class="sect2">
 <h3 id="search-pruning-feature"><a class="link" href="#search-pruning-feature">3.3. Search Pruning Feature</a></h3>
 <div class="paragraph">
-<p>The Search Pruning mechanism is facilitated by the <code>SearchHistoryManager</code>.
-Within <code>SearchHistoryManager</code> is <code>searchHistoryStack</code>, storing <code>Predicate</code> objects.
-The <code>Predicate</code> objects are used to filter <code>filteredListPerson</code> in ModelManager.</p>
+<p>The Search Pruning mechanism is facilitated by the <code>SearchHistoryManager</code> class, and within it is a <code>searchHistoryStack</code> that stores <code>Predicate</code> objects.</p>
 </div>
 <div class="paragraph">
-<p>A main <code>SearchHistoryManager</code> object named <code>searchHistoryManager</code> is stored within <code>ModelManager</code> and you could access <code>searchHistoryManager</code> by calling the
-getter method <code>getSearchHistoryManager()</code>.</p>
+<p>In NUSSU Connect, the main <code>SearchHistoryManger</code> object is in <code>ModelManager</code> and it stores <code>Predicate&lt;Person&gt;</code> objects used for filtering <code>filteredPersons</code> list.</p>
 </div>
-<div class="admonitionblock important">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>searchHistoryManger</code> is only meant for the filtering of
-<code>Person</code> objects and Predicates irrelevant to the filtering of <code>Person</code> objects could not be stored in it.
-If you want to utilize <code>SearchHistoryManager</code> for your own use case, you can initialize a new SearchHistoryManager object
-by calling its default constructor.
+The <code>SearchHistoryManger</code> object in <code>ModelManager</code> only stores <code>Predicate&lt;Person&gt;</code> objects and is meant only for the filtering of <code>FilteredList&lt;Person&gt;</code>.
+If you want to utilize <code>SearchHistoryManager</code> for your own use case, you should initialize a new <code>SearchHistoryManager</code> object with its generic constructor.
 </td>
 </tr>
 </table>
@@ -1149,7 +1146,7 @@ by calling its default constructor.
 <div class="sect3">
 <h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The main implementation behind SearchHistoryManager is a Stack Data Structure and the following 3 methods of <code>SearchHistoryManager</code> are exposed for your usage<br></p>
+<p>The main implementation behind <code>SearchHistoryManager</code> is a Stack Data Structure and the following 4 methods of <code>SearchHistoryManager</code> are exposed for your usage<br></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1166,17 +1163,20 @@ reverts system search logic to the previous state and returns a <code>Predicate<
 <p><code>clearSearchHistory()</code><br>
 clears all system search logic from in-app memory.<br></p>
 </li>
+<li>
+<p><code>isEmpty()</code><br>
+returns true if <code>searchHistoryStack</code> is empty.<br></p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Given below are illustrations to help you understand how each method works internally</p>
+<p>Given below are illustrations to help you understand how the first three method works internally</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>In the diagrams, UP is the short-form for User Predicate and SP is the short-form for System Predicate.
-. User Predicate stores the logic specified by the user. This will not be used directly to filter the
-  list.
-. System Predicate stores the search logic for the system which will be used to filter the list.</pre>
+<pre>In the diagrams, 'UP' is the short-form for User Predicate and 'SP' is the short-form for System Predicate.
+. User Predicate stores the logic specified by the user. This will not be used to filter FilteredList objects.
+. System Predicate stores the search logic for the system which will be used to filter FilteredList objects.</pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -1187,7 +1187,7 @@ clears all system search logic from in-app memory.<br></p>
 </td>
 <td class="content">
 User Predicate and System Predicate are not actual Classes, they are simply there to help simplify the explanation.
-In the actual implementation, there is no way to differentiate one Predicate from the other
+In the actual implementation, there is no way to differentiate one <code>Predicate</code> from the other.
 </td>
 </tr>
 </table>
@@ -1203,14 +1203,14 @@ In the actual implementation, there is no way to differentiate one Predicate fro
 <ul>
 <li>
 <p>Situation 1: <code>searchHistoryStack</code> is empty<br>
-Upon receiving a new User Predicate, SearchHistoryManager will simply push the new Predicate into <code>searchHistoryStack</code>
-as a System Predicate which will be used to filter the list.</p>
+Upon receiving a new User Predicate, SearchHistoryManager will simply push the new User Predicate into <code>searchHistoryStack</code>
+as a System Predicate.</p>
 </li>
 </ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/executeNewSearchEmptyStack.png" alt="executeNewSearchEmptyStack" width="800">
+<img src="images/executeNewSearchEmptyStack.png" alt="executeNewSearchEmptyStack" width="550">
 </div>
 </div>
 <div class="ulist">
@@ -1225,21 +1225,28 @@ of the stack.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/executeNewSearchNonEmptyStack.png" alt="executeNewSearchNonEmptyStack" width="800">
+<img src="images/executeNewSearchNonEmptyStack.png" alt="executeNewSearchNonEmptyStack" width="700">
 </div>
+</div>
+<div class="paragraph">
+<p>This method will return the new System Predicate at the top of the stack.</p>
 </div>
 <hr>
 <div class="paragraph">
 <p><code>revertLastSearch()</code><br></p>
 </div>
 <div class="paragraph">
-<p>This method will pop the System Predicate at the top of the stack.<br>
-In the event that the stack is already empty, this method will throw <code>EmptyStackException</code>.</p>
+<p>This method will pop the System Predicate at the top of the stack.
+In the event that the stack is already empty, this method will throw <code>EmptyHistoryException</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/undoSearchHistoryStack.png" alt="undoSearchHistoryStack" width="800">
+<img src="images/undoSearchHistoryStack.png" alt="undoSearchHistoryStack" width="400">
 </div>
+</div>
+<div class="paragraph">
+<p>If the stack is not empty after the pop, this method will return the System Predicate at the top of the stack. Else,
+it will return a <code>Predicate</code> object with a search logic that always defaults to true.</p>
 </div>
 <hr>
 <div class="paragraph">
@@ -1250,35 +1257,37 @@ In the event that the stack is already empty, this method will throw <code>Empty
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/clearSearchHistoryStack.png" alt="clearSearchHistoryStack" width="800">
+<img src="images/clearSearchHistoryStack.png" alt="clearSearchHistoryStack" width="350">
 </div>
 </div>
 <hr>
 <div class="paragraph">
-<p>The following sequence diagrams shows you how <code>find</code> and <code>undosearch</code> commands utilize <code>SearchHistoryManager</code> to perform Search Pruning.</p>
+<p>The following sequence diagrams shows you how the <code>IncludeNameFindCommand</code> and <code>UndoFind</code> commands
+utilize <code>SearchHistoryManager</code> to perform Search Pruning. Other variations of <code>FindCommand</code> works similarly to
+<code>IncludeNameFindCommand</code> and the sequence diagram for <code>IncludeNameFindCommand</code> is also relevant to them.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>find</code> command<br></p>
+<p><code>IncludeNameFind</code> command<br></p>
 </li>
 </ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SearchPruningSequenceDiagram.png" alt="SearchPruningSequenceDiagram" width="800">
+<img src="images/SearchPruningSequenceDiagram.png" alt="SearchPruningSequenceDiagram" width="700">
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>undosearch</code> command<br></p>
+<p><code>UndoFind</code> command<br></p>
 </li>
 </ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/undoSearchSequenceDiagram.png" alt="undoSearchSequenceDiagram" width="800">
+<img src="images/UndoFindSequenceDiagram.png" alt="UndoFindSequenceDiagram" width="700">
 </div>
 </div>
 </div>
@@ -1314,8 +1323,8 @@ In the event that the stack is already empty, this method will throw <code>Empty
 <p>Need to understand how <code>Predicate</code> works before utilizing this Class.</p>
 </li>
 <li>
-<p><code>Predicate</code> objects by itself does not perform the Search Pruning. In NUSSU Connect, we have to pass the <code>Predicate</code>
-into a <code>FilteredList&lt;T&gt;</code> object to do the Search Pruning.</p>
+<p><code>Predicate</code> objects by itself does not perform the Search Pruning. We have to call the <code>setPredicate()</code> method
+of the <code>FilteredList</code> class with the <code>Predicate</code> object as one of the parameters to do the Search Pruning.</p>
 </li>
 </ol>
 </div>
@@ -1345,8 +1354,75 @@ into a <code>FilteredList&lt;T&gt;</code> object to do the Search Pruning.</p>
 <p>More memory is required as Person objects has to be duplicated multiple times into a new List.</p>
 </li>
 <li>
-<p>Class is inextensible to store other objects other than those from a Person classes.
-=== Add Skill Level Command</p>
+<p>Class is not reusable for Search Pruning of other objects other than those from Person classes.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Aspect: How the Predicate at the top of the Stack is retrieved from SearchHistoryManager<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1(current choice):</strong> <code>Predicate</code> object is returned from the methods <code>executeSearch()</code> and <code>revertLastSearch()</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>No need for an extra method call to retrieve search logic in the form of <code>Predicate</code> object from SearchHistoryManager.<br></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>No clear distinction between Update and Retrieval of search logic.<br></p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2: </strong> <code>Predicate</code> object is not returned from the methods <code>executeSearch()</code> and <code>revertLastSearch()</code>, but is instead retrieved with another method.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Clearer distinction between Update and Retrieval of search logic.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Need to perform 2 method calls separately to retrieve <code>Predicate</code> object after an update to search logic.</p>
+</li>
+<li>
+<p>Need to implement another method specifically for retrieval of <code>Predicate</code> object.</p>
+</li>
+<li>
+<p>Future developers utilizing <code>SearchHistoryManger</code> need to remember that they need to retrieve <code>Predicate</code> object from <code>SearchHistoryManager</code> separately
+after an update to search logic.</p>
 </li>
 </ol>
 </div>
@@ -1357,8 +1433,11 @@ into a <code>FilteredList&lt;T&gt;</code> object to do the Search Pruning.</p>
 </ul>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="add-skill-level-command"><a class="link" href="#add-skill-level-command">3.4. Add Skill Level Command</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.3.3. Current Implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The add skill mechanism builds on the <code>addressBookParser</code>. This as well
 as it&#8217;s subclass <code>addSkillCommandParser</code> ensures that the correct number of arguments
@@ -1413,7 +1492,7 @@ parse it.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="alternate-implementations"><a class="link" href="#alternate-implementations">3.3.4. Alternate implementations</a></h4>
+<h4 id="alternate-implementations"><a class="link" href="#alternate-implementations">3.4.2. Alternate implementations</a></h4>
 <div class="paragraph">
 <p>We considered two different ways to implement the Skill Class.</p>
 </div>
@@ -1449,7 +1528,7 @@ parse it.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="possible-extensions-2"><a class="link" href="#possible-extensions-2">3.3.5. Possible extensions</a></h4>
+<h4 id="possible-extensions-2"><a class="link" href="#possible-extensions-2">3.4.3. Possible extensions</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1460,12 +1539,16 @@ information during addition of personal information.</p>
 <p>Another is to enhance the edit command, possibly depreciating the use of the add skill level command.</p>
 </li>
 <li>
-<p>Another is to enhance the storage such that multiple skills can be added per person.
-=== Undo/Redo feature
-==== Current Implementation</p>
+<p>Another is to enhance the storage such that multiple skills can be added per person.</p>
 </li>
 </ul>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.5. Undo/Redo feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
 It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
@@ -1595,7 +1678,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.3.6. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.5.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -1665,14 +1748,14 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.4. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.5, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1703,7 +1786,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.5. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -3773,4 +3856,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 16:42:18 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 16:52:58 UTC</div></div></div></body></html>
