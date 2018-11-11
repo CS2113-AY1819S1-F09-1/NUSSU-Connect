@@ -96,8 +96,9 @@
 <li><a href="#instructions-for-manual-testing">Appendix H: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">H.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-person">H.2. Deleting a person</a></li>
-<li><a href="#saving-data">H.3. Saving data</a></li>
+<li><a href="#creating-an-account">H.2. Creating an account</a></li>
+<li><a href="#deleting-a-person">H.3. Deleting a person</a></li>
+<li><a href="#saving-data">H.4. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -3571,10 +3572,10 @@ Actor: Club Member, NUSSU Treasurer or Club President<br>
 <p>Must be able to accommodate the contact details of everyone in NUSSU + 1000 extra contact details.</p>
 </li>
 <li>
-<p>All exco members of NUSSU should be able to create an account.</p>
+<p>Only the president of NUSSU should be able to create an account.</p>
 </li>
 <li>
-<p>Passwords must be salted and hashed with md5.</p>
+<p>Passwords must be encrypted.</p>
 </li>
 <li>
 <p>All commands must be completed within 1 second.</p>
@@ -3695,12 +3696,38 @@ Expected: The most recent window size and location is retained.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
+</div>
+<div class="sect2">
+<h3 id="creating-an-account"><a class="link" href="#creating-an-account">H.2. Creating an account</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Creating a new account with the createaccount command</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Need to be logged in as president role.</p>
+</li>
+<li>
+<p>Test case: <code>createaccount A1234566M zaq1xsw2cde3 member</code><br>
+Expected: A new account containing login details matching user input is created. A successful creation of account message is shown in the results display.</p>
+</li>
+<li>
+<p>Test case: <code>createaccount A1234567M zaq1xsw2cde3 member</code><br>
+Expected: Account is not created. Error details shown in results display.</p>
+</li>
+<li>
+<p>Other incorrect delete commands to try: <code>createaccount</code>, <code>createaccount a1234566m zaq1xsw2cde3 member</code>, <code>createaccount A1234566M zaq1xsw2cde3 janitor</code>, <code>createaccount zaq1xsw2cde3 member</code>, <code>createaccount A1234566Mzaq1xsw2cde3member</code>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">H.2. Deleting a person</a></h3>
+<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">H.3. Deleting a person</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3727,12 +3754,9 @@ Expected: Similar to previous.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
-</div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">H.3. Saving data</a></h3>
+<h3 id="saving-data"><a class="link" href="#saving-data">H.4. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3747,9 +3771,6 @@ Expected: Similar to previous.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
 </div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 15:38:54 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 16:42:18 UTC</div></div></div></body></html>
