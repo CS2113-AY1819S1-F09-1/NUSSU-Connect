@@ -1366,7 +1366,7 @@ utilize <code>SearchHistoryManager</code> to perform Search Pruning. Other varia
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1(current choice):</strong>  Save a Stack of Predicates</p>
+<p><strong>Alternative 1(current choice):</strong>  Save a Stack of <code>Predicate</code> objects</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1377,7 +1377,7 @@ utilize <code>SearchHistoryManager</code> to perform Search Pruning. Other varia
 <p>Does not need to store the data in search history explicitly which saves memory<br></p>
 </li>
 <li>
-<p>Any form of Search Pruning done with Predicates can reuse <code>SearchHistoryManager</code> class<br></p>
+<p><code>SearchHistoryManager</code> class is reusable for any Search Pruning done with <code>Predicate</code><br></p>
 </li>
 </ol>
 </div>
@@ -1387,11 +1387,11 @@ utilize <code>SearchHistoryManager</code> to perform Search Pruning. Other varia
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Need to understand how <code>Predicate</code> works before utilizing this Class.</p>
+<p>Developers need to understand how <code>Predicate</code> works before utilizing <code>SearchHistoryManager</code> to perform Search Pruning.</p>
 </li>
 <li>
-<p><code>Predicate</code> objects by itself does not perform the Search Pruning. We have to call the <code>setPredicate()</code> method
-of the <code>FilteredList</code> class with the <code>Predicate</code> object as one of the parameters to do the Search Pruning.</p>
+<p><code>Predicate</code> objects by itself does not perform the Search Pruning. We have to make an additional call to the
+<code>setPredicate()</code> method of the <code>FilteredList</code> class with the <code>Predicate</code> object.</p>
 </li>
 </ol>
 </div>
@@ -1400,7 +1400,7 @@ of the <code>FilteredList</code> class with the <code>Predicate</code> object as
 </div>
 </li>
 <li>
-<p><strong> Alternative 2: </strong> Save a Stack of Lists containing Person objects in search history</p>
+<p><strong> Alternative 2: </strong> Save a Stack of Lists containing <code>Person</code> objects in search history</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1408,7 +1408,7 @@ of the <code>FilteredList</code> class with the <code>Predicate</code> object as
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>It is easy to understand that we are filtering according to Person objects from <code>SearchHistoryManager</code> class</p>
+<p>It is easy to understand from the code that we are filtering according to <code>Person</code> objects.</p>
 </li>
 </ol>
 </div>
@@ -1418,10 +1418,10 @@ of the <code>FilteredList</code> class with the <code>Predicate</code> object as
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>More memory is required as Person objects has to be duplicated multiple times into a new List.</p>
+<p>More memory is required as <code>Person</code> objects has to be duplicated multiple times into a new Lists.</p>
 </li>
 <li>
-<p>Class is not reusable for Search Pruning of other objects other than those from Person classes.</p>
+<p><code>SearchHistoryManager</code> can only be used for Search Pruning on objects that is a <code>Person</code>.</p>
 </li>
 </ol>
 </div>
@@ -1437,7 +1437,7 @@ of the <code>FilteredList</code> class with the <code>Predicate</code> object as
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1(current choice):</strong> <code>Predicate</code> object is returned from the methods <code>executeSearch()</code> and <code>revertLastSearch()</code></p>
+<p><strong>Alternative 1(current choice):</strong> <code>Predicate</code> is returned from the methods <code>executeSearch()</code> and <code>revertLastSearch()</code></p>
 <div class="ulist">
 <ul>
 <li>
@@ -1445,7 +1445,7 @@ of the <code>FilteredList</code> class with the <code>Predicate</code> object as
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>No need for an extra method call to retrieve search logic in the form of <code>Predicate</code> object from SearchHistoryManager.<br></p>
+<p>No need for an extra method call to retrieve system search logic in the form of <code>Predicate</code> from <code>SearchHistoryManager</code>.<br></p>
 </li>
 </ol>
 </div>
@@ -1455,7 +1455,7 @@ of the <code>FilteredList</code> class with the <code>Predicate</code> object as
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>No clear distinction between Update and Retrieval of search logic.<br></p>
+<p>No clear distinction between Update and Retrieval of system search logic.<br></p>
 </li>
 </ol>
 </div>
@@ -1464,7 +1464,7 @@ of the <code>FilteredList</code> class with the <code>Predicate</code> object as
 </div>
 </li>
 <li>
-<p><strong> Alternative 2: </strong> <code>Predicate</code> object is not returned from the methods <code>executeSearch()</code> and <code>revertLastSearch()</code>, but is instead retrieved with another method.</p>
+<p><strong> Alternative 2: </strong> <code>Predicate</code> is not returned from the methods <code>executeSearch()</code> and <code>revertLastSearch()</code>, but is instead retrieved with another method.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1472,7 +1472,7 @@ of the <code>FilteredList</code> class with the <code>Predicate</code> object as
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Clearer distinction between Update and Retrieval of search logic.</p>
+<p>Clearer distinction between Update and Retrieval of system search logic.</p>
 </li>
 </ol>
 </div>
@@ -1482,7 +1482,7 @@ of the <code>FilteredList</code> class with the <code>Predicate</code> object as
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Need to perform 2 method calls separately to retrieve <code>Predicate</code> object after an update to search logic.</p>
+<p>Need to perform 2 method calls separately to retrieve <code>Predicate</code> object from <code>SearchHistoryManager</code> after an update to search logic.</p>
 </li>
 <li>
 <p>Need to implement another method specifically for retrieval of <code>Predicate</code> object.</p>
@@ -4183,4 +4183,4 @@ Expected: The budget for the club 'Music' will not be found and an error message
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 13:48:32 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 14:02:59 UTC</div></div></div></body></html>
