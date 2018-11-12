@@ -417,7 +417,7 @@ list of accounts in <code>LoginBook</code> is filtered to the extent where only 
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the login mechanism behaves at each step. The sequence diagram below
 demonstrates the flow of operation and interaction between the <code>Logic</code> and <code>Model</code> component in the login mechanism.
-Specifically, the diagram shows what happens when the user inputs the correct login credentials.</p>
+The diagram shows what happens when the user inputs the correct login details.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -451,7 +451,7 @@ an <code>LoginUserIdPasswordRoleCommand</code> object with the user input, parse
 calls <code>updateFilteredLoginDetailsList(updatedIdPredicate)</code> in <code>Model</code> with the computed predicate from user ID field input.</p>
 </div>
 <div class="paragraph">
-<p>Step 5. <code>Model</code> calls <code>setPredicate(updatedIdPredicate)</code> in <code>FilteredList</code>, which then filters out accounts whose user Id is a
+<p>Step 5. <code>Model</code> calls <code>setPredicate(updatedIdPredicate)</code> in <code>FilteredList</code>, and filters out accounts whose user Id is a
 mismatch with updatedIdPredicate. <code>filteredLoginDetails</code> is updated as shown below.</p>
 </div>
 <div class="imageblock">
@@ -626,4 +626,4 @@ throw ParseException, consider the login attempt as unsuccessful and initiate a 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 14:20:27 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 14:29:16 UTC</div></div></div></body></html>
