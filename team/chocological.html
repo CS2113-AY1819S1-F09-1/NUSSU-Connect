@@ -404,8 +404,8 @@ which is often used:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>FilteredList#setPredicate(predicate)</code>&#8201;&#8212;&#8201;Filters the list of accounts in <code>filteredLoginDetails</code> according to the
-predicates determined after the user inputs their login credentials.</p>
+<p><code>FilteredList#setPredicate(predicate)</code>&#8201;&#8212;&#8201;Filters accounts in <code>filteredLoginDetails</code> according to the
+predicates determined after the user inputs their login details.</p>
 </li>
 </ul>
 </div>
@@ -451,7 +451,7 @@ an <code>LoginUserIdPasswordRoleCommand</code> object with the user input, parse
 calls <code>updateFilteredLoginDetailsList(updatedIdPredicate)</code> in <code>Model</code> with the computed predicate from user ID field input.</p>
 </div>
 <div class="paragraph">
-<p>Step 5. <code>Model</code> calls <code>setPredicate(updatedIdPredicate)</code> in <code>FilteredList</code>, and filters out accounts whose user Id is a
+<p>Step 5. <code>Model</code> calls <code>setPredicate(updatedIdPredicate)</code> in <code>FilteredList</code>, filtering accounts whose user Id is a
 mismatch with updatedIdPredicate. <code>filteredLoginDetails</code> is updated as shown below.</p>
 </div>
 <div class="imageblock">
@@ -626,4 +626,4 @@ throw ParseException, consider the login attempt as unsuccessful and initiate a 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 14:30:49 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 14:37:24 UTC</div></div></div></body></html>
