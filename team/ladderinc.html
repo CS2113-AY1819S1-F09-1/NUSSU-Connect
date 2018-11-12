@@ -10,14 +10,13 @@
 <h2 id="introduction-and-overview"><a class="link" href="#introduction-and-overview">Introduction and Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>NUSSU Connect is a CLI application created by a team of four and this Portfolio is a documentation
-of the contributions that I have made during the design of this application.</p>
+<p>This Portfolio is a documentation of the contributions that I have made during the development of this application, named
+<strong>NUSSU Connect</strong>. It is a CLI application developed by team <a href="https://cs2113-ay1819s1-f09-1.github.io/main/AboutUs.html">F09-1</a> and
+it mainly caters to executive committee members of the NUS Student Union (NUSSU).</p>
 </div>
 <div class="paragraph">
-<p>It is an application that mainly caters to executive committee members of the NUS Student Union (NUSSU).
-Being a part of many projects and initiatives, this application aims to let the exco members manage their
-budgets, expenses, human resource allocation and contacts all in a single application so that they could complete
-their tasks with high efficiency.</p>
+<p>Being a part of many projects and initiatives, this application aims to let the exco members manage their
+budgets, expenses, human resource allocation and contacts with an additional security guarantee so that they could complete their tasks with high efficiency.</p>
 </div>
 </div>
 </div>
@@ -32,21 +31,23 @@ Further details about my contributions will be explained in this section.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: Added the ability to prune the list of contacts with <code>find</code> and <code>undofind</code> commands.</p>
+<p><strong>Major enhancement</strong>: Added the ability to prune the list of contacts by keeping a record of Search History.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: Allows users to search and reduce the size of the displayed list of contacts in discrete steps.</p>
+<p>What it does: Each subsequent execution of <code>find</code> commands allows users to search and reduce the size
+of the current displayed list of contacts. <code>undofind</code> command does the opposite and reverts the last <code>find</code>
+command executed.</p>
 </li>
 <li>
-<p>Justification: Being a large organization that is in charge of many events and projects, NUSSU exco will most likely be required to keep track of
-a large list of important contacts, and it will be time-consuming to locate specific contact information from the list.
+<p>Justification: NUSSU exco is an organization that will most likely be required to keep track of
+a large list of important contacts. Therefore it will be time-consuming to locate one/a specific group of contact information from the list.
 Hence, a search pruning feature allows the users to narrow the search space in discrete steps and help them
 retrieve the relevant contact information much more efficiently.</p>
 </li>
 <li>
 <p>Highlights: This enhancement is mainly created from scratch with some help from documentations on how the <code>Predicate</code> class works.
-This enhancement was also created with re-usability in mind and any form of filtering done with <code>Predicate</code> class will be able to
+This enhancement was also created with re-usability in mind and any form of filtering done with <code>Predicate</code> will be able to
 utilize this feature.</p>
 </li>
 </ul>
@@ -58,9 +59,6 @@ utilize this feature.</p>
 <ul>
 <li>
 <p>What it does: Every time a user performs a search, the command result box will display the list of keywords describing how the current displayed list is being filtered.</p>
-</li>
-<li>
-<p>Justification: The users might forget keywords used previously during Search Pruning.</p>
 </li>
 </ul>
 </div>
@@ -91,40 +89,23 @@ unwanted results from their search.</p>
 <p>Managed releases <code>v1.1</code>, <code>v1.2</code>, <code>v1.2.1</code> and <code>v1.3</code> (4 releases) on GitHub.</p>
 </li>
 <li>
-<p>Managed Milestones and Deadlines of the project.</p>
+<p>Managed milestones and deadlines of the project.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Documentation:</p>
+<p>Community:</p>
 <div class="ulist">
 <ul>
-<li>
-<p>Minor tweaks to ReadMe, UserGuide and DeveloperGuide to meet the module requirements.</p>
-</li>
 <li>
 <p>Provided teammates with non-trivial PR reviews (Pull Requests <a href="https://github.com/CS2113-AY1819S1-F09-1/main/pull/25">#25</a>, <a href="https://github.com/CS2113-AY1819S1-F09-1/main/pull/80">#80</a>, <a href="https://github.com/CS2113-AY1819S1-F09-1/main/pull/81">#81</a>)</p>
 </li>
-</ul>
-</div>
+<li>
+<p>Search Pruning Feature reused in Login/Logout feature of this application. (<a href="https://github.com/CS2113-AY1819S1-F09-1/main/blob/master/src/main/java/seedu/address/logic/commands/LoginCommand.java">LoginCommand.java</a>)</p>
 </li>
 <li>
-<p>Tools:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Integrated Coveralls to the team repository</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Others:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Search Pruning Feature reused in Login/Logout feature of this application. <a href="https://github.com/CS2113-AY1819S1-F09-1/main/blob/master/src/main/java/seedu/address/logic/commands/LoginCommand.java">LoginCommand.java</a></p>
+<p>Identified bugs and provided follow-ups in another team’s product(Issue <a href="https://github.com/CS2113-AY1819S1-T13-1/main/issues/116">#116</a>, <a href="https://github.com/CS2113-AY1819S1-T13-1/main/issues/124">#124</a>)</p>
 </li>
 </ul>
 </div>
@@ -145,7 +126,8 @@ unwanted results from their search.</p>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>This section shows part of my contributions in the User Guide to explain to end-users about how they
+can utilize the Search Pruning Feature.</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -257,17 +239,21 @@ recent find command. You can do so with the undofind command<br></p>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>This section shows part of my contributions in the Developer Guide that explains the underlying implementation
+behind the Search Pruning feature.</em></p></td>
 </tr>
 </tbody>
 </table>
 <div class="sect2">
 <h3 id="search-pruning-feature"><a class="link" href="#search-pruning-feature">Search Pruning Feature</a></h3>
 <div class="paragraph">
-<p>The Search Pruning mechanism is facilitated by the <code>SearchHistoryManager</code> class, and within it is a <code>searchHistoryStack</code> that stores <code>Predicate</code> objects.</p>
+<p>The Search Pruning mechanism is facilitated by the <code>SearchHistoryManager</code> class, and within it is a <code>searchHistoryStack</code> that stores <code>Predicate</code> objects.
+<code>Predicate</code> objects are used to filter <code>FilteredList</code> objects by calling the <code>setPredicate()</code> method of <code>FilteredList</code>. By storing <code>Predicate</code> objects
+in SearchHistoryManager, it stores the search logic that was previously used on the <code>FilteredList</code> object, and hence, simulates the effect of storing Search History
+without storing the actual data.</p>
 </div>
 <div class="paragraph">
-<p>In NUSSU Connect, the main <code>SearchHistoryManger</code> object is in <code>ModelManager</code> and it stores <code>Predicate&lt;Person&gt;</code> objects used for filtering <code>filteredPersons</code> list.</p>
+<p>In NUSSU Connect, the main <code>SearchHistoryManger</code> object is in <code>ModelManager</code> and it stores <code>Predicate&lt;Person&gt;</code> objects used for the filtering of <code>filteredPersons</code> list.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -276,8 +262,7 @@ recent find command. You can do so with the undofind command<br></p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The <code>SearchHistoryManger</code> object in <code>ModelManager</code> only stores <code>Predicate&lt;Person&gt;</code> objects and is meant only for the filtering of <code>FilteredList&lt;Person&gt;</code>.
-If you want to utilize <code>SearchHistoryManager</code> for your own use case, you should initialize a new <code>SearchHistoryManager</code> object with its generic constructor.
+If you want to utilize <code>SearchHistoryManager</code> for your own use case, you can initialize a new <code>SearchHistoryManager</code> object with its' generic constructor.
 </td>
 </tr>
 </table>
@@ -414,7 +399,7 @@ utilize <code>SearchHistoryManager</code> to perform Search Pruning. Other varia
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/SearchPruningSequenceDiagram.png" alt="SearchPruningSequenceDiagram" width="700">
+<img src="../images/SearchPruningSequenceDiagram.png" alt="SearchPruningSequenceDiagram">
 </div>
 </div>
 <div class="ulist">
@@ -426,15 +411,14 @@ utilize <code>SearchHistoryManager</code> to perform Search Pruning. Other varia
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/UndoFindSequenceDiagram.png" alt="UndoFindSequenceDiagram" width="700">
+<img src="../images/UndoFindSequenceDiagram.png" alt="UndoFindSequenceDiagram">
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
-<div class="paragraph">
-<p>Aspect: What data is stored in search history stack<br></p>
-</div>
+<div class="sect4">
+<h5 id="aspect-what-data-is-stored-in-search-history-stack-br"><a class="link" href="#aspect-what-data-is-stored-in-search-history-stack-br">Aspect: What data is stored in search history stack<br></a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -503,9 +487,9 @@ of the <code>FilteredList</code> class with the <code>Predicate</code> object as
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Aspect: How the Predicate at the top of the Stack is retrieved from SearchHistoryManager<br></p>
 </div>
+<div class="sect4">
+<h5 id="aspect-how-the-predicate-at-the-top-of-the-stack-is-retrieved-from-searchhistorymanager-br"><a class="link" href="#aspect-how-the-predicate-at-the-top-of-the-stack-is-retrieved-from-searchhistorymanager-br">Aspect: How the Predicate at the top of the Stack is retrieved from SearchHistoryManager<br></a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -574,4 +558,5 @@ after an update to search logic.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 20:27:27 UTC</div></div></div></body></html>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 03:36:11 UTC</div></div></div></body></html>

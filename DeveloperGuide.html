@@ -83,13 +83,12 @@
 <li><a href="#use-case-sort-by-suitability-by-skill">D.1. Use case: Sort by suitability by skill</a></li>
 <li><a href="#use-case-add-skill">D.2. Use case: Add Skill</a></li>
 <li><a href="#use-case-intuitive-filtering-of-large-number-of-contacts">D.3. Use case: Intuitive Filtering of Large Number of Contacts</a></li>
-<li><a href="#use-case-excluding-specific-people-from-search-list">D.4. Use case: Excluding specific people from Search List</a></li>
-<li><a href="#use-case-enforced-criteria-in-search-list">D.5. Use case: Enforced criteria in Search List</a></li>
-<li><a href="#use-case-log-into-system-and-multi-user-access-level">D.6. Use case: Log into system and multi user access level</a></li>
-<li><a href="#use-case-create-new-user-accounts">D.7. Use case: Create new user accounts</a></li>
-<li><a href="#use-case-submitting-the-budget-calculation-data-for-a-club">D.8. Use Case: Submitting the budget calculation data for a club</a></li>
-<li><a href="#use-case-calculating-and-allocating-the-final-budgets-to-all-the-clubs">D.9. Use Case: Calculating and allocating the final budgets to all the clubs</a></li>
-<li><a href="#use-case-viewing-the-final-budget-allocated-to-a-club">D.10. Use Case: Viewing the final budget allocated to a club</a></li>
+<li><a href="#use-case-excluding-specific-people-from-displayed-list">D.4. Use case: Excluding specific people from displayed list</a></li>
+<li><a href="#use-case-log-into-system-and-multi-user-access-level">D.5. Use case: Log into system and multi user access level</a></li>
+<li><a href="#use-case-create-new-user-accounts">D.6. Use case: Create new user accounts</a></li>
+<li><a href="#use-case-submitting-the-budget-calculation-data-for-a-club">D.7. Use Case: Submitting the budget calculation data for a club</a></li>
+<li><a href="#use-case-calculating-and-allocating-the-final-budgets-to-all-the-clubs">D.8. Use Case: Calculating and allocating the final budgets to all the clubs</a></li>
+<li><a href="#use-case-viewing-the-final-budget-allocated-to-a-club">D.9. Use Case: Viewing the final budget allocated to a club</a></li>
 </ul>
 </li>
 <li><a href="#non-functional-requirements">Appendix E: Non Functional Requirements</a></li>
@@ -99,10 +98,15 @@
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">H.1. Launch and Shutdown</a></li>
 <li><a href="#creating-an-account">H.2. Creating an account</a></li>
-<li><a href="#deleting-a-person">H.3. Deleting a person</a></li>
-<li><a href="#submitting-budget-calculation-data">H.4. Submitting budget calculation data</a></li>
-<li><a href="#calculating-and-allocating-final-budgets-to-all-the-clubs">H.5. Calculating and allocating final budgets to all the clubs</a></li>
-<li><a href="#saving-data">H.6. Saving data</a></li>
+<li><a href="#finding-a-person-with-a-certain-tag-in-the-displayed-list">H.3. Finding a Person with a certain tag in the displayed list</a></li>
+<li><a href="#excluding-a-person-with-a-certain-name-from-displayed-list">H.4. Excluding a Person with a certain name from displayed list</a></li>
+<li><a href="#excluding-a-person-with-a-certain-tag-from-displayed-list">H.5. Excluding a Person with a certain tag from displayed list</a></li>
+<li><a href="#undofind-command">H.6. UndoFind command</a></li>
+<li><a href="#search-pruning-feature-2">H.7. Search Pruning Feature</a></li>
+<li><a href="#deleting-a-person">H.8. Deleting a person</a></li>
+<li><a href="#submitting-budget-calculation-data">H.9. Submitting budget calculation data</a></li>
+<li><a href="#calculating-and-allocating-final-budgets-to-all-the-clubs">H.10. Calculating and allocating final budgets to all the clubs</a></li>
+<li><a href="#saving-data">H.11. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -1136,10 +1140,13 @@ user entered a unique club name.
 <div class="sect2">
 <h3 id="search-pruning-feature"><a class="link" href="#search-pruning-feature">3.3. Search Pruning Feature</a></h3>
 <div class="paragraph">
-<p>The Search Pruning mechanism is facilitated by the <code>SearchHistoryManager</code> class, and within it is a <code>searchHistoryStack</code> that stores <code>Predicate</code> objects.</p>
+<p>The Search Pruning mechanism is facilitated by the <code>SearchHistoryManager</code> class, and within it is a <code>searchHistoryStack</code> that stores <code>Predicate</code> objects.
+<code>Predicate</code> objects are used to filter <code>FilteredList</code> objects by calling the <code>setPredicate()</code> method of <code>FilteredList</code>. By storing <code>Predicate</code> objects
+in SearchHistoryManager, it stores the search logic that was previously used on the <code>FilteredList</code> object, and hence, simulates the effect of storing Search History
+without storing the actual data.</p>
 </div>
 <div class="paragraph">
-<p>In NUSSU Connect, the main <code>SearchHistoryManger</code> object is in <code>ModelManager</code> and it stores <code>Predicate&lt;Person&gt;</code> objects used for filtering <code>filteredPersons</code> list.</p>
+<p>In NUSSU Connect, the main <code>SearchHistoryManger</code> object is in <code>ModelManager</code> and it stores <code>Predicate&lt;Person&gt;</code> objects used for the filtering of <code>filteredPersons</code> list.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1148,8 +1155,7 @@ user entered a unique club name.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The <code>SearchHistoryManger</code> object in <code>ModelManager</code> only stores <code>Predicate&lt;Person&gt;</code> objects and is meant only for the filtering of <code>FilteredList&lt;Person&gt;</code>.
-If you want to utilize <code>SearchHistoryManager</code> for your own use case, you should initialize a new <code>SearchHistoryManager</code> object with its generic constructor.
+If you want to utilize <code>SearchHistoryManager</code> for your own use case, you can initialize a new <code>SearchHistoryManager</code> object with its' generic constructor.
 </td>
 </tr>
 </table>
@@ -1286,7 +1292,7 @@ utilize <code>SearchHistoryManager</code> to perform Search Pruning. Other varia
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SearchPruningSequenceDiagram.png" alt="SearchPruningSequenceDiagram" width="700">
+<img src="images/SearchPruningSequenceDiagram.png" alt="SearchPruningSequenceDiagram">
 </div>
 </div>
 <div class="ulist">
@@ -1298,15 +1304,14 @@ utilize <code>SearchHistoryManager</code> to perform Search Pruning. Other varia
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/UndoFindSequenceDiagram.png" alt="UndoFindSequenceDiagram" width="700">
+<img src="images/UndoFindSequenceDiagram.png" alt="UndoFindSequenceDiagram">
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
-<div class="paragraph">
-<p>Aspect: What data is stored in search history stack<br></p>
-</div>
+<div class="sect4">
+<h5 id="aspect-what-data-is-stored-in-search-history-stack-br"><a class="link" href="#aspect-what-data-is-stored-in-search-history-stack-br">Aspect: What data is stored in search history stack<br></a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -1375,9 +1380,9 @@ of the <code>FilteredList</code> class with the <code>Predicate</code> object as
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Aspect: How the Predicate at the top of the Stack is retrieved from SearchHistoryManager<br></p>
 </div>
+<div class="sect4">
+<h5 id="aspect-how-the-predicate-at-the-top-of-the-stack-is-retrieved-from-searchhistorymanager-br"><a class="link" href="#aspect-how-the-predicate-at-the-top-of-the-stack-is-retrieved-from-searchhistorymanager-br">Aspect: How the Predicate at the top of the Stack is retrieved from SearchHistoryManager<br></a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -1442,6 +1447,7 @@ after an update to search logic.</p>
 </div>
 </li>
 </ul>
+</div>
 </div>
 </div>
 </div>
@@ -3262,9 +3268,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="sect2">
 <h3 id="use-case-intuitive-filtering-of-large-number-of-contacts"><a class="link" href="#use-case-intuitive-filtering-of-large-number-of-contacts">D.3. Use case: Intuitive Filtering of Large Number of Contacts</a></h3>
 <div class="paragraph">
-<p>System: NUSSU Connect Application<br>
-Actor: Typical NUSSU member<br>
-<strong>MSS</strong></p>
+<p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -3324,11 +3328,9 @@ Steps 3 - 4 are repeated until user found the desired group of people</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="use-case-excluding-specific-people-from-search-list"><a class="link" href="#use-case-excluding-specific-people-from-search-list">D.4. Use case: Excluding specific people from Search List</a></h3>
+<h3 id="use-case-excluding-specific-people-from-displayed-list"><a class="link" href="#use-case-excluding-specific-people-from-displayed-list">D.4. Use case: Excluding specific people from displayed list</a></h3>
 <div class="paragraph">
-<p>System: NUSSU Connect Application<br>
-Actor: Typical NUSSU member<br>
-<strong>MSS</strong></p>
+<p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -3351,34 +3353,7 @@ Actor: Typical NUSSU member<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="use-case-enforced-criteria-in-search-list"><a class="link" href="#use-case-enforced-criteria-in-search-list">D.5. Use case: Enforced criteria in Search List</a></h3>
-<div class="paragraph">
-<p>System: NUSSU Connect Application<br>
-Actor: Typical NUSSU member<br>
-<strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>User requests application to display list of contacts</p>
-</li>
-<li>
-<p>System returns list of contacts</p>
-</li>
-<li>
-<p>User requests System to display a list of users that MUST follow a certain criteria</p>
-</li>
-<li>
-<p>System returns new List of contacts according to the criteria set by the user<br></p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Use case ends</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="use-case-log-into-system-and-multi-user-access-level"><a class="link" href="#use-case-log-into-system-and-multi-user-access-level">D.6. Use case: Log into system and multi user access level</a></h3>
+<h3 id="use-case-log-into-system-and-multi-user-access-level"><a class="link" href="#use-case-log-into-system-and-multi-user-access-level">D.5. Use case: Log into system and multi user access level</a></h3>
 <div class="paragraph">
 <p>System: NUSSU Connect Application<br>
 Actor: Typical NUSSU member<br>
@@ -3435,7 +3410,7 @@ Actor: Typical NUSSU member<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="use-case-create-new-user-accounts"><a class="link" href="#use-case-create-new-user-accounts">D.7. Use case: Create new user accounts</a></h3>
+<h3 id="use-case-create-new-user-accounts"><a class="link" href="#use-case-create-new-user-accounts">D.6. Use case: Create new user accounts</a></h3>
 <div class="paragraph">
 <p>System: NUSSU Connect Application<br>
 Actor: Typical NUSSU member<br>
@@ -3489,7 +3464,7 @@ Actor: Typical NUSSU member<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="use-case-submitting-the-budget-calculation-data-for-a-club"><a class="link" href="#use-case-submitting-the-budget-calculation-data-for-a-club">D.8. Use Case: Submitting the budget calculation data for a club</a></h3>
+<h3 id="use-case-submitting-the-budget-calculation-data-for-a-club"><a class="link" href="#use-case-submitting-the-budget-calculation-data-for-a-club">D.7. Use Case: Submitting the budget calculation data for a club</a></h3>
 <div class="paragraph">
 <p>System: NUSSU-Connect Application<br>
 Actor: Club Member<br>
@@ -3541,7 +3516,7 @@ Actor: Club Member<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="use-case-calculating-and-allocating-the-final-budgets-to-all-the-clubs"><a class="link" href="#use-case-calculating-and-allocating-the-final-budgets-to-all-the-clubs">D.9. Use Case: Calculating and allocating the final budgets to all the clubs</a></h3>
+<h3 id="use-case-calculating-and-allocating-the-final-budgets-to-all-the-clubs"><a class="link" href="#use-case-calculating-and-allocating-the-final-budgets-to-all-the-clubs">D.8. Use Case: Calculating and allocating the final budgets to all the clubs</a></h3>
 <div class="paragraph">
 <p>System: NUSSU-Connect Application<br>
 Actor: NUSSU Treasurer<br>
@@ -3604,7 +3579,7 @@ Actor: NUSSU Treasurer<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="use-case-viewing-the-final-budget-allocated-to-a-club"><a class="link" href="#use-case-viewing-the-final-budget-allocated-to-a-club">D.10. Use Case: Viewing the final budget allocated to a club</a></h3>
+<h3 id="use-case-viewing-the-final-budget-allocated-to-a-club"><a class="link" href="#use-case-viewing-the-final-budget-allocated-to-a-club">D.9. Use Case: Viewing the final budget allocated to a club</a></h3>
 <div class="paragraph">
 <p>System: NUSSU-Connect Application<br>
 Actor: Club Member, NUSSU Treasurer or Club President<br>
@@ -3821,7 +3796,145 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">H.3. Deleting a person</a></h3>
+<h3 id="finding-a-person-with-a-certain-tag-in-the-displayed-list"><a class="link" href="#finding-a-person-with-a-certain-tag-in-the-displayed-list">H.3. Finding a Person with a certain tag in the displayed list</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Finding a person while all persons are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all persons using the <code>list</code> command. Multiple persons in the list.</p>
+</li>
+<li>
+<p>Test case: <code>find \tag friends</code><br>
+Expected: All contacts with the tag friends is shown in the displayed list. Other contacts without the
+tag friends will be removed from the displayed list.
+Tag Keywords History with '+friends' message is shown in the results display</p>
+</li>
+<li>
+<p>Test case: <code>find \tag</code><br>
+Expected: Invalid Command Format. Error details shown in results display.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="excluding-a-person-with-a-certain-name-from-displayed-list"><a class="link" href="#excluding-a-person-with-a-certain-name-from-displayed-list">H.4. Excluding a Person with a certain name from displayed list</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Excluding a person while all persons are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all persons using the <code>list</code> command. Multiple persons in the list.</p>
+</li>
+<li>
+<p>Test case: <code>find \exclude Alex</code><br>
+Expected: All contacts with the name Alex is removed from the displayed list.
+Name Keywords History with '-alex' message is shown in the results display</p>
+</li>
+<li>
+<p>Test case: <code>find \exclude</code><br>
+Expected: Invalid Command Format. Error details shown in results display.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="excluding-a-person-with-a-certain-tag-from-displayed-list"><a class="link" href="#excluding-a-person-with-a-certain-tag-from-displayed-list">H.5. Excluding a Person with a certain tag from displayed list</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Excluding a person while all persons are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all persons using the <code>list</code> command. Multiple persons in the list.</p>
+</li>
+<li>
+<p>Test case: <code>find \tag \exclude neighbours</code><br>
+Expected: All contacts with the tag neighbours is removed from the displayed list.
+Tag Keywords History with '-neighbours' message is shown in the results display</p>
+</li>
+<li>
+<p>Test case: <code>find \exclude \tag classmates</code><br>
+Expected: All contacts with the tag classmates is removed from the displayed list.
+Tag Keywords History with '-classmates' message is shown in the results display</p>
+</li>
+<li>
+<p>Test case: <code>find \tag \exclude</code><br>
+Expected: Invalid Command Format. Error details shown in results display.</p>
+</li>
+<li>
+<p>Other incorrect delete commands to try: <code>find \exclude \tag</code></p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undofind-command"><a class="link" href="#undofind-command">H.6. UndoFind command</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Prerequisites: List all persons using the <code>list</code> command. Multiple persons in the list.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>undofind</code><br>
+Expected: "SearchHistory is Empty" message in result display.</p>
+</li>
+<li>
+<p>Test case: <code>find \exclude Alex</code> and then <code>undofind</code><br>
+Expected:<br>
+     <strong>After execution of first command</strong><br>
+     All contacts with the name Alex is removed from the displayed list.<br>
+     <strong>After execution of second command</strong><br>
+     All contacts with the name Alex will be added back to the displayed list after the second command and
+     "Undo success!" message should shown in result display.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="search-pruning-feature-2"><a class="link" href="#search-pruning-feature-2">H.7. Search Pruning Feature</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Prerequisites: List all persons using the <code>list</code> command. Multiple persons in the list.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>find \tag friends</code> and then <code>find \tag colleagues</code>+
+Expected:<br>
+<strong>After execution of first command</strong><br>
+All contacts with the tag friends is shown in the displayed list.
+Tag Keywords History with '+friends' is shown in the results display.<br>
+<strong>After execution of second command</strong><br>
+ All contacts that has both of the tag friends and colleagues is shown in the displayed list.
+ Tag Keywords History with '+colleagues +friends' message is shown in the results display.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">H.8. Deleting a person</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3850,7 +3963,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="submitting-budget-calculation-data"><a class="link" href="#submitting-budget-calculation-data">H.4. Submitting budget calculation data</a></h3>
+<h3 id="submitting-budget-calculation-data"><a class="link" href="#submitting-budget-calculation-data">H.9. Submitting budget calculation data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3879,7 +3992,7 @@ Expected: similar to the previous test case.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="calculating-and-allocating-final-budgets-to-all-the-clubs"><a class="link" href="#calculating-and-allocating-final-budgets-to-all-the-clubs">H.5. Calculating and allocating final budgets to all the clubs</a></h3>
+<h3 id="calculating-and-allocating-final-budgets-to-all-the-clubs"><a class="link" href="#calculating-and-allocating-final-budgets-to-all-the-clubs">H.10. Calculating and allocating final budgets to all the clubs</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3900,7 +4013,7 @@ Expected: The budgets for all the clubs in the NUSSU-Connect memory are calculat
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">H.6. Saving data</a></h3>
+<h3 id="saving-data"><a class="link" href="#saving-data">H.11. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3917,4 +4030,4 @@ Expected: The budgets for all the clubs in the NUSSU-Connect memory are calculat
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 20:27:27 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 03:36:11 UTC</div></div></div></body></html>
