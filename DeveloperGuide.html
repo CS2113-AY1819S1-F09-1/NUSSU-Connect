@@ -1155,7 +1155,7 @@ user entered a unique club name.
 <div class="paragraph">
 <p>The Search Pruning mechanism is facilitated by the <code>SearchHistoryManager</code> class, and within it is a <code>searchHistoryStack</code> that stores <code>Predicate</code> objects.
 <code>Predicate</code> objects are used to filter <code>FilteredList</code> objects by calling the <code>setPredicate()</code> method of <code>FilteredList</code>. By storing <code>Predicate</code> objects
-in SearchHistoryManager, it stores the search logic that was previously used on the <code>FilteredList</code> object, and hence, simulates the effect of storing Search History
+in SearchHistoryManager, it stores the search logic that was previously used by the <code>FilteredList</code> object, and hence, simulates the storing Search History
 without storing the actual data.</p>
 </div>
 <div class="paragraph">
@@ -1200,14 +1200,8 @@ returns true if <code>searchHistoryStack</code> is empty.<br></p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Given below are illustrations to help you understand how the first three method works internally</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>In the diagrams, 'UP' is the short-form for User Predicate and 'SP' is the short-form for System Predicate.
-. User Predicate stores the logic specified by the user. This will not be used to filter FilteredList objects.
-. System Predicate stores the search logic for the system which will be used to filter FilteredList objects.</pre>
-</div>
+<p>Given below are illustrations to help you understand how the first three method works internally.
+But before carrying on, you need to take note of the following.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1216,15 +1210,29 @@ returns true if <code>searchHistoryStack</code> is empty.<br></p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-User Predicate and System Predicate are not actual Classes, they are simply there to help simplify the explanation.
-In the actual implementation, there is no way to differentiate one <code>Predicate</code> from the other.
+In the diagrams, 'UP' is the short-form for User Predicate and 'SP' is the short-form for System Predicate.
+ User Predicate stores the logic specified by the user and it is not the actual search logic used for filtering of FilteredList objects.
+ On the other hand, System Predicate stores the search logic for the system and it will be used to filter FilteredList objects.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+User Predicate and System Predicate are not actual Classes and they are simply there to help simplify the explanation.
+In the actual implementation, there is no way to differentiate one from the other.
 </td>
 </tr>
 </table>
 </div>
 <hr>
 <div class="paragraph">
-<p><code>executeNewSearch(Predicate&lt;T&gt; predicate)</code><br></p>
+<p><strong>executeNewSearch(Predicate&lt;T&gt; predicate)</strong><br></p>
 </div>
 <div class="paragraph">
 <p>Upon calling this method, there will be two different situations<br></p>
@@ -1232,7 +1240,7 @@ In the actual implementation, there is no way to differentiate one <code>Predica
 <div class="ulist">
 <ul>
 <li>
-<p>Situation 1: <code>searchHistoryStack</code> is empty<br>
+<p><strong>Situation 1</strong>: <code>searchHistoryStack</code> is empty<br>
 Upon receiving a new User Predicate, SearchHistoryManager will simply push the new User Predicate into <code>searchHistoryStack</code>
 as a System Predicate.</p>
 </li>
@@ -1246,7 +1254,7 @@ as a System Predicate.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Situation 2: <code>searchHistoryStack</code> is not empty<br>
+<p><strong>Situation 2</strong>: <code>searchHistoryStack</code> is not empty<br>
 Before pushing the new <code>Predicate</code> into the stack, <code>SearchHistoryManager</code> will first retrieve the System Predicate object at the top of the stack.
 After retrieving it, it will call the <code>and()</code> method with the User Predicate, creating a new System Predicate which will then be pushed into the top
 of the stack.</p>
@@ -1263,7 +1271,7 @@ of the stack.</p>
 </div>
 <hr>
 <div class="paragraph">
-<p><code>revertLastSearch()</code><br></p>
+<p><strong>revertLastSearch()</strong><br></p>
 </div>
 <div class="paragraph">
 <p>This method will pop the System Predicate at the top of the stack.
@@ -1280,7 +1288,7 @@ it will return a <code>Predicate</code> object with a search logic that always d
 </div>
 <hr>
 <div class="paragraph">
-<p><code>clearSearchHistory()</code><br></p>
+<p><strong>clearSearchHistory()</strong><br></p>
 </div>
 <div class="paragraph">
 <p>This method will simply empty the stack.</p>
@@ -1291,6 +1299,8 @@ it will return a <code>Predicate</code> object with a search logic that always d
 </div>
 </div>
 <hr>
+<div class="sect4">
+<h5 id="how-searchhistory"><a class="link" href="#how-searchhistory">How SearchHistory</a></h5>
 <div class="paragraph">
 <p>The following sequence diagrams shows you how the <code>IncludeNameFindCommand</code> and <code>UndoFind</code> commands
 utilize <code>SearchHistoryManager</code> to perform Search Pruning. Other variations of <code>FindCommand</code> works similarly to
@@ -1318,6 +1328,7 @@ utilize <code>SearchHistoryManager</code> to perform Search Pruning. Other varia
 <div class="imageblock">
 <div class="content">
 <img src="images/UndoFindSequenceDiagram.png" alt="UndoFindSequenceDiagram">
+</div>
 </div>
 </div>
 </div>
@@ -1450,7 +1461,7 @@ of the <code>FilteredList</code> class with the <code>Predicate</code> object as
 <p>Need to implement another method specifically for retrieval of <code>Predicate</code> object.</p>
 </li>
 <li>
-<p>Future developers utilizing <code>SearchHistoryManger</code> need to remember that they need to retrieve <code>Predicate</code> object from <code>SearchHistoryManager</code> separately
+<p>Other developers utilizing <code>SearchHistoryManger</code> need to remember that they need to retrieve <code>Predicate</code> object from <code>SearchHistoryManager</code> separately
 after an update to search logic.</p>
 </li>
 </ol>
@@ -3823,7 +3834,7 @@ Expected: Similar to previous.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: List all persons using the <code>list</code> command. Multiple persons in the list.</p>
+<p>Prerequisites: List all persons using the <code>list</code> command.</p>
 </li>
 <li>
 <p>Test case: <code>find \tag friends</code><br>
@@ -3850,11 +3861,11 @@ Expected: Invalid Command Format. Error details shown in results display.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: List all persons using the <code>list</code> command. Multiple persons in the list.</p>
+<p>Prerequisites: List all persons using the <code>list</code> command.</p>
 </li>
 <li>
 <p>Test case: <code>find \exclude Alex</code><br>
-Expected: All contacts with the name Alex is removed from the displayed list.
+Expected: All contacts with the name Alex(case-insensitive) is removed from the displayed list.
 Name Keywords History with '-alex' message is shown in the results display</p>
 </li>
 <li>
@@ -3872,11 +3883,11 @@ Expected: Invalid Command Format. Error details shown in results display.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Excluding a person while all persons are listed</p>
+<p>First variation of excluding a person while all persons are listed</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: List all persons using the <code>list</code> command. Multiple persons in the list.</p>
+<p>Prerequisites: List all persons using the <code>list</code> command.</p>
 </li>
 <li>
 <p>Test case: <code>find \tag \exclude neighbours</code><br>
@@ -3884,16 +3895,27 @@ Expected: All contacts with the tag neighbours is removed from the displayed lis
 Tag Keywords History with '-neighbours' message is shown in the results display</p>
 </li>
 <li>
+<p>Test case: <code>find \tag \exclude</code><br>
+Expected: Invalid Command Format. Error details shown in results display.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Second variation of excluding a person while all persons are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all persons using the <code>list</code> command.</p>
+</li>
+<li>
 <p>Test case: <code>find \exclude \tag classmates</code><br>
 Expected: All contacts with the tag classmates is removed from the displayed list.
 Tag Keywords History with '-classmates' message is shown in the results display</p>
 </li>
 <li>
-<p>Test case: <code>find \tag \exclude</code><br>
+<p>Test case: <code>find \exclude \tag</code><br>
 Expected: Invalid Command Format. Error details shown in results display.</p>
-</li>
-<li>
-<p>Other incorrect delete commands to try: <code>find \exclude \tag</code></p>
 </li>
 </ol>
 </div>
@@ -3906,20 +3928,32 @@ Expected: Invalid Command Format. Error details shown in results display.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Prerequisites: List all persons using the <code>list</code> command. Multiple persons in the list.</p>
+<p>UndoFind Command with an Empty Search History.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Test case: <code>undofind</code><br>
-Expected: "SearchHistory is Empty" message in result display.</p>
+<p>Prerequisites: List all persons using the <code>list</code> command. Multiple persons in the list. This should clear the
+Search History stored internally within the application at the same time.</p>
 </li>
 <li>
-<p>Test case: <code>find \exclude Alex</code> and then <code>undofind</code><br>
+<p>Test case: <code>undofind</code><br>
+Expected:  Result Display shows "SearchHistory is Empty" message.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>UndoFind Command with an Non-Empty Search History.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all persons using the <code>list</code> command. Multiple persons in the list, and then <code>find \exclude Alex</code> to
+execute the first search.</p>
+</li>
+<li>
+<p>Test case: <code>undofind</code><br>
 Expected:<br>
-     <strong>After execution of first command</strong><br>
-     All contacts with the name Alex is removed from the displayed list.<br>
-     <strong>After execution of second command</strong><br>
-     All contacts with the name Alex will be added back to the displayed list after the second command and
+     All persons with the name Alex(case-insensitive) will be added back to the displayed list
      "Undo success!" message should shown in result display.</p>
 </li>
 </ol>
@@ -4085,4 +4119,4 @@ Expected: The budget for the club 'Music' will not be found and an error message
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 08:50:09 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 12:17:26 UTC</div></div></div></body></html>
