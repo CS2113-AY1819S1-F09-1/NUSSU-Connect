@@ -38,9 +38,10 @@
 <li><a href="#budgeting-feature">3.2. Budgeting Feature</a></li>
 <li><a href="#search-pruning-feature">3.3. Search Pruning Feature</a></li>
 <li><a href="#add-skill-level-command">3.4. Add Skill Level Command</a></li>
-<li><a href="#undo-redo-feature">3.5. Undo/Redo feature</a></li>
-<li><a href="#logging">3.6. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
+<li><a href="#sort-feature">3.5. Sort feature</a></li>
+<li><a href="#undo-redo-feature">3.6. Undo/Redo feature</a></li>
+<li><a href="#logging">3.7. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.8. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1493,7 +1494,8 @@ as it&#8217;s subclass <code>addSkillCommandParser</code> ensures that the corre
 is given to the command.</p>
 </div>
 <div class="paragraph">
-<p>The following shows how the application Logic handles the request to change a skill in one particular scenario.</p>
+<p>You can observe how the application Logic handles the request to change a skill
+in one particular scenario in the following steps:</p>
 </div>
 <div class="paragraph">
 <p>Step 1. The user launches the application. The application boots up and lists all members.</p>
@@ -1595,9 +1597,45 @@ information during addition of personal information.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.5. Undo/Redo feature</a></h3>
+<h3 id="sort-feature"><a class="link" href="#sort-feature">3.5. Sort feature</a></h3>
+<div class="paragraph">
+<p>This feature was implemented by implementing custom comparators in
+<code>Person</code> class. You will be able to compare the values in each person which are used
+as arguments to the <code>Sort</code>, which is a method of all instances of <code>List</code>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A <code>FilteredList</code> (unmodifiable) is obtained from the <code>model</code> and is placed into an <code>ArrayList</code>,
+which is modifiable.</p>
+</li>
+<li>
+<p><code>Sort</code> is called on the list, using custom comparators which can be found in the Person Class.</p>
+</li>
+<li>
+<p>The items are deleted from the model and are replaced in the order of the <code>ArrayList</code>.</p>
+</li>
+</ol>
+</div>
 <div class="sect3">
-<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current Implementation</a></h4>
+<h4 id="possible-extensions-3"><a class="link" href="#possible-extensions-3">3.5.1. Possible extensions</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Currently, the <code>find</code> command doesn&#8217;t work with the Sort Command. The two commands used together
+would be quite powerful, so making them work together would be top priority for <code>v2.0</code>.</p>
+</li>
+<li>
+<p>It should also be possible to sort by reverse, and sort by multiple criteria at once.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.6. Undo/Redo feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.6.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
 It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
@@ -1727,7 +1765,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.5.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.6.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -1797,14 +1835,14 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.7. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.8, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1835,7 +1873,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.8. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -3239,13 +3277,13 @@ for <code>RemarkCommandParser</code>.</p>
 <p>User indicates he wants to sort by skills</p>
 </li>
 <li>
-<p>NUSSU-Connect lists available skills, asks the user what he wants to sort by.</p>
+<p>NUSSU-Connect lists available users.</p>
 </li>
 <li>
-<p>User indicates what he wants by selecting</p>
+<p>User indicates that he wants to sort by skill.</p>
 </li>
 <li>
-<p>NUSSU-Connect all skills.</p>
+<p>NUSSU-Connect sorts all Persons in the application.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -4127,4 +4165,4 @@ Expected: The budget for the club 'Music' will not be found and an error message
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 12:20:54 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 12:30:10 UTC</div></div></div></body></html>

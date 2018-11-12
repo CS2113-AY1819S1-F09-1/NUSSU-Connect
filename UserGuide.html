@@ -28,16 +28,17 @@
 <li><a href="#locating-persons-code-find-code">3.8. Locating persons: <code>find</code></a></li>
 <li><a href="#undoing-find-commands-code-undofind-code">3.9. Undoing Find Commands: <code>undofind</code></a></li>
 <li><a href="#search-pruning-feature-with-list-find-and-undofind-commands">3.10. Search Pruning Feature with list, find and undofind commands</a></li>
-<li><a href="#deleting-code-delete-code">3.11. Deleting : <code>delete</code></a></li>
-<li><a href="#selecting-a-person-code-select-code">3.12. Selecting a person : <code>select</code></a></li>
-<li><a href="#listing-entered-commands-code-history-code">3.13. Listing entered commands : <code>history</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code">3.14. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">3.15. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">3.16. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#budgeting-feature-code-budget-code-code-calculatebudget-code-and-code-viewbudget-code">3.17. Budgeting feature: <code>budget</code>, <code>calculatebudget</code> and <code>viewbudget</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.18. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.19. Saving the data</a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.20. Encrypting data files <code>[coming in v2.0]</code></a></li>
+<li><a href="#sorting-code-sort-code">3.11. Sorting : <code>sort</code></a></li>
+<li><a href="#deleting-code-delete-code">3.12. Deleting : <code>delete</code></a></li>
+<li><a href="#selecting-a-person-code-select-code">3.13. Selecting a person : <code>select</code></a></li>
+<li><a href="#listing-entered-commands-code-history-code">3.14. Listing entered commands : <code>history</code></a></li>
+<li><a href="#undoing-previous-command-code-undo-code">3.15. Undoing previous command : <code>undo</code></a></li>
+<li><a href="#redoing-the-previously-undone-command-code-redo-code">3.16. Redoing the previously undone command : <code>redo</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">3.17. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#budgeting-feature-code-budget-code-code-calculatebudget-code-and-code-viewbudget-code">3.18. Budgeting feature: <code>budget</code>, <code>calculatebudget</code> and <code>viewbudget</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.19. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">3.20. Saving the data</a></li>
+<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.21. Encrypting data files <code>[coming in v2.0]</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -310,10 +311,12 @@ Format: <code>createaccount USERID PASSWORD ROLE</code></p>
 <ul>
 <li>
 <p><code>createaccount A1234569M zaq1xsw2cde3 member</code><br>
-Creates a new account with user ID as A1234569M, password as zaq1xsw2cde3 and role as member in the NUSSU-Connect.
-The image below shows the outcome of a successful creation of a new account.</p>
+Creates a new account with user ID as A1234569M, password as zaq1xsw2cde3 and role as member in the NUSSU-Connect.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>The image below shows the outcome of a successful creation of a new account.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -399,6 +402,22 @@ A skill level must be an integer from 0 to 100 (inclusive).
 <p><code>asl 4 s/Java l/40</code></p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Before executing the command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/aslbefore.png" alt="aslbefore" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p>After executing the command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/aslafter.png" alt="aslafter" width="300">
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -669,7 +688,84 @@ recent find command. You can do so with the undofind command<br></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-code-delete-code"><a class="link" href="#deleting-code-delete-code">3.11. Deleting : <code>delete</code></a></h3>
+<h3 id="sorting-code-sort-code"><a class="link" href="#sorting-code-sort-code">3.11. Sorting : <code>sort</code></a></h3>
+<div class="paragraph">
+<p>Sorts a list of people in NUSSU Connect.<br>
+Format: <code>sort st/[PARAMETER]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Sorts a list of people by the specified <code>PARAMETER</code> .</p>
+</li>
+<li>
+<p>Currently, the only valid parameters are <code>name</code>, <code>skill</code>, and <code>sl</code> (Skill Level)].</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+The sort command currently sorts and displays all data in NUSSU Connect. Interaction between this command
+and the <code>find</code> command is coming in <code>v2.0</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>sort st/name</code><br>
+Sorts the list of people by name, in alphabetical order.</p>
+</li>
+<li>
+<p><code>sort st/skill</code><br>
+Sorts the list of people by skill, in alphabetical order.</p>
+</li>
+<li>
+<p><code>sort st/sl</code><br>
+Sorts the list of people by skill level, in order of increasing skill.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Before executing the command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/sort1.png" alt="sort1" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>After sorting by <code>skill</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/sort2.png" alt="sort2" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p>After sorting by <code>sl</code> (skillLevel):</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/sort3.png" alt="sort3" width="500">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-code-delete-code"><a class="link" href="#deleting-code-delete-code">3.12. Deleting : <code>delete</code></a></h3>
 <div class="paragraph">
 <p>Deletes a specific person from NUSSU-Connect.<br>
 Format: <code>delete [INDEX]</code></p>
@@ -713,7 +809,7 @@ Deletes the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">3.12. Selecting a person : <code>select</code></a></h3>
+<h3 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">3.13. Selecting a person : <code>select</code></a></h3>
 <div class="paragraph">
 <p>Selects the person identified by the index number used in the displayed person list.<br>
 Format: <code>select INDEX</code></p>
@@ -754,7 +850,7 @@ Selects the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">3.13. Listing entered commands : <code>history</code></a></h3>
+<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">3.14. Listing entered commands : <code>history</code></a></h3>
 <div class="paragraph">
 <p>Lists all the commands that you have entered in reverse chronological order.<br>
 Format: <code>history</code></p>
@@ -775,7 +871,7 @@ Format: <code>history</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.14. Undoing previous command : <code>undo</code></a></h3>
+<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.15. Undoing previous command : <code>undo</code></a></h3>
 <div class="paragraph">
 <p>Restores NUSSU-Connect to the state before the previous <em>undoable</em> command was executed.<br>
 Format: <code>undo</code></p>
@@ -820,7 +916,7 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.15. Redoing the previously undone command : <code>redo</code></a></h3>
+<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.16. Redoing the previously undone command : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code></p>
@@ -852,14 +948,14 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.16. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.17. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries from NUSSU-Connect.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="budgeting-feature-code-budget-code-code-calculatebudget-code-and-code-viewbudget-code"><a class="link" href="#budgeting-feature-code-budget-code-code-calculatebudget-code-and-code-viewbudget-code">3.17. Budgeting feature: <code>budget</code>, <code>calculatebudget</code> and <code>viewbudget</code></a></h3>
+<h3 id="budgeting-feature-code-budget-code-code-calculatebudget-code-and-code-viewbudget-code"><a class="link" href="#budgeting-feature-code-budget-code-code-calculatebudget-code-and-code-viewbudget-code">3.18. Budgeting feature: <code>budget</code>, <code>calculatebudget</code> and <code>viewbudget</code></a></h3>
 <div class="paragraph">
 <p>The budgeting process has 3 steps and involves club members and NUSSU treasurers as the users in the different steps</p>
 </div>
@@ -873,7 +969,7 @@ Format: <code>clear</code></p>
 <p>Step 3: Viewing the allocated budget of a club which can be done by either <strong>club members</strong> or <strong>NUSSU treasurers</strong>.</p>
 </div>
 <div class="sect3">
-<h4 id="submitting-data-for-budget-allocation-code-budget-code"><a class="link" href="#submitting-data-for-budget-allocation-code-budget-code">3.17.1. Submitting data for budget allocation: <code>budget</code></a></h4>
+<h4 id="submitting-data-for-budget-allocation-code-budget-code"><a class="link" href="#submitting-data-for-budget-allocation-code-budget-code">3.18.1. Submitting data for budget allocation: <code>budget</code></a></h4>
 <div class="paragraph">
 <p>This is the first step in the budgeting process!</p>
 </div>
@@ -930,7 +1026,7 @@ Format: <code>budget c/CLUB NAME t/EXPECTED TURNOUT e/NUMBER OF EVENTS</code></p
 </div>
 </div>
 <div class="sect3">
-<h4 id="calculating-the-budgets-code-calculatebudget-code"><a class="link" href="#calculating-the-budgets-code-calculatebudget-code">3.17.2. Calculating the budgets : <code>calculatebudget</code></a></h4>
+<h4 id="calculating-the-budgets-code-calculatebudget-code"><a class="link" href="#calculating-the-budgets-code-calculatebudget-code">3.18.2. Calculating the budgets : <code>calculatebudget</code></a></h4>
 <div class="paragraph">
 <p>This is the second step in the budgeting process!</p>
 </div>
@@ -973,7 +1069,7 @@ In <strong>v2.0</strong> users will be able to use the <code>calculatebudget</co
 </div>
 </div>
 <div class="sect3">
-<h4 id="viewing-the-allocated-budget-for-a-club-code-viewbudget-code"><a class="link" href="#viewing-the-allocated-budget-for-a-club-code-viewbudget-code">3.17.3. Viewing the allocated budget for a club : <code>viewbudget</code></a></h4>
+<h4 id="viewing-the-allocated-budget-for-a-club-code-viewbudget-code"><a class="link" href="#viewing-the-allocated-budget-for-a-club-code-viewbudget-code">3.18.3. Viewing the allocated budget for a club : <code>viewbudget</code></a></h4>
 <div class="paragraph">
 <p>This is the third and final step in the budgeting process!</p>
 </div>
@@ -988,21 +1084,21 @@ Format: <code>viewbudget c/CLUB NAME</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.18. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.19. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.19. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.20. Saving the data</a></h3>
 <div class="paragraph">
 <p>NUSSU-Connect data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.20. Encrypting data files <code>[coming in v2.0]</code></a></h3>
+<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.21. Encrypting data files <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p><em>{explain how the user can enable/disable data encryption}</em></p>
 </div>
@@ -1035,6 +1131,9 @@ e.g. <code>createaccount A1234566M zaq1xsw2cde3 member</code></p>
 <p><strong>Add</strong> <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code><br></p>
 </li>
 <li>
+<p><strong>Add Skill</strong>: <code>asl [INDEX] s/{SKILL} l/[SKILLLEVEL]</code><br></p>
+</li>
+<li>
 <p><strong>Clear</strong> : <code>clear</code></p>
 </li>
 <li>
@@ -1052,6 +1151,10 @@ e.g <code>find \tag President</code></p>
 </li>
 <li>
 <p><strong>Undo Find</strong> : <code>undofind</code></p>
+</li>
+<li>
+<p><strong>Sort</strong> : <code>sort st/[parameter]</code><br>
+e.g. <code>sort st/skill</code></p>
 </li>
 <li>
 <p><strong>List</strong> : <code>list</code></p>
@@ -1087,4 +1190,4 @@ e.g. <code>viewbudget c/Computing Club</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 12:20:54 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 12:30:10 UTC</div></div></div></body></html>
